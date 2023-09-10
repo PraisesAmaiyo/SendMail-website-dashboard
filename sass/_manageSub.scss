@@ -30,7 +30,8 @@
         font-size: 4rem;
     }
 
-    &-dashboard {
+
+    .card {
         background-image: linear-gradient(111.4deg, rgba($color-primary-light, .75) 1%, rgba($color-grey-dark-1, .75) 58%), url(../img/image-1.jpg);
         color: $color-grey-light-1;
         border: 1px solid #ddd;
@@ -39,6 +40,9 @@
         margin: 20px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+    }
+
+    &-dashboard {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -56,10 +60,16 @@
             }
         }
 
-        p {
+        &_text {
             font-size: 2.5rem;
         }
 
+    }
+
+    &-statistics {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 

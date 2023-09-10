@@ -209,14 +209,15 @@ body {
     margin-right: auto; }
   .main-name {
     font-size: 4rem; }
-  .main-dashboard {
+  .main .card {
     background-image: linear-gradient(111.4deg, rgba(43, 92, 157, 0.75) 1%, rgba(18, 70, 138, 0.75) 58%), url(../img/image-1.jpg);
     color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 2rem 6rem;
     margin: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+  .main-dashboard {
     display: flex;
     align-items: center;
     justify-content: center; }
@@ -226,8 +227,12 @@ body {
       height: 30rem;
       width: 30rem;
       border-radius: 31% 69% 63% 37% / 34% 28% 72% 66%; }
-    .main-dashboard p {
+    .main-dashboard_text {
       font-size: 2.5rem; }
+  .main-statistics {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
 
 /* styles.css */
 .progress-circle {
