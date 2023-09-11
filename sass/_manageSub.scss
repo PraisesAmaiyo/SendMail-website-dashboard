@@ -2,6 +2,7 @@
     grid-column: main-start / main-end;
     grid-row: rowOne-start / rowOne-end;
     padding: 1.6rem;
+    margin-top: 8rem;
 
     &-heading {
         display: flex;
@@ -12,27 +13,34 @@
             margin-right: auto;
         }
 
-        &_date {
+        &_side {
+            display: flex;
+            align-items: center;
+        }
+
+        &_update {
             background-image: linear-gradient(to right, rgba($color-primary-light, 1), rgba($color-grey-dark-1, 1));
             color: $color-grey-light-1;
-            padding: 1.5rem;
+            padding: 1rem;
             display: flex;
             gap: 4px;
+            margin-right: 2rem;
+            font-size: 1.2rem;
         }
     }
 
     &-welcome {
-        font-size: 2rem;
+        font-size: 1.5rem;
         margin-right: auto;
     }
 
     &-name {
-        font-size: 4rem;
+        font-size: 2rem;
     }
-
 
     .card {
         background-image: linear-gradient(111.4deg, rgba($color-primary-light, .75) 1%, rgba($color-grey-dark-1, .75) 58%), url(../img/image-1.jpg);
+        background-size: cover;
         color: $color-grey-light-1;
         border: 1px solid #ddd;
         border-radius: 5px;
@@ -40,43 +48,92 @@
         margin: 20px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+        &-mini {
+            padding: 2rem;
+        }
+
     }
 
     &-dashboard {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
         align-items: center;
         justify-content: center;
+        gap: 20px;
 
         &_profile {
             margin-right: auto;
         }
 
         &_image {
+            grid-column: 2/3;
+            display: grid;
+            justify-content: end;
 
             .profile-image {
-                height: 30rem;
-                width: 30rem;
+                height: 15rem;
+                width: 15rem;
                 border-radius: 31% 69% 63% 37% / 34% 28% 72% 66%
             }
         }
 
         &_text {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
         }
-
     }
 
     &-statistics {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(41rem, max-content));
+        gap: 2rem;
         align-items: center;
         justify-content: center;
+
+        .statistics-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(2, 1fr);
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+
+
+            &_header {
+                font-size: 1rem;
+            }
+
+            &_lists {
+                grid-column: 1/ -1;
+
+                .lists {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    justify-content: center;
+                    text-align: center;
+
+                    .list {
+                        font-size: 1.2rem;
+                        list-style: none;
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        align-items: center;
+
+                        // gap: 2rem;
+
+                        &:not(:last-child) {
+                            margin-bottom: 1rem;
+                        }
+
+                    }
+                }
+            }
+        }
     }
 }
 
-/* styles.css */
 .progress-circle {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
     position: relative;
 }
 

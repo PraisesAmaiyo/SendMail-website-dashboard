@@ -64,5 +64,5 @@ body {
     display: grid;
     grid-template-rows: [navigation-start] max-content [navigation-end rowOne-start] 1fr [rowOne-end];
 
-    grid-template-columns: [sidebar-start] 20% [sidebar-end main-start] 1fr [main-end];
+    grid-template-columns: [sidebar-start] 22% [sidebar-end main-start] 1fr [main-end];
 }
