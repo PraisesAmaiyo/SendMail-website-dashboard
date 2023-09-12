@@ -66,3 +66,21 @@ body {
 
     grid-template-columns: [sidebar-start] 22% [sidebar-end main-start] 1fr [main-end];
 }
+
+.card {
+    background-image: linear-gradient(111.4deg, rgba($color-primary-light, .75) 1%, rgba($color-grey-dark-1, .75) 58%), url(../img/image-1.jpg);
+    background-size: cover;
+    color: $color-grey-light-1;
+    border: 1px solid #ddd;
+    border-radius: 10px 35px 5px 35px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-white {
+    background-image: linear-gradient(111.4deg, rgba($color-grey-light-1, .75) 1%, rgba($color-grey-light-2, .75) 58%), url(../img/image-1.jpg);
+    background-size: cover;
+    color: $color-grey-light-1;
+    border: 1px solid #ddd;
+    border-radius: 10px 35px 5px 35px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

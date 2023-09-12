@@ -1,9 +1,33 @@
 const btnNavEl = document.querySelector('.btn-mobile-nav');
-const headerEl = document.querySelector('.navigation-header');
+// const headerEl = document.querySelector('.navigation-header');
 const allLinks = document.querySelectorAll('a:link');
-const sectionHeroEl = document.querySelector('.section-hero');
-const sectionRegEl = document.querySelector('.section-registration');
-// const sectionHeroEl = document.querySelector('.section-hero');
+
+window.addEventListener('load', function () {
+  const headerEl = document.querySelector('.navigation-header');
+  // Sticky nav bar
+  const obs = new IntersectionObserver(
+    function (entries) {
+      const ent = entries[0];
+      console.log(ent);
+
+      if (ent.isIntersecting === false) {
+        document.body.classList.add('sticky');
+      }
+
+      if (ent.isIntersecting === true) {
+        document.body.classList.remove('sticky');
+      }
+    },
+    {
+      // In the viewport
+      root: null,
+      threshold: 0,
+      rootMargin: '-1000px',
+    }
+  );
+
+  obs.observe(headerEl);
+});
 
 function updateProgress(progressId, percentage) {
   const progressCircle = document.getElementById(progressId);
@@ -59,32 +83,15 @@ allLinks.forEach(function (link) {
   });
 });
 
-// Sticky nav bar
-const obs = new IntersectionObserver(
-  function (entries) {
-    const ent = entries[0];
-    console.log(ent);
-
-    if (ent.isIntersecting === false) {
-      document.body.classList.add('sticky');
-    }
-
-    if (ent.isIntersecting === true) {
-      document.body.classList.remove('sticky');
-    }
-  },
-  {
-    // In the viewport
-    root: null,
-    threshold: 0,
-    rootMargin: '-1000px',
-  }
-);
-obs.observe(headerEl);
-
 function updateDateTime() {
   // Create a new Date object for the current date and time
   const currentDate = new Date();
+
+  // Define an array of day names
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  // Get the day of the week (0 for Sun, 1 for Mon, 2 for Tue, etc.)
+  const dayOfWeek = dayNames[currentDate.getDay()];
 
   // Define an array of month names
   const monthNames = [
@@ -119,7 +126,7 @@ function updateDateTime() {
   const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
 
   // Create the formatted date and time strings
-  const formattedDate = `${month} ${day}${daySuffix}, ${year}`;
+  const formattedDate = `${dayOfWeek}, ${month} ${day}${daySuffix}, ${year}`;
   const formattedTime = `${formattedHour}:${
     (minute < 10 ? '0' : '') + minute
   } ${amPm}`;
@@ -151,3 +158,21 @@ function getDaySuffix(day) {
       return 'th';
   }
 }
+
+// Toggle the active class for sideNavs
+
+const sideNavs = document.querySelectorAll('.side-nav_item');
+
+sideNavs.forEach((nav) => {
+  nav.addEventListener('click', () => {
+    nav.classList.add('active');
+
+    sideNavs.forEach((otherNav) => {
+      if (otherNav !== nav) {
+        otherNav.classList.remove('active');
+      }
+    });
+  });
+});
+
+console.log(sideNavs);

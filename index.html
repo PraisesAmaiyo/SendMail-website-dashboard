@@ -57,7 +57,6 @@
             <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
             <ion-icon class="icon-mobile-nav dark" name="close-outline"></ion-icon>
         </button>
-
     </header>
 
     <nav class="sidebar">
@@ -67,52 +66,60 @@
             <div class="sidebar-header">
                 <img src="https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg" alt="Client Image"
                     class="sidebar-header-image" />
-                <!-- <h1 class="sidebar-header-text">Peter Favour Dashboard</h1> -->
             </div>
 
             <ul class="side-nav">
-                <li class="side-nav_item active">
-                    <a href="/index.html" class="side-nav_link">
+                <a href="/index.html" class="side-nav_link">
+                    <li class="side-nav_item active">
+                        <i class="fas fa-user-circle icon"></i>
+                        <span>My Dashboard</span>
+                    </li>
+                </a>
+            </ul>
+
+            <ul class="side-nav">
+                <a href="/manageSubcription.html" class="side-nav_link">
+                    <li class="side-nav_item">
                         <i class="fas fa-file-invoice-dollar icon"></i>
                         <span>Manage Subscription</span>
-                    </a>
-                </li>
+                    </li>
+                </a>
             </ul>
 
             <ul class="side-nav">
-                <li class="side-nav_item ">
-                    <a href="/domainMgt.html" class="side-nav_link">
+                <a href="/domainMgt.html" class="side-nav_link">
+                    <li class="side-nav_item ">
                         <i class="fas fa-folder icon"></i>
                         <span>Domain Management</span>
-                    </a>
-                </li>
+                    </li>
+                </a>
             </ul>
 
             <ul class="side-nav">
-                <li class="side-nav_item ">
-                    <a href="#" class="side-nav_link">
+                <a href="/domainAccount.html" class="side-nav_link">
+                    <li class="side-nav_item ">
                         <i class="fas fa-toggle-on icon"></i>
-                        <span>Domain Accoint</span>
-                    </a>
-                </li>
+                        <span>Domain Account</span>
+                    </li>
+                </a>
             </ul>
 
             <ul class="side-nav">
-                <li class="side-nav_item ">
-                    <a href="#" class="side-nav_link">
+                <a href="/alias.html" class="side-nav_link">
+                    <li class="side-nav_item ">
                         <i class="fas fa-mask icon"></i>
                         <span>Alias</span>
-                    </a>
-                </li>
+                    </li>
+                </a>
             </ul>
 
             <ul class="side-nav">
-                <li class="side-nav_item ">
-                    <a href="#" class="side-nav_link">
+                <a href="/accessWebmail.html" class="side-nav_link">
+                    <li class="side-nav_item ">
                         <i class="fas fa-envelope-open-text icon"></i>
                         <span>Access Webmail</span>
-                    </a>
-                </li>
+                    </li>
+                </a>
             </ul>
         </div>
     </nav>
@@ -134,7 +141,7 @@
             </div>
         </div>
 
-        <div class="card">
+        <div class="card card-dashboard">
             <div class="main-dashboard">
                 <div class="main-dashboard_profile">
                     <p class="main-dashboard_text">Johnson Cane </p>
@@ -152,204 +159,206 @@
 
         <div class="main-statistics">
             <div class="card card-mini">
-                <div class="statistics-info">
-                    <div class="statistics-info_header">
-                        <h2>Domain 4/5</h2>
-                    </div>
+                <!-- <div class="statistics-info"> -->
+                <div class="statistics-info_header">
+                    <h2>Domain 4/5</h2>
+                </div>
 
-                    <div class="progress-circle" id="domain">
-                        <svg class="circle" width="75" height="75">
-                            <circle class="bg-circle" cx="37.5" cy="37.5" r="30"></circle>
-                            <circle class="progress" cx="37.5" cy="37.5" r="30"></circle>
-                        </svg>
-                        <div class="percentage" id="domainPercent">0%</div>
-                    </div>
+                <div class="progress-circle" id="domain">
+                    <svg class="circle" width="75" height="75">
+                        <circle class="bg-circle" cx="37.5" cy="37.5" r="30"></circle>
+                        <circle class="progress" cx="37.5" cy="37.5" r="30"></circle>
+                    </svg>
+                    <div class="percentage" id="domainPercent">0%</div>
+                </div>
 
-                    <div class="statistics-info_lists">
+                <div class="statistics-info_lists statistics-info_lists-single ">
+                    <ul class="lists">
+                        <!-- <div class="lists-a"> -->
+                        <li class="list">
+                            <p class="list-title">wapclass.domain.com </p>
+                            <i class="fa-regular fa-circle-check icon"></i>
+                        </li>
+
+                        <li class="list">
+                            <p class="list-title">classwap.domain.com </p>
+                            <i class="fa-regular fa-circle-check icon"></i>
+                        </li>
+
+                        <li class="list">
+                            <p class="list-title"> Johnsoncane.domain.com </p>
+                            <i class="fa-regular fa-circle-check icon"></i>
+                        </li>
+
+                        <li class="list">
+                            <p class="list-title"> class.domain.com</p>
+                            <i class="fa-regular fa-circle-check icon"></i>
+                        </li>
+
+                        <li class="list">
+                            <p class="list-title"> imadethisuu.domain.com </p>
+                            <i class="fa-solid fa-xmark icon"></i>
+                        </li>
+                        <!-- </div> -->
+                    </ul>
+                </div>
+                <!-- </div> -->
+            </div>
+
+            <div class="card card-wide">
+                <div class="statistics-info_header">
+                    <h2>Alias 6/10</h2>
+                </div>
+
+                <div class="progress-circle" id="alias">
+                    <svg class="circle" width="75" height="75">
+                        <circle class="bg-circle" cx="37.5" cy="37.5" r="30"></circle>
+                        <circle class="progress" cx="37.5" cy="37.5" r="30"></circle>
+                    </svg>
+                    <div class="percentage" id="aliasPercent">0%</div>
+                </div>
+
+                <div class="statistics-info_lists">
+                    <div class="lists-a">
                         <ul class="lists">
-                            <div class="lists-a">
-                                <li class="list">
-                                    <p class="list-title">Domain 1 </p>
-                                    <i class="fa-regular fa-circle-check"></i>
-                                </li>
 
-                                <li class="list">
-                                    <p class="list-title"> Domain 2 </p>
-                                    <i class="fa-regular fa-circle-check"></i>
-                                </li>
+                            <li class="list">
+                                <p class="list-title"> Alias 1 </p>
+                                <i class="fa-regular fa-circle-check icon"></i>
+                            </li>
 
-                                <li class="list">
-                                    <p class="list-title"> Domain 3 </p>
-                                    <i class="fa-regular fa-circle-check"></i>
-                                </li>
+                            <li class="list">
+                                <p class="list-title"> wapclass.domain.com </p>
+                                <i class="fa-regular fa-circle-check icon"></i>
+                            </li>
 
-                                <li class="list">
-                                    <p class="list-title"> Domain 4 </p>
-                                    <i class="fa-regular fa-circle-check"></i>
-                                </li>
+                            <li class="list">
+                                <p class="list-title"> Alias 3 </p>
+                                <i class="fa-regular fa-circle-check icon"></i>
+                            </li>
 
-                                <li class="list">
-                                    <p class="list-title"> Domain 5 </p>
-                                    <i class="fa-solid fa-xmark"></i>
-                                </li>
-                            </div>
+                            <li class="list">
+                                <p class="list-title"> Alias 4 </p>
+                                <i class="fa-regular fa-circle-check icon"></i>
+                            </li>
+
+                            <li class="list">
+                                <p class="list-title"> Alias 5 </p>
+                                <i class="fa-solid fa-xmark icon"></i>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="lists-b">
+                        <ul class="lists">
+                            <li class="list">
+                                <p class="list-title"> Alias 6 </p>
+                                <i class="fa-solid fa-xmark icon"></i>
+                            </li>
+
+                            <li class="list">
+                                <p class="list-title">wapclass.domain.com </p>
+                                <i class="fa-solid fa-xmark icon"></i>
+                            </li>
+
+                            <li class="list">
+                                <p class="list-title"> Alias 8 </p>
+                                <i class="fa-solid fa-xmark icon"></i>
+                            </li>
+
+                            <li class="list">
+                                <p class="list-title"> Alias 9 </p>
+                                <i class="fa-solid fa-xmark icon"></i>
+                            </li>
+
+                            <li class="list">
+                                <p class="list-title"> Alias 9 </p>
+                                <i class="fa-solid fa-xmark icon"></i>
+                            </li>
+
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="card card-mini">
-                <div class="statistics-info">
-                    <div class="statistics-info_header">
-                        <h2>Alias 6/10</h2>
-                    </div>
 
-                    <div class="progress-circle" id="alias">
-                        <svg class="circle" width="75" height="75">
-                            <circle class="bg-circle" cx="37.5" cy="37.5" r="30"></circle>
-                            <circle class="progress" cx="37.5" cy="37.5" r="30"></circle>
-                        </svg>
-                        <div class="percentage" id="aliasPercent">0%</div>
-                    </div>
+            <div class="card card-wide">
+                <div class="statistics-info_header">
+                    <h2>Domain Created 10/10</h2>
+                </div>
 
-                    <div class="statistics-info_lists">
+                <div class="progress-circle" id="domainCreated">
+                    <svg class="circle" width="75" height="75">
+                        <circle class="bg-circle" cx="37.5" cy="37.5" r="30"></circle>
+                        <circle class="progress" cx="37.5" cy="37.5" r="30"></circle>
+                    </svg>
+                    <div class="percentage" id="domainCreatedPercent">0%</div>
+                </div>
+
+                <div class="statistics-info_lists">
+                    <div class="lists-a">
                         <ul class="lists">
-                            <div class="lists-a">
 
-                                <li class="list">
-                                    <p class="list-title"> Alias 1 </p>
-                                    <i class="fa-regular fa-circle-check"></i>
-                                </li>
+                            <li class="list">
+                                <p class="list-title"> Alias 1 </p>
+                                <i class="fa-regular fa-circle-check icon"></i>
+                            </li>
 
-                                <li class="list">
-                                    <p class="list-title"> Alias 2 </p>
-                                    <i class="fa-regular fa-circle-check"></i>
-                                </li>
+                            <li class="list">
+                                <p class="list-title"> wapclass.domain.com </p>
+                                <i class="fa-regular fa-circle-check icon"></i>
+                            </li>
 
-                                <li class="list">
-                                    <p class="list-title"> Alias 3 </p>
-                                    <i class="fa-regular fa-circle-check"></i>
-                                </li>
+                            <li class="list">
+                                <p class="list-title"> Alias 3 </p>
+                                <i class="fa-regular fa-circle-check icon"></i>
+                            </li>
 
-                                <li class="list">
-                                    <p class="list-title"> Alias 4 </p>
-                                    <i class="fa-regular fa-circle-check"></i>
-                                </li>
+                            <li class="list">
+                                <p class="list-title"> Alias 4 </p>
+                                <i class="fa-regular fa-circle-check icon"></i>
+                            </li>
 
-                                <li class="list">
-                                    <p class="list-title"> Alias 5 </p>
-                                    <i class="fa-solid fa-xmark"></i>
-                                </li>
-                            </div>
-
-                            <div class="lists-b">
-                                <li class="list">
-                                    <p class="list-title"> Alias 6 </p>
-                                    <i class="fa-solid fa-xmark"></i>
-                                </li>
-
-                                <li class="list">
-                                    <p class="list-title"> Alias 7 </p>
-                                    <i class="fa-solid fa-xmark"></i>
-                                </li>
-
-                                <li class="list">
-                                    <p class="list-title"> Alias 8 </p>
-                                    <i class="fa-solid fa-xmark"></i>
-                                </li>
-
-                                <li class="list">
-                                    <p class="list-title"> Alias 9 </p>
-                                    <i class="fa-solid fa-xmark"></i>
-                                </li>
-
-                                <li class="list">
-                                    <p class="list-title"> Alias 9 </p>
-                                    <i class="fa-solid fa-xmark"></i>
-                                </li>
-
-                            </div>
+                            <li class="list">
+                                <p class="list-title"> Alias 5 </p>
+                                <i class="fa-solid fa-xmark icon"></i>
+                            </li>
                         </ul>
                     </div>
+
+                    <div class="lists-b">
+                        <ul class="lists">
+                            <li class="list">
+                                <p class="list-title"> Alias 6 </p>
+                                <i class="fa-solid fa-xmark icon"></i>
+                            </li>
+
+                            <li class="list">
+                                <p class="list-title">wapclass.domain.com </p>
+                                <i class="fa-solid fa-xmark icon"></i>
+                            </li>
+
+                            <li class="list">
+                                <p class="list-title"> Alias 8 </p>
+                                <i class="fa-solid fa-xmark icon"></i>
+                            </li>
+
+                            <li class="list">
+                                <p class="list-title"> Alias 9 </p>
+                                <i class="fa-solid fa-xmark icon"></i>
+                            </li>
+
+                            <li class="list">
+                                <p class="list-title"> Alias 9 </p>
+                                <i class="fa-solid fa-xmark icon"></i>
+                            </li>
+
+                        </ul>
+                    </div>
+
                 </div>
             </div>
-
-
-            <div class="card card-mini">
-                <div class="statistics-info">
-                    <div class="statistics-info_header">
-                        <h2>Domain Created 10/10</h2>
-                    </div>
-
-                    <div class="progress-circle" id="domainCreated">
-                        <svg class="circle" width="75" height="75">
-                            <circle class="bg-circle" cx="37.5" cy="37.5" r="30"></circle>
-                            <circle class="progress" cx="37.5" cy="37.5" r="30"></circle>
-                        </svg>
-                        <div class="percentage" id="domainCreatedPercent">0%</div>
-                    </div>
-
-                    <div class="statistics-info_lists">
-                        <ul class="lists">
-                            <div class="lists-a">
-
-                                <li class="list">
-                                    <p class="list-title"> Created 1 </p>
-                                    <i class="fa-regular fa-circle-check"></i>
-                                </li>
-
-                                <li class="list">
-                                    <p class="list-title"> Created 2 </p>
-                                    <i class="fa-regular fa-circle-check"></i>
-                                </li>
-
-                                <li class="list">
-                                    <p class="list-title"> Created 3 </p>
-                                    <i class="fa-regular fa-circle-check"></i>
-                                </li>
-
-                                <li class="list">
-                                    <p class="list-title"> Created 4 </p>
-                                    <i class="fa-regular fa-circle-check"></i>
-                                </li>
-
-                                <li class="list">
-                                    <p class="list-title"> Created 5 </p>
-                                    <i class="fa-solid fa-xmark"></i>
-                                </li>
-                            </div>
-
-                            <div class="lists-b">
-                                <li class="list">
-                                    <p class="list-title"> Created 6 </p>
-                                    <i class="fa-solid fa-xmark"></i>
-                                </li>
-
-                                <li class="list">
-                                    <p class="list-title"> Created 7 </p>
-                                    <i class="fa-solid fa-xmark"></i>
-                                </li>
-
-                                <li class="list">
-                                    <p class="list-title"> Created 8 </p>
-                                    <i class="fa-solid fa-xmark"></i>
-                                </li>
-
-                                <li class="list">
-                                    <p class="list-title"> Created 9 </p>
-                                    <i class="fa-solid fa-xmark"></i>
-                                </li>
-
-                                <li class="list">
-                                    <p class="list-title"> Created 9 </p>
-                                    <i class="fa-solid fa-xmark"></i>
-                                </li>
-
-                            </div>
-                        </ul>
-                    </div>
-
-                </div>
+        </div>
     </main>
 </body>
 
