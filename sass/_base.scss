@@ -29,58 +29,58 @@ $bp-smallest: 30em;
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
+   margin: 0;
+   padding: 0;
+   box-sizing: inherit;
 }
 
 html {
-    box-sizing: border-box;
-    font-size: 62.5%;
+   box-sizing: border-box;
+   font-size: 62.5%;
 
-    @media only screen and (max-width:$bp-largest) {
-        font-size: 50%;
-    }
+   @media only screen and (max-width:$bp-largest) {
+      font-size: 50%;
+   }
 
-    @media only screen and (max-width:$bp-medium) {
-        font-size: 40%;
-    }
+   @media only screen and (max-width:$bp-medium) {
+      font-size: 40%;
+   }
 
-    @media only screen and (max-width:$bp-smaller) {
-        font-size: 30%;
-    }
+   @media only screen and (max-width:$bp-smaller) {
+      font-size: 30%;
+   }
 }
 
 body {
-    font-family: $font-primary;
-    font-display: swap;
-    color: $color-primary;
-    font-weight: 300;
-    line-height: 1.4;
+   font-family: $font-primary;
+   font-display: swap;
+   color: $color-primary;
+   font-weight: 300;
+   line-height: 1.4;
 }
 
 .container {
-    overflow-x: hidden;
-    display: grid;
-    grid-template-rows: [navigation-start] max-content [navigation-end rowOne-start] 1fr [rowOne-end];
+   overflow-x: hidden;
+   display: grid;
+   grid-template-rows: [navigation-start] max-content [navigation-end rowOne-start] 1fr [rowOne-end];
 
-    grid-template-columns: [sidebar-start] 22% [sidebar-end main-start] 1fr [main-end];
+   grid-template-columns: [sidebar-start] 25% [sidebar-end main-start] 1fr [main-end];
 }
 
 .card {
-    background-image: linear-gradient(111.4deg, rgba($color-primary-light, .75) 1%, rgba($color-grey-dark-1, .75) 58%), url(../img/image-1.jpg);
-    background-size: cover;
-    color: $color-grey-light-1;
-    border: 1px solid #ddd;
-    border-radius: 10px 35px 5px 35px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   background-image: linear-gradient(111.4deg, rgba($color-primary-light, .75) 1%, rgba($color-grey-dark-1, .75) 58%), url(../img/image-1.jpg);
+   background-size: cover;
+   color: $color-grey-light-1;
+   border: 1px solid #ddd;
+   border-radius: 10px 35px 5px 35px;
+   box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 10px
 }
 
 .card-white {
-    background-image: linear-gradient(111.4deg, rgba($color-grey-light-1, .75) 1%, rgba($color-grey-light-2, .75) 58%), url(../img/image-1.jpg);
-    background-size: cover;
-    color: $color-grey-light-1;
-    border: 1px solid #ddd;
-    border-radius: 10px 35px 5px 35px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   background-image: linear-gradient(111.4deg, rgba($color-grey-light-1, .75) 1%, rgba($color-grey-light-2, .75) 58%), url(../img/image-1.jpg);
+   background-size: cover;
+   color: $color-grey-light-1;
+   border: 1px solid #ddd;
+   border-radius: 10px 35px 5px 35px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

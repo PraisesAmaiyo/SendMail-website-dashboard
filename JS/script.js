@@ -31,19 +31,21 @@ window.addEventListener('load', function () {
 
 function updateProgress(progressId, percentage) {
   const progressCircle = document.getElementById(progressId);
-  const progress = progressCircle.querySelector('.progress');
-  const percentageText = progressCircle.querySelector('.percentage');
 
-  const circumference = 2 * Math.PI * 30;
-  const offset = circumference - (percentage / 100) * circumference;
+  if (progressCircle) {
+    const progress = progressCircle.querySelector('.progress');
+    const percentageText = progressCircle.querySelector('.percentage');
 
-  progress.style.strokeDasharray = `${circumference} ${circumference}`;
-  progress.style.strokeDashoffset = offset;
-  percentageText.textContent = `${percentage}%`;
+    const circumference = 2 * Math.PI * 30;
+    const offset = circumference - (percentage / 100) * circumference;
+
+    progress.style.strokeDasharray = `${circumference} ${circumference}`;
+    progress.style.strokeDashoffset = offset;
+    percentageText.textContent = `${percentage}%`;
+  }
 }
 
 // Note that if it is 4/5 then calculate 4/5 * 100 and input the value
-
 // Update progress for domain
 updateProgress('domain', 75);
 
@@ -54,9 +56,9 @@ updateProgress('alias', 60);
 updateProgress('domainCreated', 100);
 
 // Mobile nav
-// btnNavEl.addEventListener('click', function () {
-//   headerEl.classList.toggle('nav-open');
-// });
+btnNavEl.addEventListener('click', function () {
+  headerEl.classList.toggle('nav-open');
+});
 
 allLinks.forEach(function (link) {
   link.addEventListener('click', function (e) {
@@ -175,4 +177,93 @@ sideNavs.forEach((nav) => {
   });
 });
 
-console.log(sideNavs);
+// JavaScript to add spaces to card number input
+
+document.getElementById('cardNumber').addEventListener('input', function (e) {
+  // Remove any non-digit characters
+  const cardNumber = e.target.value.replace(/\D/g, '');
+
+  // Add spaces after every 4 digits
+  const formattedCardNumber = cardNumber.replace(/(\d{4})(?=\d)/g, '$1 ');
+
+  e.target.value = formattedCardNumber;
+});
+
+// JavaScript to add / after 2 inputs for MM/YY
+
+const expiryDateInput = document.getElementById('expiryDate');
+
+expiryDateInput.addEventListener('input', function (e) {
+  // Remove any non-digit characters
+  const inputValue = e.target.value.replace(/\D/g, '');
+
+  // Format as MM/YY
+  if (inputValue.length >= 2) {
+    const formattedValue = inputValue.slice(0, 2) + '/' + inputValue.slice(2);
+    e.target.value = formattedValue;
+  } else {
+    e.target.value = inputValue;
+  }
+});
+
+// JavaScript to switch wallet address and toggle USDT Types
+
+const cryptoName = document.querySelector('.wallet-name');
+const cryptoAddress = document.querySelector('.wallet-address');
+
+const usdtName = document.querySelector('.wallet-name_usdt');
+const usdtAddress = document.querySelector('.wallet-address_usdt');
+const usdtDisplay = document.querySelector('.usdt-ER20');
+
+console.log(cryptoAddress.value);
+
+const walletAddress = document
+  .getElementById('cryptoType')
+  .addEventListener('change', function (e) {
+    const selectedWallet = e.target.value;
+
+    if (selectedWallet === 'bitcoin') {
+      cryptoName.innerText =
+        'Bitcoin address (Copy the wallet address and send):';
+      cryptoAddress.value = '12345AddressForBitcoin';
+
+      // Hide usdt elements
+      usdtName.style.display = 'none';
+      usdtAddress.style.display = 'none';
+      usdtDisplay.style.display = 'none';
+    } else if (selectedWallet === 'etherium') {
+      cryptoName.innerText =
+        'Etherium wallet (Copy the wallet address and send):';
+      cryptoAddress.value = '12345AddressForEtherium';
+
+      // Hide usdt elements
+      usdtName.style.display = 'none';
+      usdtAddress.style.display = 'none';
+      usdtDisplay.style.display = 'none';
+    } else if (selectedWallet === 'litecoin') {
+      cryptoName.innerText =
+        'Litecoin wallet (Copy the wallet address and send):';
+      cryptoAddress.value = '12345AddressForLitecoin';
+
+      // Hide usdt elements
+      usdtName.style.display = 'none';
+      usdtAddress.style.display = 'none';
+      usdtDisplay.style.display = 'none';
+    } else if (selectedWallet === 'usdt') {
+      cryptoName.innerText =
+        'USDT wallet TR20 (Copy the wallet address and send):';
+
+      cryptoAddress.value = '12345AddressForUSDTTR20';
+      usdtDisplay.style.display = 'block';
+
+      // Show usdt elements
+      usdtName.style.display = 'block';
+      usdtAddress.style.display = 'block';
+      usdtDisplay.style.display = 'block';
+    } else {
+      // Hide usdt elements
+      usdtName.style.display = 'none';
+      usdtAddress.style.display = 'none';
+      usdtDisplay.style.display = 'none';
+    }
+  });

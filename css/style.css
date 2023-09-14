@@ -29,7 +29,7 @@ body {
   overflow-x: hidden;
   display: grid;
   grid-template-rows: [navigation-start] max-content [navigation-end rowOne-start] 1fr [rowOne-end];
-  grid-template-columns: [sidebar-start] 22% [sidebar-end main-start] 1fr [main-end]; }
+  grid-template-columns: [sidebar-start] 25% [sidebar-end main-start] 1fr [main-end]; }
 
 .card {
   background-image: linear-gradient(111.4deg, rgba(43, 92, 157, 0.75) 1%, rgba(18, 70, 138, 0.75) 58%), url(../img/image-1.jpg);
@@ -37,7 +37,7 @@ body {
   color: #fff;
   border: 1px solid #ddd;
   border-radius: 10px 35px 5px 35px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 10px; }
 
 .card-white {
   background-image: linear-gradient(111.4deg, rgba(255, 255, 255, 0.75) 1%, rgba(238, 241, 246, 0.75) 58%), url(../img/image-1.jpg);
@@ -155,7 +155,8 @@ body {
   grid-column: sidebar-start / sidebar-end;
   grid-row: rowOne-start / rowOne-end;
   margin-top: 8rem;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   background-image: linear-gradient(to right, rgba(43, 92, 157, 0.9), rgba(38, 92, 165, 0.9));
   color: white;
   padding: 2rem;
@@ -209,6 +210,9 @@ body {
       .sidebar .side-nav_link:link .icon, .sidebar .side-nav_link:visited .icon {
         margin-right: 2rem; }
 
+.subscription-plan {
+  margin-top: 6rem; }
+
 .subscription .card-subscription {
   display: grid;
   grid-template-rows: repeat(2, min-content);
@@ -222,25 +226,104 @@ body {
   padding: 5rem;
   color: #265ca5; }
   .subscription-info_plan {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 1rem; }
   .subscription-info_text {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 600; }
     .subscription-info_text:not(:last-child) {
       margin-bottom: .5rem; }
+  .subscription-info_payments .payments-heading {
+    margin: 2rem 0 1.5rem 0; }
+  .subscription-info_payments .payments-btns a:not(:last-child) {
+    margin-right: 1.5rem; }
+  .subscription-info_payments .payments-btns .hero-btn-dark,
+  .subscription-info_payments .payments-btns .hero-btn-light {
+    font-size: 1.2rem; }
+  .subscription-info .list {
+    list-style: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 0 1rem 1rem 1rem; }
+    .subscription-info .list-items:not(:last-child) {
+      margin-bottom: .3rem; }
 
-.list {
-  list-style: none;
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin-left: 1rem; }
-  .list-items:not(:last-child) {
-    margin-bottom: .3rem; }
-
-button {
-  font-size: 2.5rem;
-  margin-top: 1.5rem; }
+.payment {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: min-content;
+  gap: 2rem; }
+  .payment .card {
+    max-height: 45rem; }
+  .payment .card-white {
+    max-height: none; }
+  .payment .card-white.payment-method {
+    color: #265ca5; }
+    .payment .card-white.payment-method form label {
+      color: #265ca5; }
+    .payment .card-white.payment-method input,
+    .payment .card-white.payment-method select {
+      background-color: rgba(43, 92, 157, 0.36);
+      color: #265ca5; }
+      .payment .card-white.payment-method input:focus, .payment .card-white.payment-method input:valid,
+      .payment .card-white.payment-method select:focus,
+      .payment .card-white.payment-method select:valid {
+        background-color: #d4deed;
+        box-shadow: 0 0 0 0.8rem rgba(38, 92, 165, 0.56); }
+      .payment .card-white.payment-method input::placeholder,
+      .payment .card-white.payment-method select::placeholder {
+        color: #265ca5; }
+  .payment-method {
+    margin: 0 auto;
+    padding: 2rem;
+    overflow: hidden; }
+    .payment-method-heading {
+      position: relative;
+      font-size: 1.8rem; }
+    .payment-method-form-2 {
+      display: flex;
+      align-items: center;
+      gap: 2rem; }
+    .payment-method-form_input {
+      margin-top: 3rem; }
+      .payment-method-form_input label {
+        display: block;
+        padding-left: 2rem;
+        text-align: left;
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 1.2rem;
+        color: #fff; }
+      .payment-method-form_input input,
+      .payment-method-form_input select {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        padding: 1rem;
+        font-size: 1.3rem;
+        font-family: inherit;
+        font-weight: 500;
+        color: #265ca5;
+        border: none;
+        background-color: #e9eff6;
+        border-radius: 9px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease; }
+        .payment-method-form_input input:focus, .payment-method-form_input input:valid,
+        .payment-method-form_input select:focus,
+        .payment-method-form_input select:valid {
+          background-color: #fff;
+          box-shadow: 0 0 0 0.8rem rgba(212, 222, 237, 0.36); }
+      .payment-method-form_input select {
+        width: max-content; }
+      .payment-method-form_input .wallet-name_usdt {
+        margin-top: 2rem; }
+    .payment-method-form .usdt-ER20 {
+      display: none; }
+    .payment-method-form .hero-btn-dark {
+      margin-top: 3rem; }
+      .payment-method-form .hero-btn-dark:hover {
+        transform: translateX(2rem) scale(1.06); }
 
 .navigation-header {
   background-image: linear-gradient(to right, #2b5c9d, rgba(38, 92, 165, 0.7));
@@ -319,6 +402,9 @@ button {
 .sticky .section-registration {
   margin-top: 8rem; }
 
+.subscription-plan {
+  margin-top: 6rem; }
+
 .subscription .card-subscription {
   display: grid;
   grid-template-rows: repeat(2, min-content);
@@ -332,25 +418,104 @@ button {
   padding: 5rem;
   color: #265ca5; }
   .subscription-info_plan {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 1rem; }
   .subscription-info_text {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 600; }
     .subscription-info_text:not(:last-child) {
       margin-bottom: .5rem; }
+  .subscription-info_payments .payments-heading {
+    margin: 2rem 0 1.5rem 0; }
+  .subscription-info_payments .payments-btns a:not(:last-child) {
+    margin-right: 1.5rem; }
+  .subscription-info_payments .payments-btns .hero-btn-dark,
+  .subscription-info_payments .payments-btns .hero-btn-light {
+    font-size: 1.2rem; }
+  .subscription-info .list {
+    list-style: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 0 1rem 1rem 1rem; }
+    .subscription-info .list-items:not(:last-child) {
+      margin-bottom: .3rem; }
 
-.list {
-  list-style: none;
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin-left: 1rem; }
-  .list-items:not(:last-child) {
-    margin-bottom: .3rem; }
-
-button {
-  font-size: 2.5rem;
-  margin-top: 1.5rem; }
+.payment {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: min-content;
+  gap: 2rem; }
+  .payment .card {
+    max-height: 45rem; }
+  .payment .card-white {
+    max-height: none; }
+  .payment .card-white.payment-method {
+    color: #265ca5; }
+    .payment .card-white.payment-method form label {
+      color: #265ca5; }
+    .payment .card-white.payment-method input,
+    .payment .card-white.payment-method select {
+      background-color: rgba(43, 92, 157, 0.36);
+      color: #265ca5; }
+      .payment .card-white.payment-method input:focus, .payment .card-white.payment-method input:valid,
+      .payment .card-white.payment-method select:focus,
+      .payment .card-white.payment-method select:valid {
+        background-color: #d4deed;
+        box-shadow: 0 0 0 0.8rem rgba(38, 92, 165, 0.56); }
+      .payment .card-white.payment-method input::placeholder,
+      .payment .card-white.payment-method select::placeholder {
+        color: #265ca5; }
+  .payment-method {
+    margin: 0 auto;
+    padding: 2rem;
+    overflow: hidden; }
+    .payment-method-heading {
+      position: relative;
+      font-size: 1.8rem; }
+    .payment-method-form-2 {
+      display: flex;
+      align-items: center;
+      gap: 2rem; }
+    .payment-method-form_input {
+      margin-top: 3rem; }
+      .payment-method-form_input label {
+        display: block;
+        padding-left: 2rem;
+        text-align: left;
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 1.2rem;
+        color: #fff; }
+      .payment-method-form_input input,
+      .payment-method-form_input select {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        padding: 1rem;
+        font-size: 1.3rem;
+        font-family: inherit;
+        font-weight: 500;
+        color: #265ca5;
+        border: none;
+        background-color: #e9eff6;
+        border-radius: 9px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease; }
+        .payment-method-form_input input:focus, .payment-method-form_input input:valid,
+        .payment-method-form_input select:focus,
+        .payment-method-form_input select:valid {
+          background-color: #fff;
+          box-shadow: 0 0 0 0.8rem rgba(212, 222, 237, 0.36); }
+      .payment-method-form_input select {
+        width: max-content; }
+      .payment-method-form_input .wallet-name_usdt {
+        margin-top: 2rem; }
+    .payment-method-form .usdt-ER20 {
+      display: none; }
+    .payment-method-form .hero-btn-dark {
+      margin-top: 3rem; }
+      .payment-method-form .hero-btn-dark:hover {
+        transform: translateX(2rem) scale(1.06); }
 
 .main {
   grid-column: main-start / main-end;

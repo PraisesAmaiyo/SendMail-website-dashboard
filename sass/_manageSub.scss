@@ -1,50 +1,194 @@
 .subscription {
-    .card-subscription {
-        display: grid;
-        grid-template-rows: repeat(2, min-content);
+   &-plan {
+      margin-top: 6rem;
+   }
 
-        padding: .3rem;
-        margin: 2rem 0;
-    }
+   .card-subscription {
+      display: grid;
+      grid-template-rows: repeat(2, min-content);
 
-    &-heading {
-        padding: 5rem;
-    }
+      padding: .3rem;
+      margin: 2rem 0;
+   }
 
-    &-info {
-        padding: 5rem;
-        color: $color-primary;
+   &-heading {
+      padding: 5rem;
+   }
 
-        &_plan {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
+   &-info {
+      padding: 5rem;
+      color: $color-primary;
 
-        &_text {
-            font-size: 1.2rem;
-            font-weight: 600;
+      &_plan {
+         font-size: 1.8rem;
+         margin-bottom: 1rem;
+      }
 
-            &:not(:last-child) {
-                margin-bottom: .5rem;
+      &_text {
+         font-size: 1.4rem;
+         font-weight: 600;
+
+         &:not(:last-child) {
+            margin-bottom: .5rem;
+         }
+
+
+      }
+
+      &_payments {
+         .payments-heading {
+            margin: 2rem 0 1.5rem 0;
+         }
+
+         .payments-btns {
+            & a {
+               &:not(:last-child) {
+                  margin-right: 1.5rem;
+               }
+
             }
-        }
-    }
+
+            .hero-btn-dark,
+            .hero-btn-light {
+               font-size: 1.2rem
+            }
+
+            ;
+         }
+      }
+
+      .list {
+         list-style: none;
+         font-size: 1.4rem;
+         font-weight: 500;
+         margin: 0 1rem 1rem 1rem;
+
+         &-items {
+            &:not(:last-child) {
+               margin-bottom: .3rem;
+            }
+         }
+      }
+   }
 }
 
-.list {
-    list-style: none;
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-left: 1rem;
+.payment {
+   display: grid;
+   // grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+   grid-template-columns: repeat(2, 1fr);
+   height: min-content;
+   gap: 2rem;
 
-    &-items {
-        &:not(:last-child) {
-            margin-bottom: .3rem;
-        }
-    }
-}
+   .card {
+      max-height: 45rem;
+   }
 
-button {
-    font-size: 2.5rem;
-    margin-top: 1.5rem;
+   .card-white {
+      max-height: none;
+   }
+
+   .card-white.payment-method {
+      color: $color-primary;
+
+      & form label {
+         color: $color-primary;
+      }
+
+      & input,
+      select {
+         background-color: rgba($color-primary-light, .36);
+         color: $color-primary;
+
+         &:focus,
+         &:valid {
+            background-color: $color-secondary-light;
+            box-shadow: 0 0 0 0.8rem rgba($color-primary, .56);
+         }
+
+         &::placeholder {
+            color: $color-primary;
+         }
+      }
+
+   }
+
+   &-method {
+      margin: 0 auto;
+      padding: 2rem;
+      overflow: hidden;
+
+      &-heading {
+         position: relative;
+         font-size: 1.8rem;
+      }
+
+
+
+      &-form {
+
+         &-2 {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+         }
+
+         &_input {
+            margin-top: 3rem;
+
+            label {
+               display: block;
+               padding-left: 2rem;
+               text-align: left;
+               font-size: 1.5rem;
+               font-weight: 500;
+               margin-bottom: 1.2rem;
+               color: $color-grey-light-1;
+            }
+
+            input,
+            select {
+               height: 100%;
+               width: 100%;
+               outline: none;
+               padding: 1rem;
+               font-size: 1.3rem;
+               font-family: inherit;
+               font-weight: 500;
+               color: $color-primary;
+               border: none;
+               background-color: #e9eff6;
+               border-radius: 9px;
+               box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+               transition: all 0.3s ease;
+
+
+               &:focus,
+               &:valid {
+                  background-color: $color-grey-light-1;
+                  box-shadow: 0 0 0 0.8rem rgba($color-secondary-light, .36);
+               }
+            }
+
+            select {
+               width: max-content
+            }
+
+            .wallet-name_usdt {
+               margin-top: 2rem;
+            }
+         }
+
+         .usdt-ER20 {
+            display: none
+         }
+
+         .hero-btn-dark {
+            margin-top: 3rem;
+
+            &:hover {
+               transform: translateX(2rem) scale(1.06);
+            }
+         }
+      }
+   }
 }

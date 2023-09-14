@@ -1,87 +1,88 @@
 .sidebar {
-    grid-column: sidebar-start / sidebar-end;
-    grid-row: rowOne-start / rowOne-end;
-    margin-top: 8rem;
+   grid-column: sidebar-start / sidebar-end;
+   grid-row: rowOne-start / rowOne-end;
+   margin-top: 8rem;
 
-    height: 100vh;
-    background-image: linear-gradient(to right, rgba($color-primary-light, .9), rgba($color-primary, .9));
-    color: white;
-    padding: 2rem;
+   height: 100%;
+   width: 100%;
+   background-image: linear-gradient(to right, rgba($color-primary-light, .9), rgba($color-primary, .9));
+   color: white;
+   padding: 2rem;
 
-    display: flex;
-    flex-direction: column;
+   display: flex;
+   flex-direction: column;
 
-    position: relative;
+   position: relative;
 
-    &-fixed {
-        position: fixed
-    }
+   &-fixed {
+      position: fixed
+   }
 
-    &-header {
-        margin-bottom: 3rem;
+   &-header {
+      margin-bottom: 3rem;
 
-        &-image {
-            width: 8rem;
-            height: 8rem;
-            border-radius: 100%;
-        }
+      &-image {
+         width: 8rem;
+         height: 8rem;
+         border-radius: 100%;
+      }
 
-        &-text {
-            font-size: 1.8rem;
-        }
-    }
+      &-text {
+         font-size: 1.8rem;
+      }
+   }
 
-    .side-nav {
-        font-size: 1.5rem;
-        list-style: none;
-        margin-top: 1rem;
+   .side-nav {
+      font-size: 1.5rem;
+      list-style: none;
+      margin-top: 1rem;
 
-        &_item {
-            position: relative;
-            padding: 5px 0;
-            padding: 1rem 2rem;
-            margin-left: 1rem;
+      &_item {
+         position: relative;
+         padding: 5px 0;
+         padding: 1rem 2rem;
+         margin-left: 1rem;
 
 
-            transform: perspective(1px) translateZ(0);
-            box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-            transition-property: color;
+         transform: perspective(1px) translateZ(0);
+         box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+         transition-property: color;
+         transition-duration: 0.5s;
+
+         &::before {
+            position: absolute;
+            content: '';
+            background-color: $color-grey-dark-1;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: 0 50%;
+            transition-property: transform;
             transition-duration: 0.5s;
+            transition-timing-function: ease-out;
+         }
 
-            &::before {
-                position: absolute;
-                content: '';
-                background-color: $color-grey-dark-1;
-                height: 100%;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                z-index: -1;
-                transform: scaleX(0);
-                transform-origin: 0 50%;
-                transition-property: transform;
-                transition-duration: 0.5s;
-                transition-timing-function: ease-out;
-            }
+         &:hover::before,
+         &.active::before,
+         &:active::before,
+         &:focus::before {
+            transform: scaleX(1);
+            transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+         }
+      }
 
-            &:hover::before,
-            &.active::before,
-            &:active::before,
-            &:focus::before {
-                transform: scaleX(1);
-                transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
-            }
-        }
+      &_link:link,
+      &_link:visited {
+         color: white;
+         text-decoration: none;
 
-        &_link:link,
-        &_link:visited {
-            color: white;
-            text-decoration: none;
-
-            .icon {
-                margin-right: 2rem;
-            }
-        }
-    }
+         .icon {
+            margin-right: 2rem;
+         }
+      }
+   }
 }
