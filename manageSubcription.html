@@ -132,7 +132,9 @@
          </div>
 
          <div class="main-heading_side">
-            <h2 class="main-heading_update">Update Profile</h2>
+            <a href="#">
+               <button class="hero-btn-dark_square">Update Profile</button>
+            </a>
 
             <div>
                <h2 class="main-date">Sept 10th, 2023</h2>
@@ -156,120 +158,31 @@
                <p class="subscription-info_text">Type: Monthly Subscription</p>
                <p class="subscription-info_text">Payment Method: Card</p>
                <p class="subscription-info_text">Card Type: Visa</p>
-               <p class="subscription-info_text">Last Four Digits: **** **** **** 1234</p>
+
                <p class="subscription-info_text">Price: $15.00/month</p>
-
-               <p class="subscription-info_text">Features: </p>
-               <div class="list">
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque amet dolores laboriosam
-                     maiores atque voluptas commodi nam officia aperiam obcaecati. Eaque modi deleniti facilis quis ipsa
-                     praesentium eum quam officiis!</p>
-               </div>
-
                <p class="subscription-info_text">Next Billing Date: January 15, 2024</p>
 
                <div class="subscription-info_payments">
                   <div class="payments-heading">
-                     <h2>Cancel Payments</h2>
+                     <h2>Cancel Payments:</h2>
                   </div>
 
                   <div class="payments-btns">
                      <a href="#">
                         <button class="hero-btn-dark">Card Payment</button>
                      </a>
+                     <a href="#">
+                        <button class="hero-btn-dark">Crypto Payment</button>
+                     </a>
 
                      <a href="#">
-                        <button class="hero-btn-light">Crypto Payment</button>
+                        <button class="hero-btn-light">Change payment method</button>
                      </a>
                   </div>
                </div>
             </div>
          </div>
-
-         <div class="payment">
-            <div class=" card payment-method">
-               <h2 class="payment-method-heading">
-                  Pay / Renew with Card
-               </h2>
-
-               <form class="payment-method-form" name="card-payments" netlify>
-
-                  <div class="payment-method-form_input">
-                     <label for="cardNumber">Card Number:</label>
-                     <input id="cardNumber" type="text" placeholder="Enter card number" name="cardNumber" maxlength="19"
-                        required>
-                  </div>
-
-                  <div class="payment-method-form_input">
-                     <label for="cardHolder ">CardHolder Name:</label>
-                     <input id="cardHolder" type="text" placeholder="Enter cardholder name" name='cardHolder' required>
-                  </div>
-
-                  <div class="payment-method-form-2">
-                     <div class="payment-method-form_input">
-                        <label for="expiryDate">Expiry Date</label>
-                        <input id="expiryDate" type="text" placeholder="MM/YY" name="expiryDate" maxlength="5" required>
-                     </div>
-
-                     <div class="payment-method-form_input">
-                        <label for="cvv">CVV</label>
-                        <input id="cvv" type="text" name="cvv" placeholder="Enter CVV" maxlength="3" required>
-                     </div>
-                  </div>
-
-                  <button class="hero-btn-dark">Pay</button>
-
-
-               </form>
-            </div>
-
-            <div class=" card-white payment-method">
-               <h2 class="payment-method-heading">
-                  Pay / Renew with Crypto
-               </h2>
-
-               <form class="payment-method-form" name="crypto-payments" netlify>
-
-                  <div class="payment-method-form_input">
-                     <label for="cryptoType">Select Cryptocurrency:</label>
-
-                     <select id="cryptoType" name="cryptoType">
-                        <option value="bitcoin">Bitcoin</option>
-                        <option value="etherium">Etherium</option>
-                        <option value="usdt">USDT</option>
-                        <option value="litecoin">Litecoin</option>
-                     </select>
-                  </div>
-
-                  <div class="payment-method-form_input">
-                     <label for="cryptoAmount ">Amount (in cryptocurrency):</label>
-                     <input id="cryptoAmount" type="text" placeholder="Enter amount" name='cryptoAmount' required>
-                  </div>
-
-                  <div class="payment-method-form_input">
-                     <label class="wallet-name" for="cryptoWallet ">Bitcoin address (Copy the wallet address and
-                        send):</label>
-                     <input class="wallet-address" id="cryptoAddress" type="text" placeholder="Wallet address"
-                        name='cryptoAddress' value="12345AddressForBitcoin" readonly required>
-
-                     <!-- html for USDT type ER20 -->
-                     <div class="usdt-ER20" style="display: none">
-                        <label class="wallet-name wallet-name_usdt" for="cryptoWallet ">USDT address ER20 (Copy the
-                           wallet
-                           address and send):
-                        </label>
-
-                        <input class="wallet-address wallet-address_usdt" id="cryptoAddress" type="text"
-                           placeholder="Wallet address" name='cryptoAddress' value="12345AddressForUSDTER20" readonly
-                           required>
-
-                     </div>
-                  </div>
-
-                  <button class="hero-btn-dark">Pay</button>
-               </form>
-            </div>
-         </div>
+      </div>
    </main>
 </body>
 

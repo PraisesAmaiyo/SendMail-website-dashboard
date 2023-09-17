@@ -177,93 +177,33 @@ sideNavs.forEach((nav) => {
   });
 });
 
-// JavaScript to add spaces to card number input
+// JS to Loop to generate options from 1 to 25.
+const numberSelect = document.getElementById('domain-form_select');
 
-document.getElementById('cardNumber').addEventListener('input', function (e) {
-  // Remove any non-digit characters
-  const cardNumber = e.target.value.replace(/\D/g, '');
+for (let i = 1; i <= 25; i++) {
+  const option = document.createElement('option');
+  option.value = i;
+  option.text = i;
+  numberSelect.appendChild(option);
+}
 
-  // Add spaces after every 4 digits
-  const formattedCardNumber = cardNumber.replace(/(\d{4})(?=\d)/g, '$1 ');
+// JS for modal.
+const modal = document.getElementById('modal');
+const container = document.querySelector('.main');
+const sidebar = document.querySelector('.sidebar');
+const dnsButton = document.querySelectorAll('.dns-button');
+const closeModal = document.querySelector('.icon-close');
 
-  e.target.value = formattedCardNumber;
-});
-
-// JavaScript to add / after 2 inputs for MM/YY
-
-const expiryDateInput = document.getElementById('expiryDate');
-
-expiryDateInput.addEventListener('input', function (e) {
-  // Remove any non-digit characters
-  const inputValue = e.target.value.replace(/\D/g, '');
-
-  // Format as MM/YY
-  if (inputValue.length >= 2) {
-    const formattedValue = inputValue.slice(0, 2) + '/' + inputValue.slice(2);
-    e.target.value = formattedValue;
-  } else {
-    e.target.value = inputValue;
-  }
-});
-
-// JavaScript to switch wallet address and toggle USDT Types
-
-const cryptoName = document.querySelector('.wallet-name');
-const cryptoAddress = document.querySelector('.wallet-address');
-
-const usdtName = document.querySelector('.wallet-name_usdt');
-const usdtAddress = document.querySelector('.wallet-address_usdt');
-const usdtDisplay = document.querySelector('.usdt-ER20');
-
-console.log(cryptoAddress.value);
-
-const walletAddress = document
-  .getElementById('cryptoType')
-  .addEventListener('change', function (e) {
-    const selectedWallet = e.target.value;
-
-    if (selectedWallet === 'bitcoin') {
-      cryptoName.innerText =
-        'Bitcoin address (Copy the wallet address and send):';
-      cryptoAddress.value = '12345AddressForBitcoin';
-
-      // Hide usdt elements
-      usdtName.style.display = 'none';
-      usdtAddress.style.display = 'none';
-      usdtDisplay.style.display = 'none';
-    } else if (selectedWallet === 'etherium') {
-      cryptoName.innerText =
-        'Etherium wallet (Copy the wallet address and send):';
-      cryptoAddress.value = '12345AddressForEtherium';
-
-      // Hide usdt elements
-      usdtName.style.display = 'none';
-      usdtAddress.style.display = 'none';
-      usdtDisplay.style.display = 'none';
-    } else if (selectedWallet === 'litecoin') {
-      cryptoName.innerText =
-        'Litecoin wallet (Copy the wallet address and send):';
-      cryptoAddress.value = '12345AddressForLitecoin';
-
-      // Hide usdt elements
-      usdtName.style.display = 'none';
-      usdtAddress.style.display = 'none';
-      usdtDisplay.style.display = 'none';
-    } else if (selectedWallet === 'usdt') {
-      cryptoName.innerText =
-        'USDT wallet TR20 (Copy the wallet address and send):';
-
-      cryptoAddress.value = '12345AddressForUSDTTR20';
-      usdtDisplay.style.display = 'block';
-
-      // Show usdt elements
-      usdtName.style.display = 'block';
-      usdtAddress.style.display = 'block';
-      usdtDisplay.style.display = 'block';
-    } else {
-      // Hide usdt elements
-      usdtName.style.display = 'none';
-      usdtAddress.style.display = 'none';
-      usdtDisplay.style.display = 'none';
-    }
+dnsButton.forEach((btn) => {
+  btn.addEventListener('click', function () {
+    modal.style.display = 'block';
+    container.classList.add('blur');
+    sidebar.classList.add('blur');
   });
+});
+
+closeModal.addEventListener('click', function () {
+  modal.style.display = 'none';
+  container.classList.remove('blur');
+  sidebar.classList.remove('blur');
+});

@@ -1,219 +1,219 @@
 .main {
-    grid-column: main-start / main-end;
-    grid-row: rowOne-start / rowOne-end;
-    padding: 1.6rem;
-    margin-top: 8rem;
+   grid-column: main-start / main-end;
+   grid-row: rowOne-start / rowOne-end;
+   padding: 1.6rem;
+   margin-top: 8rem;
 
-    &-heading {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+   &-heading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-        &_intro {
-            margin-right: auto;
-        }
+      &_intro {
+         margin-right: auto;
+      }
 
-        &_side {
-            display: flex;
-            align-items: center;
-        }
+      &_side {
+         display: flex;
+         align-items: center;
+      }
 
-        &_update {
-            background-image: linear-gradient(to right, rgba($color-primary-light, 1), rgba($color-grey-dark-1, 1));
-            color: $color-grey-light-1;
-            padding: 1rem;
-            display: flex;
-            gap: 4px;
-            margin-right: 2rem;
-            font-size: 1.2rem;
-        }
-    }
+      &_update {
+         background-image: linear-gradient(to right, rgba($color-primary-light, 1), rgba($color-grey-dark-1, 1));
+         color: $color-grey-light-1;
+         padding: 1rem;
+         display: flex;
+         gap: 4px;
+         margin-right: 2rem;
+         font-size: 1.2rem;
+      }
+   }
 
-    &-welcome {
-        font-size: 1.5rem;
-        margin-right: auto;
-    }
+   &-welcome {
+      font-size: 1.5rem;
+      margin-right: auto;
+   }
 
-    &-name {
-        font-size: 2rem;
-    }
+   &-name {
+      font-size: 2rem;
+   }
 
-    .card {
-        // .card css is found in the base scss file
+   .card {
+      // .card css is found in the base scss file
 
-        &-dashboard {
-            padding: 2rem 6rem;
-            margin: 2rem 0;
-        }
+      &-dashboard {
+         padding: 2rem 6rem;
+         margin: 2rem 0;
+      }
 
-        &-mini {
-            padding: 2rem;
+      &-mini {
+         padding: 2rem;
+
+         display: grid;
+         grid-template-columns: 50% 50%;
+         grid-template-rows: repeat(2, 1fr);
+         align-items: center;
+         justify-content: center;
+         gap: 1rem;
+      }
+
+      &-wide {
+         padding: 2rem;
+
+         display: grid;
+         grid-template-columns: 50% 50%;
+         grid-template-rows: repeat(2, 1fr);
+         align-items: center;
+         justify-content: center;
+         gap: 1rem;
+      }
+   }
+
+   &-dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+
+      &_profile {
+         margin-right: auto;
+      }
+
+      &_image {
+         grid-column: 2/3;
+         display: grid;
+         justify-content: end;
+
+         .profile-image {
+            height: 15rem;
+            width: 15rem;
+            border-radius: 31% 69% 63% 37% / 34% 28% 72% 66%
+         }
+      }
+
+      &_text {
+         font-size: 1.5rem;
+      }
+   }
+
+   &-statistics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(35rem, max-content));
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+
+      .statistics-info {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         grid-template-rows: repeat(2, 1fr);
+         align-items: center;
+         justify-content: center;
+         gap: 1rem;
+
+
+         &_header {
+            font-size: 1rem;
+         }
+
+         &_lists {
+            grid-column: 1/ -1;
 
             display: grid;
-            grid-template-columns: 50% 50%;
-            grid-template-rows: repeat(2, 1fr);
-            align-items: center;
+            grid-template-columns: repeat(2, 1fr);
             justify-content: center;
-            gap: 1rem;
-        }
 
-        &-wide {
-            padding: 2rem;
-
-            display: grid;
-            grid-template-columns: 50% 50%;
-            grid-template-rows: repeat(2, 1fr);
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-    }
-
-    &-dashboard {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-
-        &_profile {
-            margin-right: auto;
-        }
-
-        &_image {
-            grid-column: 2/3;
-            display: grid;
-            justify-content: end;
-
-            .profile-image {
-                height: 15rem;
-                width: 15rem;
-                border-radius: 31% 69% 63% 37% / 34% 28% 72% 66%
-            }
-        }
-
-        &_text {
-            font-size: 1.5rem;
-        }
-    }
-
-    &-statistics {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(35rem, max-content));
-        gap: 2rem;
-        align-items: center;
-        justify-content: center;
-
-        .statistics-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: repeat(2, 1fr);
-            align-items: center;
-            justify-content: center;
             gap: 1rem;
 
-
-            &_header {
-                font-size: 1rem;
+            &-single {
+               display: block;
             }
 
-            &_lists {
-                grid-column: 1/ -1;
-
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                justify-content: center;
-
-                gap: 1rem;
-
-                &-single {
-                    display: block;
-                }
-
-                .lists-a {
-                    grid-column: 1/2;
-                }
-
-                .lists-b {
-                    grid-column: 2/3;
-                }
-
-                .lists {
-
-                    .list {
-                        display: grid;
-                        grid-template-columns: 90% 10%;
-                        gap: .5rem;
-                        align-items: center;
-
-                        &:not(:last-child) {
-                            margin-bottom: 1rem;
-                        }
-
-                        &-title {
-                            font-size: 1.2rem;
-                            list-style: none;
-                            grid-column: 1/2;
-                            word-wrap: break-word;
-                        }
-
-                        &-icon {
-                            grid-column: 1/2;
-                        }
-                    }
-                }
+            .lists-a {
+               grid-column: 1/2;
             }
 
-            .card.card-mini .statistics-info_lists {
-                grid-column: 1/ -1;
-                display: block;
+            .lists-b {
+               grid-column: 2/3;
             }
-        }
-    }
+
+            .lists {
+
+               .list {
+                  display: grid;
+                  grid-template-columns: 90% 10%;
+                  gap: .5rem;
+                  align-items: center;
+
+                  &:not(:last-child) {
+                     margin-bottom: 1rem;
+                  }
+
+                  &-title {
+                     font-size: 1.2rem;
+                     list-style: none;
+                     grid-column: 1/2;
+                     word-wrap: break-word;
+                  }
+
+                  &-icon {
+                     grid-column: 1/2;
+                  }
+               }
+            }
+         }
+
+         .card.card-mini .statistics-info_lists {
+            grid-column: 1/ -1;
+            display: block;
+         }
+      }
+   }
 }
 
 .progress-circle {
-    width: 75px;
-    height: 75px;
-    position: relative;
+   width: 75px;
+   height: 75px;
+   position: relative;
 
-    justify-self: center;
-
-
-    .circle {
-        fill: none;
-        stroke: #ccc;
-        /* Background color */
-        stroke-width: 10;
-        /* Thickness of the circle */
-        transform: rotate(-90deg);
-        /* Start from the top */
-        transform-origin: center;
-    }
+   justify-self: center;
 
 
-    .bg-circle {
-        stroke-opacity: 0.5;
-        /* Opacity for the background circle */
-    }
+   .circle {
+      fill: none;
+      stroke: #ccc;
+      /* Background color */
+      stroke-width: 10;
+      /* Thickness of the circle */
+      transform: rotate(-90deg);
+      /* Start from the top */
+      transform-origin: center;
+   }
 
-    .progress {
-        stroke: $color-secondary-light;
-        /* Progress color */
-        stroke-dasharray: 0 283;
-        /* Initial dash array (0% progress) */
-        stroke-dashoffset: 0;
-        /* Offset for animation */
-        transition: stroke-dasharray 1s linear, stroke-dashoffset 1s linear;
-    }
 
-    .percentage {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 14px;
-        font-weight: bold;
-        color: $color-secondary-light;
-    }
+   .bg-circle {
+      stroke-opacity: 0.5;
+      /* Opacity for the background circle */
+   }
+
+   .progress {
+      stroke: $color-secondary-light;
+      /* Progress color */
+      stroke-dasharray: 0 283;
+      /* Initial dash array (0% progress) */
+      stroke-dashoffset: 0;
+      /* Offset for animation */
+      transition: stroke-dasharray 1s linear, stroke-dashoffset 1s linear;
+   }
+
+   .percentage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 14px;
+      font-weight: bold;
+      color: $color-secondary-light;
+   }
 }
