@@ -60,7 +60,6 @@
 
    </header>
 
-
    <nav class="sidebar">
       <div class="sidebar-fixed">
 
@@ -145,25 +144,79 @@
          </div>
       </div>
 
-      <div class="card card-mini">
-         <!-- <div class="statistics-info"> -->
-         <div class="statistics-info_header">
-            <h2>IN PROGRESS </h2>
-         </div>
+      <div class="card card-dashboard">
+         <div class="domain">
+
+            <div class="domain-header">
+               <h2 class="domain-heading">Domains</h2>
+
+               <a href="#">
+                  <button class="hero-btn-dark_square">Refresh</button>
+               </a>
+            </div>
+
+            <div class="domain-button">
+               <a href="#">
+                  <button class="hero-btn-light"> <i class="fas fa-plus icon"></i> Add Alias</button>
+               </a>
+            </div>
 
 
+            <div class="domain-form">
 
-         <div class="statistics-info_lists statistics-info_lists-single ">
-            <ul class="lists">
-               <li class="list">
-                  <p class="list-title">IN PROGRESS </p>
-                  <i class="fa-regular fa-circle-check icon"></i>
-               </li>
+               <div class="domain-form_group">
+                  <label for="search"> Search: </label>
+                  <input type="text" id="searchInput-text" placeholder="search..." name="search">
+               </div>
 
-            </ul>
+               <div class="domain-form_group">
+                  <label for="numberSelect" class="domain-form_label">Show:
+                     <select id="domain-form_select" name="numberSelect" class="domain-form_select"></select> entries
+                  </label>
+               </div>
+            </div>
+
+            <table border="1" class="table">
+
+               <tr class="table-rows">
+                  <th class="table-heading">Domain</th>
+                  <th class="table-heading">Active</th>
+                  <th class="table-heading">Action</th>
+               </tr>
+
+               <tr class="table-rows">
+                  <td class="table-data table-data_text">ez-mail.space</td>
+                  <td class="table-data"> <i class="fa-regular fa-circle-check icon"></i></td>
+                  <td class="table-data">
+                     <button class="hero-btn-light"><i class="fas fa-edit icon"></i>Edit</button>
+                     <button class="hero-btn-light"><i class="fas fa-trash icon"></i> Remove</button>
+                  </td>
+               </tr>
+
+               <tr class="table-rows">
+                  <td class="table-data  table-data_text">getSend.online</td>
+                  <td class="table-data"> <i class="fa-regular fa-circle-check icon"></i></td>
+                  <td class="table-data">
+                     <button class="hero-btn-light"><i class="fas fa-edit icon"></i>Edit</button>
+                     <button class="hero-btn-light"><i class="fas fa-trash icon"></i> Remove</button>
+                  </td>
+               </tr>
+
+               <tr class="table-rows">
+                  <td class="table-data  table-data_text">Johnsoncaneclassxap.domain.com</td>
+                  <td class="table-data"> <i class="fa-regular fa-circle-check icon"></i></td>
+                  <td class="table-data">
+                     <button class="hero-btn-light"><i class="fas fa-edit icon"></i>Edit</button>
+
+                     <button class="hero-btn-light"><i class="fas fa-trash icon"></i> Remove</button>
+
+
+                  </td>
+               </tr>
+            </table>
+
          </div>
       </div>
-
    </main>
 </body>
 
