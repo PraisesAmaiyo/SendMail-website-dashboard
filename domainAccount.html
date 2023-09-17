@@ -115,7 +115,7 @@
          </ul>
 
          <ul class="side-nav">
-            <a href="/accessWebmail.html" class="side-nav_link">
+            <a href="https://app.getsend.online/" class="side-nav_link">
                <li class="side-nav_item ">
                   <i class="fas fa-envelope-open-text icon"></i>
                   <span>Access Webmail</span>
@@ -129,7 +129,7 @@
       <div class="main-heading">
          <div class="main-heading_intro">
             <h2 class="main-welcome">Welcome Back, <span class="main-name">Johnson Cane </span></h2>
-            <h2 class="main-welcome">Your Secure Email Dashboard</h2>
+            <h2 class="main-welcome">Domain Account</h2>
          </div>
 
          <div class="main-heading_side">
@@ -144,26 +144,156 @@
          </div>
       </div>
 
-      <div class="card card-mini">
-         <!-- <div class="statistics-info"> -->
-         <div class="statistics-info_header">
-            <h2>IN PROGRESS </h2>
-         </div>
+      <div class="card card-dashboard">
+         <div class="domain">
+
+            <div class="domain-header">
+               <h2 class="domain-heading">Alias</h2>
+
+               <a href="#">
+                  <button class="hero-btn-dark_square">Refresh</button>
+               </a>
+            </div>
+
+            <div class="domain-button">
+               <button class="hero-btn-light" id="add-domain-account_btn"> <i class="fas fa-plus icon"></i> Add Domain
+                  Account</button>
+            </div>
 
 
+            <div class="domain-input">
 
-         <div class="statistics-info_lists statistics-info_lists-single ">
-            <ul class="lists">
-               <li class="list">
-                  <p class="list-title">IN PROGRESS </p>
-                  <i class="fa-regular fa-circle-check icon"></i>
-               </li>
+               <div class="domain-input_group">
+                  <label for="search"> Search: </label>
+                  <input type="text" id="searchInput-text" placeholder="search..." name="search">
+               </div>
 
-            </ul>
+               <div class="domain-input_group">
+                  <label for="numberSelect" class="domain-input_label">Show:
+                     <select id="domain-input_select" name="numberSelect" class="domain-input_select"></select> entries
+                  </label>
+               </div>
+            </div>
+
+            <table border="1" class="table">
+
+               <tr class="table-rows">
+                  <th class="table-heading">Domain Account</th>
+                  <th class="table-heading">Active</th>
+                  <th class="table-heading">Action</th>
+               </tr>
+
+               <tr class="table-rows">
+                  <td class="table-data table-data_text">ez-mail.space</td>
+                  <td class="table-data"> <i class="fa-regular fa-circle-check icon"></i></td>
+                  <td class="table-data">
+                     <button class="hero-btn-light"><i class="fas fa-edit icon"></i>Edit</button>
+                     <button class="hero-btn-light"><i class="fas fa-trash icon"></i> Remove</button>
+                  </td>
+               </tr>
+
+               <tr class="table-rows">
+                  <td class="table-data  table-data_text">getSend.online</td>
+                  <td class="table-data"> <i class="fa-regular fa-circle-check icon"></i></td>
+                  <td class="table-data">
+                     <button class="hero-btn-light"><i class="fas fa-edit icon"></i>Edit</button>
+                     <button class="hero-btn-light"><i class="fas fa-trash icon"></i> Remove</button>
+                  </td>
+               </tr>
+
+               <tr class="table-rows">
+                  <td class="table-data  table-data_text">Johnsoncaneclassxap.domain.com</td>
+                  <td class="table-data"> <i class="fa-regular fa-circle-check icon"></i></td>
+                  <td class="table-data">
+                     <button class="hero-btn-light"><i class="fas fa-edit icon"></i>Edit</button>
+
+                     <button class="hero-btn-light"><i class="fas fa-trash icon"></i> Remove</button>
+
+
+                  </td>
+               </tr>
+               <tr class="table-rows">
+                  <td class="table-data table-data_text">ez-mail.space</td>
+                  <td class="table-data"> <i class="fa-regular fa-circle-check icon"></i></td>
+                  <td class="table-data">
+                     <button class="hero-btn-light"><i class="fas fa-edit icon"></i>Edit</button>
+                     <button class="hero-btn-light"><i class="fas fa-trash icon"></i> Remove</button>
+                  </td>
+               </tr>
+
+               <tr class="table-rows">
+                  <td class="table-data  table-data_text">getSend.online</td>
+                  <td class="table-data"> <i class="fa-regular fa-circle-check icon"></i></td>
+                  <td class="table-data">
+                     <button class="hero-btn-light"><i class="fas fa-edit icon"></i>Edit</button>
+                     <button class="hero-btn-light"><i class="fas fa-trash icon"></i> Remove</button>
+                  </td>
+               </tr>
+
+               <tr class="table-rows">
+                  <td class="table-data  table-data_text">Johnsoncaneclassxap.domain.com</td>
+                  <td class="table-data"> <i class="fa-regular fa-circle-check icon"></i></td>
+                  <td class="table-data">
+                     <button class="hero-btn-light"><i class="fas fa-edit icon"></i>Edit</button>
+
+                     <button class="hero-btn-light"><i class="fas fa-trash icon"></i> Remove</button>
+                  </td>
+               </tr>
+            </table>
          </div>
       </div>
-
    </main>
+
+   <div class=" card domainAccount modal" id="domainAccountForm">
+      <h2 class="domainAccount-heading">
+         Create a Domain
+      </h2>
+
+      <form class="domainAccount-form" name="domainAccounts" netlify>
+
+         <div class="domainAccount-form_input">
+            <label for="fullname ">Full Name:</label>
+            <input id="fullname" type="text" placeholder="Full name" name='fullname' class="cancel-button-input"
+               required>
+         </div>
+
+         <div class="domainAccount-form_input">
+            <label for="email">Email address:</label>
+            <input id="email" type="text" placeholder="Enter your email" name="email" class="cancel-button-input"
+               required>
+         </div>
+
+         <!-- id of username has been declared before -->
+
+         <div class="domainAccount-form_input">
+            <label for="domainUsername">Enter username</label>
+            <input id="domainUsername" type="text" placeholder="Enter username" name="domainUsername"
+               class="cancel-button-input" required>
+         </div>
+
+         <div class="domainAccount-form_input">
+            <label for="domain">Select available domains:</label>
+
+            <select id="domain-available" name="domainAvalable">
+               <option value="swapDomain">swapDomain.com</option>
+               <option value="niceDomain">niceDomain.com</option>
+               <option value="kingDomain">kingDomain.com</option>
+               <option value="pingDomain">pingDomain.com</option>
+               <option value="mailDomain">mailDomain.com</option>
+               <option value="wapeDomain">wapeDomain.com</option>
+               <option value="shanDomain">shanDomain.com</option>
+               <option value="readDomain">readDomain.com</option>
+            </select>
+         </div>
+
+         <button class="hero-btn-dark" id="create-domain">Create</button>
+
+         <button class="hero-btn-light" id="cancel-domain">Cancel</button>
+
+
+      </form>
+   </div>
+
 </body>
 
 </html>

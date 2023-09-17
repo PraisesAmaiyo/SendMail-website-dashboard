@@ -4,6 +4,9 @@ const allLinks = document.querySelectorAll('a:link');
 
 window.addEventListener('load', function () {
   const headerEl = document.querySelector('.navigation-header');
+  const sidebarEl = document.querySelector('.sidebar');
+  const mainEl = document.querySelector('.main');
+
   // Sticky nav bar
   const obs = new IntersectionObserver(
     function (entries) {
@@ -12,10 +15,16 @@ window.addEventListener('load', function () {
 
       if (ent.isIntersecting === false) {
         document.body.classList.add('sticky');
+
+        sidebarEl.style.marginTop = '8rem';
+        mainEl.style.marginTop = '8rem';
       }
 
       if (ent.isIntersecting === true) {
         document.body.classList.remove('sticky');
+
+        sidebarEl.style.marginTop = '0';
+        mainEl.style.marginTop = '0';
       }
     },
     {
@@ -178,34 +187,126 @@ sideNavs.forEach((nav) => {
 });
 
 // JS to Loop to generate options from 1 to 25.
-const numberSelect = document.getElementById('domain-form_select');
+const numberSelect = document.getElementById('domain-input_select');
 
-for (let i = 1; i <= 25; i++) {
-  const option = document.createElement('option');
-  option.value = i;
-  option.text = i;
-  numberSelect.appendChild(option);
+if (numberSelect) {
+  for (let i = 1; i <= 25; i++) {
+    const option = document.createElement('option');
+    option.value = i;
+    option.text = i;
+    numberSelect.appendChild(option);
+  }
 }
 
-// JS for modal.
-const modal = document.getElementById('modal');
-const container = document.querySelector('.main');
+// JS for DNS modal.
+const dnsModal = document.getElementById('dns-modal');
+const main = document.querySelector('.main');
 const sidebar = document.querySelector('.sidebar');
 const dnsButtons = document.querySelectorAll('.dns-button');
 const closeModal = document.querySelector('.icon-close');
 
 dnsButtons.forEach((btn) => {
   btn.addEventListener('click', function () {
-    modal.classList.add('active');
-    //  modal.style.display = 'block';
-    container.classList.add('blur');
+    dnsModal.classList.add('active');
+    //  dnsModal.style.display = 'block';
+    main.classList.add('blur');
     sidebar.classList.add('blur');
   });
 });
 
-closeModal.addEventListener('click', function () {
-  modal.classList.remove('active');
-  //   modal.style.display = 'none';
-  container.classList.remove('blur');
-  sidebar.classList.remove('blur');
-});
+if (closeModal) {
+  closeModal.addEventListener('click', function () {
+    dnsModal.classList.remove('active');
+    // dnsModal.style.display = 'none';
+    main.classList.remove('blur');
+    sidebar.classList.remove('blur');
+  });
+}
+
+// JS for add domain and alias modal.
+
+const addAliasBtn = document.getElementById('addAliasButton');
+const addDomainBtn = document.getElementById('addDomainButton');
+const aliasModal = document.getElementById('alias-Modal');
+const domainModal = document.getElementById('domain-Modal');
+
+const domainCancelBtn = document.getElementById('domain-cancel-btn');
+const aliasCancelBtn = document.getElementById('alias-cancel-btn');
+
+if (addAliasBtn) {
+  addAliasBtn.addEventListener('click', function () {
+    aliasModal.classList.add('active');
+
+    main.classList.add('blur');
+    sidebar.classList.add('blur');
+  });
+}
+
+if (addDomainBtn) {
+  addDomainBtn.addEventListener('click', function () {
+    domainModal.classList.add('active');
+
+    main.classList.add('blur');
+    sidebar.classList.add('blur');
+  });
+}
+
+if (document.getElementById('save-btn')) {
+  document.getElementById('save-btn').addEventListener('click', function () {
+    document.getElementById('username').setAttribute('required', 'required');
+  });
+}
+
+if (domainCancelBtn) {
+  domainCancelBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.getElementById('username').removeAttribute('required');
+    domainModal.classList.remove('active');
+
+    main.classList.remove('blur');
+    sidebar.classList.remove('blur');
+  });
+}
+
+if (aliasCancelBtn) {
+  aliasCancelBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.getElementById('username').removeAttribute('required');
+    aliasModal.classList.remove('active');
+
+    main.classList.remove('blur');
+    sidebar.classList.remove('blur');
+  });
+}
+
+// JS for add Domain Account modal.
+
+const addDomainAccountBtn = document.getElementById('add-domain-account_btn');
+const domainAccountForm = document.getElementById('domainAccountForm');
+const cancelDomain = document.getElementById('cancel-domain');
+const createDomain = document.getElementById('create-domain');
+
+if (addDomainAccountBtn) {
+  addDomainAccountBtn.addEventListener('click', function () {
+    domainAccountForm.classList.add('active');
+
+    main.classList.add('blur');
+    sidebar.classList.add('blur');
+  });
+}
+
+if (cancelDomain) {
+  cancelDomain.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const cancelInputs = document.querySelectorAll('.cancel-button-input');
+
+    cancelInputs.forEach(function (input) {
+      input.removeAttribute('required');
+    });
+
+    domainAccountForm.classList.remove('active');
+    main.classList.remove('blur');
+    sidebar.classList.remove('blur');
+  });
+}

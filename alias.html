@@ -115,7 +115,7 @@
          </ul>
 
          <ul class="side-nav">
-            <a href="/accessWebmail.html" class="side-nav_link">
+            <a href="https://app.getsend.online/" class="side-nav_link">
                <li class="side-nav_item ">
                   <i class="fas fa-envelope-open-text icon"></i>
                   <span>Access Webmail</span>
@@ -125,11 +125,13 @@
       </div>
    </nav>
 
+   <!-- shares thesame css with domain management -->
+
    <main class="main">
       <div class="main-heading">
          <div class="main-heading_intro">
             <h2 class="main-welcome">Welcome Back, <span class="main-name">Johnson Cane </span></h2>
-            <h2 class="main-welcome">Your Secure Email Dashboard</h2>
+            <h2 class="main-welcome">Alias</h2>
          </div>
 
          <div class="main-heading_side">
@@ -148,7 +150,7 @@
          <div class="domain">
 
             <div class="domain-header">
-               <h2 class="domain-heading">Domains</h2>
+               <h2 class="domain-heading">Alias</h2>
 
                <a href="#">
                   <button class="hero-btn-dark_square">Refresh</button>
@@ -156,22 +158,20 @@
             </div>
 
             <div class="domain-button">
-               <a href="#">
-                  <button class="hero-btn-light"> <i class="fas fa-plus icon"></i> Add Alias</button>
-               </a>
+               <button class="hero-btn-light" id="addAliasButton"> <i class="fas fa-plus icon"></i> Add Alias</button>
             </div>
 
 
-            <div class="domain-form">
+            <div class="domain-input">
 
-               <div class="domain-form_group">
+               <div class="domain-input_group">
                   <label for="search"> Search: </label>
                   <input type="text" id="searchInput-text" placeholder="search..." name="search">
                </div>
 
-               <div class="domain-form_group">
-                  <label for="numberSelect" class="domain-form_label">Show:
-                     <select id="domain-form_select" name="numberSelect" class="domain-form_select"></select> entries
+               <div class="domain-input_group">
+                  <label for="numberSelect" class="domain-input_label">Show:
+                     <select id="domain-input_select" name="numberSelect" class="domain-input_select"></select> entries
                   </label>
                </div>
             </div>
@@ -179,7 +179,7 @@
             <table border="1" class="table">
 
                <tr class="table-rows">
-                  <th class="table-heading">Domain</th>
+                  <th class="table-heading">Alias</th>
                   <th class="table-heading">Active</th>
                   <th class="table-heading">Action</th>
                </tr>
@@ -217,7 +217,44 @@
 
          </div>
       </div>
+
    </main>
+
+   <div class="card addDomainOrAlias modal" id="alias-Modal">
+      <h2 class="addDomainOrAlias-heading">
+         Enter a Username / Domain.
+      </h2>
+
+      <form class="addDomainOrAlias-form" name="addDomainOrAlias" netlify>
+
+         <!-- <div class="account-form_inputs"> -->
+         <div class="addDomainOrAlias-form_input">
+            <div>
+               <label for="username ">Enter Username:</label>
+               <input id="username" type="text" placeholder="Enter username" name='username'>
+            </div>
+
+            <div>
+               <label for="domains">Select available domains:</label>
+               <select id="domain-available" name="domainAvalable">
+                  <option value="swapDomain">swapDomain.com</option>
+                  <option value="niceDomain">niceDomain.com</option>
+                  <option value="kingDomain">kingDomain.com</option>
+                  <option value="pingDomain">pingDomain.com</option>
+                  <option value="mailDomain">mailDomain.com</option>
+                  <option value="wapeDomain">wapeDomain.com</option>
+                  <option value="shanDomain">shanDomain.com</option>
+                  <option value="readDomain">readDomain.com</option>
+
+               </select>
+            </div>
+         </div>
+
+         <button class="hero-btn-dark" id="save-btn">Save</button>
+         <button class="hero-btn-light" id="alias-cancel-btn">Cancel</button>
+      </form>
+   </div>
+
 </body>
 
 </html>

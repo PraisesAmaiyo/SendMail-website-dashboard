@@ -115,7 +115,7 @@
          </ul>
 
          <ul class="side-nav">
-            <a href="/accessWebmail.html" class="side-nav_link">
+            <a href="https://app.getsend.online/" class="side-nav_link">
                <li class="side-nav_item ">
                   <i class="fas fa-envelope-open-text icon"></i>
                   <span>Access Webmail</span>
@@ -129,7 +129,7 @@
       <div class="main-heading">
          <div class="main-heading_intro">
             <h2 class="main-welcome">Welcome Back, <span class="main-name">Johnson Cane </span></h2>
-            <h2 class="main-welcome">Your Secure Email Dashboard</h2>
+            <h2 class="main-welcome">Domain Management</h2>
          </div>
 
          <div class="main-heading_side">
@@ -156,22 +156,20 @@
             </div>
 
             <div class="domain-button">
-               <a href="#">
-                  <button class="hero-btn-light"> <i class="fas fa-plus icon"></i> Add Domain</button>
-               </a>
+               <button class="hero-btn-light" id="addDomainButton"> <i class="fas fa-plus icon"></i> Add
+                  Domain</button>
             </div>
 
+            <div class="domain-input">
 
-            <div class="domain-form">
-
-               <div class="domain-form_group">
+               <div class="domain-input_group">
                   <label for="search"> Search: </label>
                   <input type="text" id="searchInput-text" placeholder="search..." name="search">
                </div>
 
-               <div class="domain-form_group">
-                  <label for="numberSelect" class="domain-form_label">Show:
-                     <select id="domain-form_select" name="numberSelect" class="domain-form_select"></select> entries
+               <div class="domain-input_group">
+                  <label for="numberSelect" class="domain-input_label">Show:
+                     <select id="domain-input_select" name="numberSelect" class="domain-input_select"></select> entries
                   </label>
                </div>
             </div>
@@ -222,78 +220,78 @@
       </div>
    </main>
 
-   <div class="card modal" id="modal">
-      <div class="modal-header">
-         <h2 class="modal-heading">DNS Records</h2>
+   <div class="card modal dnsModal " id="dns-modal">
+      <div class="dnsModal-header">
+         <h2 class="dnsModal-heading">DNS Records</h2>
          <i class="fas fa-times icon-close"></i>
       </div>
 
-      <div class="modal-sub">
-         <p class="modal-sub-text">Please note that changes made to DNS may lorem ipsum dolor sit amet
+      <div class="dnsModal-sub">
+         <p class="dnsModal-sub-text">Please note that changes made to DNS may lorem ipsum dolor sit amet
             consectetur
             adipisicing elit. Perferendis similique molestiae velit amet hic cupiditate pariatur praesentium,
             quis consequatur a repellat, labore ea corporis cumque nihil, perspiciatis adipisci excepturi
             tenetur.</p>
       </div>
 
-      <table border="1" class="modal-table">
-         <tr class="modal-table-rows">
-            <th class="modal-table-heading">Name</th>
-            <th class="modal-table-heading">Type</th>
-            <th class="modal-table-heading">Correct Data</th>
-            <th class="modal-table-heading">Current State</th>
+      <table border="1" class="dnsModal-table">
+         <tr class="dnsModal-table-rows">
+            <th class="dnsModal-table-heading">Name</th>
+            <th class="dnsModal-table-heading">Type</th>
+            <th class="dnsModal-table-heading">Correct Data</th>
+            <th class="dnsModal-table-heading">Current State</th>
          </tr>
 
-         <tr class="modal-table-rows">
-            <td class="modal-table-data">mail.ez-mail.space</td>
-            <td class="modal-table-data">A</td>
-            <td class="modal-table-data"> 108.181.169.98</td>
-            <td class="modal-table-data modal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+         <tr class="dnsModal-table-rows">
+            <td class="dnsModal-table-data">mail.ez-mail.space</td>
+            <td class="dnsModal-table-data">A</td>
+            <td class="dnsModal-table-data"> 108.181.169.98</td>
+            <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
             </td>
          </tr>
 
-         <tr class="modal-table-rows">
-            <td class="modal-table-data ">Johnsoncane.domain.com</td>
-            <td class="modal-table-data"> 138.141.493.03</td>
-            <td class="modal-table-data">PTR</td>
-            <td class="modal-table-data modal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+         <tr class="dnsModal-table-rows">
+            <td class="dnsModal-table-data ">Johnsoncane.domain.com</td>
+            <td class="dnsModal-table-data"> 138.141.493.03</td>
+            <td class="dnsModal-table-data">PTR</td>
+            <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
             </td>
          </tr>
 
-         <tr class="modal-table-rows">
-            <td class="modal-table-data ">Johnsoncane.domain.com</td>
-            <td class="modal-table-data"> 138.141.493.03</td>
-            <td class="modal-table-data">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut aliquam
+         <tr class="dnsModal-table-rows">
+            <td class="dnsModal-table-data ">Johnsoncane.domain.com</td>
+            <td class="dnsModal-table-data"> 138.141.493.03</td>
+            <td class="dnsModal-table-data">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut aliquam
                aperiam sunt fugiat voluptatem praesentium cum, molestias sint doloribus inventore maiores
                consequatur. Consequuntur numquam architecto explicabo, minima eum perspiciatis inventore.</td>
-            <td class="modal-table-data modal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+            <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
             </td>
          </tr>
 
-         <tr class="modal-table-rows">
-            <td class="modal-table-data ">Johnsoncaneclassxap.domain.com</td>
-            <td class="modal-table-data">TLSA</td>
-            <td class="modal-table-data">4892390r9402022-0r904u89449-2984092420u94802929202</td>
-            <td class="modal-table-data modal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+         <tr class="dnsModal-table-rows">
+            <td class="dnsModal-table-data ">Johnsoncaneclassxap.domain.com</td>
+            <td class="dnsModal-table-data">TLSA</td>
+            <td class="dnsModal-table-data">4892390r9402022-0r904u89449-2984092420u94802929202</td>
+            <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
             </td>
          </tr>
 
-         <tr class="modal-table-rows">
-            <td class="modal-table-data ">trapesxapxtml.domain.com</td>
-            <td class="modal-table-data">MX</td>
+         <tr class="dnsModal-table-rows">
+            <td class="dnsModal-table-data ">trapesxapxtml.domain.com</td>
+            <td class="dnsModal-table-data">MX</td>
 
-            <td class="modal-table-data">
-               <a href="#" class="modal-text-link">
+            <td class="dnsModal-table-data">
+               <a href="#" class="dnsModal-text-link">
                   inCaseOfALink.useThis.com
                </a>
             </td>
 
-            <td class="modal-table-data modal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+            <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
             </td>
          </tr>
       </table>
 
-      <div class="modal-info">
+      <div class="dnsModal-info">
          <div>
             <a href="#">
                <button class="hero-btn-light"><i class="fas fa-download icon"></i>Download</button>
@@ -301,10 +299,10 @@
          </div>
 
          <div>
-            <p class="modal-info_text"><span>1.</span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            <p class="dnsModal-info_text"><span>1.</span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
 
-            <p class="modal-info_text"><span>2.</span>Sit tempore neque ab at nemo optio ullam, ducimus
+            <p class="dnsModal-info_text"><span>2.</span>Sit tempore neque ab at nemo optio ullam, ducimus
                officia, tenetur nihil animi quia fugit
                repudiandae.
             </p>
@@ -312,13 +310,47 @@
 
 
          <div>
-            <p class="modal-info_text">
-               Please, also consult <a href="#" class="modal-text-link">the documentation.</a>
+            <p class="dnsModal-info_text">
+               Please, also consult <a href="#" class="dnsModal-text-link">the documentation.</a>
             </p>
          </div>
       </div>
    </div>
 
+   <div class="card addDomainOrAlias modal" id="domain-Modal">
+      <h2 class="addDomainOrAlias-heading">
+         Enter a Username / Domain.
+      </h2>
+
+      <form class="addDomainOrAlias-form" name="addDomainOrAlias" netlify>
+
+         <!-- <div class="account-form_inputs"> -->
+         <div class="addDomainOrAlias-form_input">
+            <div>
+               <label for="username ">Enter Username:</label>
+               <input id="username" type="text" placeholder="Enter username" name='username'>
+            </div>
+
+            <div>
+               <label for="domains">Select available domains:</label>
+               <select id="domain-available" name="domainAvalable">
+                  <option value="swapDomain">swapDomain.com</option>
+                  <option value="niceDomain">niceDomain.com</option>
+                  <option value="kingDomain">kingDomain.com</option>
+                  <option value="pingDomain">pingDomain.com</option>
+                  <option value="mailDomain">mailDomain.com</option>
+                  <option value="wapeDomain">wapeDomain.com</option>
+                  <option value="shanDomain">shanDomain.com</option>
+                  <option value="readDomain">readDomain.com</option>
+
+               </select>
+            </div>
+         </div>
+
+         <button class="hero-btn-dark" id="save-btn">Save</button>
+         <button class="hero-btn-light" id="domain-cancel-btn">Cancel</button>
+      </form>
+   </div>
 
 </body>
 
