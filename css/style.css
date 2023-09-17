@@ -197,7 +197,8 @@ body {
 
 .modal {
   padding: 2rem 6rem;
-  display: none;
+  opacity: 0;
+  visibility: hidden;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -205,7 +206,12 @@ body {
   width: max-content;
   max-width: 100rem;
   height: max-content;
-  z-index: 10; }
+  z-index: 10;
+  transition: opacity .3s ease-in-out, visibility .3s ease-in-out; }
+  .modal.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .3s ease-in-out, visibility .2s; }
   .modal-header {
     display: flex;
     justify-content: space-between;
@@ -213,6 +219,7 @@ body {
     margin-bottom: 3rem; }
     .modal-header .icon-close {
       font-size: 2.4rem;
+      padding: 1rem;
       cursor: pointer; }
   .modal-sub {
     margin-bottom: 1rem; }

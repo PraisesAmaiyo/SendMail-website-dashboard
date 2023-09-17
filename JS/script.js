@@ -191,19 +191,21 @@ for (let i = 1; i <= 25; i++) {
 const modal = document.getElementById('modal');
 const container = document.querySelector('.main');
 const sidebar = document.querySelector('.sidebar');
-const dnsButton = document.querySelectorAll('.dns-button');
+const dnsButtons = document.querySelectorAll('.dns-button');
 const closeModal = document.querySelector('.icon-close');
 
-dnsButton.forEach((btn) => {
+dnsButtons.forEach((btn) => {
   btn.addEventListener('click', function () {
-    modal.style.display = 'block';
+    modal.classList.add('active');
+    //  modal.style.display = 'block';
     container.classList.add('blur');
     sidebar.classList.add('blur');
   });
 });
 
 closeModal.addEventListener('click', function () {
-  modal.style.display = 'none';
+  modal.classList.remove('active');
+  //   modal.style.display = 'none';
   container.classList.remove('blur');
   sidebar.classList.remove('blur');
 });
