@@ -3,7 +3,7 @@
 
 <head>
    <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
    <meta name="description" content="SendMail" />
@@ -43,12 +43,8 @@
                <a class="main-nav-link" href="#features">Features</a>
             </li>
             <li><a class="main-nav-link" href="/blog.html">Blog</a></li>
-            <a href="/index.html">
+            <a href="/login.html">
                <button class="hero-btn-dark">Login</button>
-            </a>
-
-            <a href="/sign-up.html">
-               <button class="hero-btn-light">Register</button>
             </a>
          </ul>
       </nav>
@@ -65,8 +61,10 @@
 
 
          <div class="sidebar-header">
-            <img src="https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg" alt="Client Image"
-               class="sidebar-header-image" />
+            <a href="/index.html">
+               <img src="https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg" alt="Client Image"
+                  class="sidebar-header-image" />
+            </a>
          </div>
 
          <ul class="side-nav">
@@ -319,36 +317,20 @@
 
    <div class="card addDomainOrAlias modal" id="domain-Modal">
       <h2 class="addDomainOrAlias-heading">
-         Enter a Username / Domain.
+         Enter a Domain.
       </h2>
 
       <form class="addDomainOrAlias-form" name="addDomainOrAlias" netlify>
 
-         <!-- <div class="account-form_inputs"> -->
-         <div class="addDomainOrAlias-form_input">
-            <div>
-               <label for="username ">Enter Username:</label>
-               <input id="username" type="text" placeholder="Enter username" name='username'>
-            </div>
-
-            <div>
-               <label for="domains">Select available domains:</label>
-               <select id="domain-available" name="domainAvalable">
-                  <option value="swapDomain">swapDomain.com</option>
-                  <option value="niceDomain">niceDomain.com</option>
-                  <option value="kingDomain">kingDomain.com</option>
-                  <option value="pingDomain">pingDomain.com</option>
-                  <option value="mailDomain">mailDomain.com</option>
-                  <option value="wapeDomain">wapeDomain.com</option>
-                  <option value="shanDomain">shanDomain.com</option>
-                  <option value="readDomain">readDomain.com</option>
-
-               </select>
-            </div>
+         <div class="addDomainOrAlias-form_single">
+            <label for="username ">Enter Domain:</label>
+            <input id="username" type="text" placeholder="Enter domain" name='username'>
          </div>
 
          <button class="hero-btn-dark" id="save-btn">Save</button>
+
          <button class="hero-btn-light" id="domain-cancel-btn">Cancel</button>
+
       </form>
    </div>
 

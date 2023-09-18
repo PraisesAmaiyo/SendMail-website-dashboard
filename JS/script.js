@@ -286,9 +286,15 @@ const domainAccountForm = document.getElementById('domainAccountForm');
 const cancelDomain = document.getElementById('cancel-domain');
 const createDomain = document.getElementById('create-domain');
 
+let initialFormState = null;
+
 if (addDomainAccountBtn) {
   addDomainAccountBtn.addEventListener('click', function () {
+    const form = document.querySelector('.domainAccount-form');
+    form.reset();
     domainAccountForm.classList.add('active');
+
+    initialFormState = getFormState(form);
 
     main.classList.add('blur');
     sidebar.classList.add('blur');
@@ -299,14 +305,50 @@ if (cancelDomain) {
   cancelDomain.addEventListener('click', function (e) {
     e.preventDefault();
 
-    const cancelInputs = document.querySelectorAll('.cancel-button-input');
-
-    cancelInputs.forEach(function (input) {
-      input.removeAttribute('required');
-    });
+    if (initialFormState) {
+      resetFormState(initialFormState);
+    }
 
     domainAccountForm.classList.remove('active');
     main.classList.remove('blur');
     sidebar.classList.remove('blur');
+  });
+}
+
+function getFormState(form) {
+  const formState = {};
+  const inputs = form.querySelectorAll('.cancel-button-input');
+  inputs.forEach((input) => {
+    formState[input.id] = input.required;
+
+    console.log(input.id);
+  });
+
+  return formState;
+}
+
+function resetFormState(formState) {
+  const inputs = document.querySelectorAll('.cancel-button-input');
+  inputs.forEach((input) => {
+    input.required = formState[input.id];
+  });
+}
+
+if (domainAccountForm) {
+  domainAccountForm.addEventListener('submit', function (e) {
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    const confirmPasswordField = document.getElementById('confirm-password');
+    const errorMessage = document.getElementById('password-error');
+
+    if (password !== confirmPassword) {
+      e.preventDefault();
+      errorMessage.style.display = 'block';
+      //  alert('Password and Confirm Password do not match');
+      confirmPasswordField.classList.add('error');
+    } else {
+      confirmPasswordField.classList.remove('error');
+      errorMessage.style.display = 'none';
+    }
   });
 }

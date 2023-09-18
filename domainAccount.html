@@ -3,7 +3,7 @@
 
 <head>
    <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
    <meta name="description" content="SendMail" />
@@ -43,12 +43,8 @@
                <a class="main-nav-link" href="#features">Features</a>
             </li>
             <li><a class="main-nav-link" href="/blog.html">Blog</a></li>
-            <a href="/index.html">
+            <a href="/login.html">
                <button class="hero-btn-dark">Login</button>
-            </a>
-
-            <a href="/sign-up.html">
-               <button class="hero-btn-light">Register</button>
             </a>
          </ul>
       </nav>
@@ -65,8 +61,10 @@
 
 
          <div class="sidebar-header">
-            <img src="https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg" alt="Client Image"
-               class="sidebar-header-image" />
+            <a href="/index.html">
+               <img src="https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg" alt="Client Image"
+                  class="sidebar-header-image" />
+            </a>
          </div>
 
          <ul class="side-nav">
@@ -257,34 +255,49 @@
                required>
          </div>
 
-         <div class="domainAccount-form_input">
-            <label for="email">Email address:</label>
-            <input id="email" type="text" placeholder="Enter your email" name="email" class="cancel-button-input"
-               required>
+         <!-- id of username has been declared before -->
+         <div class="domainAccount-form_2">
+
+            <div class="domainAccount-form_input">
+               <label for="domainUsername">Enter username</label>
+               <input id="domainUsername" type="text" placeholder="Enter username" name="domainUsername"
+                  class="cancel-button-input" required>
+            </div>
+
+            <div class="domainAccount-form_input">
+               <label for="domain">Select available domains:</label>
+
+               <select id="domain-available" name="domainAvalable">
+                  <option value="swapDomain">swapDomain.com</option>
+                  <option value="niceDomain">niceDomain.com</option>
+                  <option value="kingDomain">kingDomain.com</option>
+                  <option value="pingDomain">pingDomain.com</option>
+                  <option value="mailDomain">mailDomain.com</option>
+                  <option value="wapeDomain">wapeDomain.com</option>
+                  <option value="shanDomain">shanDomain.com</option>
+                  <option value="readDomain">readDomain.com</option>
+               </select>
+            </div>
+
          </div>
 
-         <!-- id of username has been declared before -->
-
          <div class="domainAccount-form_input">
-            <label for="domainUsername">Enter username</label>
-            <input id="domainUsername" type="text" placeholder="Enter username" name="domainUsername"
+            <label for="password">Create password:</label>
+            <input id="password" type="password" placeholder="Enter your password" name="password"
                class="cancel-button-input" required>
          </div>
 
          <div class="domainAccount-form_input">
-            <label for="domain">Select available domains:</label>
-
-            <select id="domain-available" name="domainAvalable">
-               <option value="swapDomain">swapDomain.com</option>
-               <option value="niceDomain">niceDomain.com</option>
-               <option value="kingDomain">kingDomain.com</option>
-               <option value="pingDomain">pingDomain.com</option>
-               <option value="mailDomain">mailDomain.com</option>
-               <option value="wapeDomain">wapeDomain.com</option>
-               <option value="shanDomain">shanDomain.com</option>
-               <option value="readDomain">readDomain.com</option>
-            </select>
+            <label for="confirm-password">Confirm password:</label>
+            <input id="confirm-password" type="password" placeholder="Confirm-password" name="confirm-password"
+               class="cancel-button-input" required>
+            <p id="password-error" class="error-message"> <i
+                  class="fas fa-exclamation-triangle error-icon"></i><strong>Password do
+                  not match!</strong>
+            <p>
          </div>
+
+
 
          <button class="hero-btn-dark" id="create-domain">Create</button>
 
