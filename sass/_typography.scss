@@ -1,0 +1,92 @@
+.hero-btn-dark,
+.hero-btn-light,
+.hero-btn-dark_square {
+   background-color: $color-grey-dark-1;
+   color: $color-grey-light-1;
+   font-size: 1.05rem;
+   font-weight: 600;
+   font-family: $font-primary;
+   text-transform: uppercase;
+   cursor: pointer;
+   padding: 1rem 1rem;
+   border-radius: 5rem;
+   transition: all 0.5s;
+   border: none;
+   box-shadow: inset 0 0 0 1px $color-secondary-light;
+
+   &:not(:last-child) {
+      margin-right: 1.5rem;
+
+      @media only screen and (max-width:$bp-largest) {
+         margin-bottom: 1.5rem;
+      }
+   }
+
+   @media only screen and (max-width:$bp-largest) {
+      font-size: 1.4rem;
+   }
+
+   @media only screen and (max-width:$bp-larger) {
+      font-size: 1.2rem;
+   }
+
+   @media only screen and (max-width:$bp-big) {
+      font-size: 2.4rem;
+   }
+
+   @media only screen and (max-width:$bp-medium) {
+      // font-size: 1.4rem;
+   }
+
+   &:hover {
+      transform: scale(1.07);
+   }
+
+   &:active {
+      transform: scale(1.04);
+   }
+}
+
+.hero-btn-light {
+   background-color: #fff;
+   color: $color-grey-dark-1;
+   box-shadow: inset 0px 0px 0px 2px $color-grey-dark-1;
+   transition: all 0.5s;
+
+   &:hover {
+      transform: scale(1.07);
+      background-color: $color-secondary-light;
+   }
+
+   &:active {
+      transform: scale(1.04);
+      background-color: $color-secondary-light;
+   }
+}
+
+.hero-btn-dark_square {
+   border-radius: 5px;
+   margin-right: 1.5rem;
+}
+
+.modal {
+   padding: 2rem 6rem;
+   opacity: 0;
+   visibility: hidden;
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: max-content;
+   max-width: 100rem;
+   height: max-content;
+   z-index: 10000;
+   transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+
+   &.active {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity .3s ease-in-out, visibility .2s;
+   }
+
+}

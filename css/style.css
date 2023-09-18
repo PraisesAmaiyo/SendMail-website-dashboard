@@ -201,6 +201,7 @@ body {
       background-color: #d4deed;
       width: max-content;
       padding: .2rem .5rem;
+      margin-top: 1.2rem;
       display: none; }
       .domainAccount-form_input .error-message .error-icon {
         margin-right: 1rem; }

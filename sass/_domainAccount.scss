@@ -1,0 +1,115 @@
+.domainAccount {
+   width: 60%;
+
+   .card-white.payment-method {
+      color: $color-primary;
+
+      & form label {
+         color: $color-primary;
+      }
+
+      & input,
+      select {
+         background-color: rgba($color-primary-light, .36);
+         color: $color-primary;
+
+         &:focus,
+         &:valid {
+            background-color: $color-secondary-light;
+            box-shadow: 0 0 0 0.8rem rgba($color-primary, .56);
+         }
+
+         &::placeholder {
+            color: $color-primary;
+         }
+      }
+
+   }
+
+
+   &-heading {
+      position: relative;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+   }
+
+   &-form {
+
+      &_2 {
+         display: flex;
+         align-items: center;
+         gap: 5rem;
+      }
+
+      &_input {
+         margin-top: 3rem;
+
+         label {
+            display: block;
+            text-align: left;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            color: $color-grey-light-1;
+         }
+
+         input,
+         select {
+            height: 100%;
+            width: 100%;
+            outline: none;
+            padding: 1rem;
+            font-size: 1.3rem;
+            font-family: inherit;
+            font-weight: 500;
+            color: $color-primary;
+            border: none;
+            background-color: #e9eff6;
+            border-radius: 9px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+
+            &:focus {
+               background-color: $color-grey-light-1;
+               box-shadow: 0 0 0 0.8rem rgba($color-secondary-light, .36);
+            }
+
+            &.error {
+               background-color: rgb(244, 224, 224);
+               box-shadow: 0 0 0 0.8rem rgba(red, .36);
+            }
+         }
+
+         .error-message {
+            color: #f73109;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            background-color: $color-secondary-light;
+            width: max-content;
+            padding: .2rem .5rem;
+            margin-top: 1.2rem;
+            display: none;
+
+            .error-icon {
+               margin-right: 1rem;
+            }
+
+         }
+
+         select {
+            width: max-content
+         }
+
+         .wallet-name_usdt {
+            margin-top: 2rem;
+         }
+      }
+
+      .hero-btn-dark,
+      .hero-btn-light {
+         margin: 3rem 1rem 3rem 0;
+         padding: 1rem 2rem;
+      }
+   }
+}

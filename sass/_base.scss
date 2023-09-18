@@ -1,0 +1,102 @@
+// COLOR VARIABLES
+$color-primary: #265ca5;
+$color-primary-light: #2b5c9d;
+
+$color-secondary-light: #d4deed;
+$color-secondary-dark: #22b6d8;
+
+$color-grey-light-1: #fff;
+$color-grey-light-2: #eef1f6;
+$color-grey-dark-1: #12468a;
+$color-grey-dark-2: #202c6c;
+$color-grey-dark-3: #07155c;
+
+// FONT VARIABLES
+$font-primary: 'Montserrat', sans-serif;
+$font-display: 'Josefin Sans', sans-serif;
+
+// RESPONSIVE VARIABLES
+// RESPONSIVE VARIABLES
+$bp-largest: 75em; //
+$bp-larger: 62.5em; //
+$bp-big: 50.3em; //
+$bp-large: 45.7em; //
+$bp-medium: 38.6em; //
+$bp-small: 30.5em; //
+$bp-smaller: 20.8em; //
+$bp-smallest: 30em;
+
+*,
+*::before,
+*::after {
+   margin: 0;
+   padding: 0;
+   box-sizing: inherit;
+}
+
+html {
+   box-sizing: border-box;
+   font-size: 62.5%;
+
+   @media only screen and (max-width:$bp-largest) {
+      font-size: 50%;
+   }
+
+   @media only screen and (max-width:$bp-medium) {
+      font-size: 40%;
+   }
+
+   @media only screen and (max-width:$bp-smaller) {
+      font-size: 30%;
+   }
+}
+
+body {
+   font-family: $font-primary;
+   font-display: swap;
+   color: $color-primary;
+   font-weight: 300;
+   line-height: 1.4;
+}
+
+.container {
+   overflow-x: hidden;
+   display: grid;
+   grid-template-rows: [navigation-start] max-content [navigation-end rowOne-start] 1fr [rowOne-end];
+
+   grid-template-columns: [sidebar-start] 25% [sidebar-end main-start] 1fr [main-end];
+   min-height: 100vh;
+
+   @media screen and (min-width: 1400px) {
+      grid-template-columns: [sidebar-start] 18% [sidebar-end main-start] 1fr [main-end];
+      grid-template-rows: [navigation-start] max-content [navigation-end rowOne-start] minmax(100vh, 1fr) [rowOne-end];
+   }
+}
+
+// .container {
+//    display: grid;
+//    grid-template-columns: 25% 1fr;
+//    /* 25% for the sidebar, 1fr for the main content */
+//    grid-template-rows: auto 1fr;
+//    /* Auto for header, 1fr for content */
+//    min-height: 100vh;
+//    /* Ensure a minimum height of viewport height */
+// }
+
+.card {
+   background-image: linear-gradient(111.4deg, rgba($color-primary-light, .75) 1%, rgba($color-grey-dark-1, .75) 58%), url(../img/image-1.jpg);
+   background-size: cover;
+   color: $color-grey-light-1;
+   border: 1px solid #ddd;
+   border-radius: 10px 35px 5px 35px;
+   box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 10px
+}
+
+.card-white {
+   background-image: linear-gradient(111.4deg, rgba($color-grey-light-1, .75) 1%, rgba($color-grey-light-2, .75) 58%), url(../img/image-1.jpg);
+   background-size: cover;
+   color: $color-grey-light-1;
+   border: 1px solid #ddd;
+   border-radius: 10px 35px 5px 35px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
