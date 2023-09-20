@@ -14,56 +14,62 @@
 
 .icon-mobile-nav[name="close-outline"] {
    display: none;
-   // position: fixed;
-   // top: 8px;
-   // right: 30px;
+}
+
+
+.main.no-scroll {
+   overflow: hidden;
 }
 
 @media only screen and (max-width:$bp-big) {
+   .main-nav {
+      display: none;
+
+   }
 
    .btn-mobile-nav {
       display: block;
       z-index: 9999;
    }
 
-   // .navigation {
-   //     transition: all 3s;
-   // }
+   nav.sidebar {
+      display: block;
+      backdrop-filter: blur(2px);
+      z-index: 100000;
 
-   .main-nav {
-      // z-index: 100;
-      background-color: rgba(27, 64, 115, 0.951);
-      -webkit-backdrop-filter: blur(5px);
-      position: absolute;
+      width: 150%;
+
+      height: 100%;
       top: 0;
-      right: 0;
-      height: 100vh;
-      width: 50%;
-      transform: translateY(-100%);
-      transform: translateX(100%);
-      // position: fixed;
-      border-top-left-radius: 30px;
-      border-left: 2px solid #fff;
+      left: -100;
+      border-top-right-radius: 30px;
+      border-right: 2px solid $color-grey-light-1 ;
       box-shadow: 0 1.2rem 3.2rem rgba(38, 93, 165, 0.388);
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all .2s ease-in;
       opacity: 0;
-
-      /* Make it unaccessible to mouse and keyboard */
-      pointer-events: none;
-
-      /* Hide it from screen readers */
       visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-4%) translateX(-100%);
+      transition: all .3s ease-in;
+
+      & .sidebar-fixed {
+         width: 90%;
+      }
    }
 
-   .nav-open .main-nav {
+   body.no-scroll {
+      overflow: hidden;
+   }
+
+   .navigation-header.nav-open+nav.sidebar {
+      display: block;
       opacity: 1;
-      pointer-events: auto;
       visibility: visible;
-      transform: translateX(0);
+      pointer-events: auto;
+      transform: translateX(0) translateY(0);
+      left: 0;
+      position: fixed;
+      top: 0;
+      max-width: 50%;
    }
 
    .nav-open .icon-mobile-nav[name="close-outline"] {
@@ -75,7 +81,7 @@
    }
 
    .main-nav-list {
-      flex-direction: column;
+      // flex-direction: column;
       gap: 4.8rem;
       font-size: 1rem;
    }

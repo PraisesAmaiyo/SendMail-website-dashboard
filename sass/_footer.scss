@@ -1,20 +1,23 @@
 .section-footer {
-   background-image: linear-gradient(to right, rgba($color-primary, 2), rgba($color-primary-light, 1));
-   grid-column: 1/-1;
+   background-image: linear-gradient(to right, rgba($color-primary-light, .9), rgba($color-primary, .9));
+   grid-column: 2/3;
    grid-row: footer-start/ footer-end;
-   padding: 5rem 2rem;
+   padding: 1.5rem 1rem;
+   height: max-content;
 
-   display: grid;
-   grid-template-columns: 1fr 100rem 1fr;
-
-   @media only screen and (max-width:$bp-largest) {
+   // position: fixed;
+      // bottom: 0;
+      // right: 2rem;
+      // left: 26%;
+   @media only screen and (max-width:$bp-big) {
+      left: 2rem;
       grid-template-columns: 1fr 100% 1fr;
-      padding: 4rem 2rem;
+      // padding: 4rem 2rem;
    }
 
 
    @media only screen and (max-width:$bp-big) {
-      padding: 2.5rem 1rem 1.5rem 1rem;
+      // padding: 2.5rem 1rem 1.5rem 1rem;
    }
 }
 
@@ -32,15 +35,15 @@
    @media only screen and (max-width:$bp-larger) {
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(2, 1fr);
-      row-gap: 3rem;
-      padding: 0 6rem;
+      row-gap: 1rem;
+      // padding: 0 6rem;
    }
 
    @media only screen and (max-width:$bp-medium) {
       grid-template-columns: 1fr;
       grid-template-rows: repeat(3, 1fr);
-      row-gap: 3rem;
-      padding: 0 6rem;
+      row-gap: .5rem;
+      // padding: 0 6rem;
    }
 
    &-image {
@@ -66,9 +69,13 @@
    &-nav-list {
       list-style: none;
       display: flex;
-      gap: 2.5rem;
+      gap: 1.5rem;
       align-items: center;
       justify-content: center;
+
+      @media only screen and (max-width:$bp-smaller) {
+         gap: 1.1rem;
+      }
    }
 
    &-nav-link:link,
@@ -77,8 +84,13 @@
       text-decoration: none;
       color: $color-secondary-light;
       font-weight: 500;
-      font-size: 2rem;
+      font-size: 1.8rem;
       position: relative;
+
+
+      @media only screen and (max-width:$bp-smaller) {
+         font-size: 1.6rem;
+      }
 
       &::before {
          transition: all .3s;

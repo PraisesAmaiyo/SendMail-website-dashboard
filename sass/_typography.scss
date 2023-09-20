@@ -22,17 +22,17 @@
       }
    }
 
-   @media only screen and (max-width:$bp-largest) {
-      font-size: 1.4rem;
-   }
+   // @media only screen and (max-width:$bp-largest) {
+   //    font-size: 1.4rem;
+   // }
 
-   @media only screen and (max-width:$bp-larger) {
-      font-size: 1.2rem;
-   }
+   // @media only screen and (max-width:$bp-larger) {
+   //    font-size: 1.2rem;
+   // }
 
-   @media only screen and (max-width:$bp-big) {
-      font-size: 2.4rem;
-   }
+   // @media only screen and (max-width:$bp-big) {
+   //    font-size: 2.4rem;
+   // }
 
    @media only screen and (max-width:$bp-medium) {
       // font-size: 1.4rem;
@@ -82,6 +82,11 @@
    height: max-content;
    z-index: 10000;
    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+
+   @media only screen and (max-width:$bp-large) {
+      padding: 6rem 2rem;
+   }
+
 
    &.active {
       opacity: 1;

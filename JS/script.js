@@ -1,6 +1,5 @@
 const btnNavEl = document.querySelector('.btn-mobile-nav');
-// const headerEl = document.querySelector('.navigation-header');
-const allLinks = document.querySelectorAll('a:link');
+const headerEl = document.querySelector('.navigation-header');
 
 window.addEventListener('load', function () {
   const headerEl = document.querySelector('.navigation-header');
@@ -16,8 +15,8 @@ window.addEventListener('load', function () {
       if (ent.isIntersecting === false) {
         document.body.classList.add('sticky');
 
-        sidebarEl.style.marginTop = '8rem';
-        mainEl.style.marginTop = '8rem';
+        sidebarEl.style.marginTop = '5.5rem';
+        mainEl.style.marginTop = '5.5rem';
       }
 
       if (ent.isIntersecting === true) {
@@ -65,33 +64,24 @@ updateProgress('alias', 60);
 updateProgress('domainCreated', 100);
 
 // Mobile nav
+const bodyEl = document.body;
 btnNavEl.addEventListener('click', function () {
+  const main = document.querySelector('.main');
   headerEl.classList.toggle('nav-open');
+
+  bodyEl.classList.toggle('no-scroll');
+  main.classList.remove('blur');
 });
 
-allLinks.forEach(function (link) {
-  link.addEventListener('click', function (e) {
-    const href = link.getAttribute('href');
-    console.log(href);
-
-    // scroll back to top
-    if (href === '#')
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-
-    // Scroll to other links
-    if (href !== '#' && href.startsWith('#')) {
-      const sectionEl = document.querySelector(href);
-      sectionEl.scrollIntoView({ behavior: 'smooth' });
-      e.preventDefault();
-    }
-
-    // CLose mobile navigation
-    if (link.classList.contains('main-nav-link'))
-      headerEl.classList.toggle('nav-open');
-  });
+document.addEventListener('click', function (event) {
+  if (
+    headerEl.classList.contains('nav-open') && // Check if the mobile menu is open
+    event.target !== btnNavEl && // Exclude the mobile navigation button from the check
+    !headerEl.contains(event.target) // Check if the click is outside of the mobile menu
+  ) {
+    headerEl.classList.remove('nav-open');
+    bodyEl.classList.remove('no-scroll');
+  }
 });
 
 function updateDateTime() {
@@ -201,16 +191,20 @@ if (numberSelect) {
 // JS for DNS modal.
 const dnsModal = document.getElementById('dns-modal');
 const main = document.querySelector('.main');
-const sidebar = document.querySelector('.sidebar');
 const dnsButtons = document.querySelectorAll('.dns-button');
 const closeModal = document.querySelector('.icon-close');
+const sidebar = document.querySelector('.sidebar');
 
 dnsButtons.forEach((btn) => {
-  btn.addEventListener('click', function () {
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
     dnsModal.classList.add('active');
     //  dnsModal.style.display = 'block';
+
     main.classList.add('blur');
     sidebar.classList.add('blur');
+    main.classList.add('no-scroll');
+    console.log('object');
   });
 });
 
@@ -234,22 +228,35 @@ const domainCancelBtn = document.getElementById('domain-cancel-btn');
 const aliasCancelBtn = document.getElementById('alias-cancel-btn');
 
 if (addAliasBtn) {
-  addAliasBtn.addEventListener('click', function () {
+  addAliasBtn.addEventListener('click', function (e) {
     aliasModal.classList.add('active');
 
     main.classList.add('blur');
     sidebar.classList.add('blur');
+    e.stopPropagation();
   });
 }
 
 if (addDomainBtn) {
-  addDomainBtn.addEventListener('click', function () {
+  addDomainBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
     domainModal.classList.add('active');
 
     main.classList.add('blur');
     sidebar.classList.add('blur');
   });
 }
+
+document.addEventListener('click', function (event) {
+  if (
+    domainModal.classList.contains('active') &&
+    !domainModal.contains(event.target)
+  ) {
+    domainModal.classList.remove('active');
+    main.classList.remove('blur');
+    sidebar.classList.remove('blur');
+  }
+});
 
 if (document.getElementById('save-btn')) {
   document.getElementById('save-btn').addEventListener('click', function () {
@@ -289,8 +296,9 @@ const createDomain = document.getElementById('create-domain');
 let initialFormState = null;
 
 if (addDomainAccountBtn) {
-  addDomainAccountBtn.addEventListener('click', function () {
+  addDomainAccountBtn.addEventListener('click', function (e) {
     const form = document.querySelector('.domainAccount-form');
+    e.stopPropagation();
     form.reset();
     domainAccountForm.classList.add('active');
 
@@ -352,3 +360,13 @@ if (domainAccountForm) {
     }
   });
 }
+
+const modal = document.querySelector('.modal');
+
+document.addEventListener('click', function (event) {
+  if (modal.classList.contains('active') && !modal.contains(event.target)) {
+    modal.classList.remove('active');
+    main.classList.remove('blur');
+    sidebar.classList.remove('blur');
+  }
+});

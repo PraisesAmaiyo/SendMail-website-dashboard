@@ -1,6 +1,10 @@
 .domainAccount {
    width: 60%;
 
+   @media only screen and (max-width:$bp-small) {
+      width: 85%;
+   }
+
    .card-white.payment-method {
       color: $color-primary;
 
@@ -29,25 +33,43 @@
 
    &-heading {
       position: relative;
-      font-size: 1.8rem;
-      margin-bottom: 2rem;
+      font-size: 1.9rem;
+      margin-bottom: 1rem;
+
+      @media only screen and (max-width:$bp-large) {
+         margin-bottom: 2rem;
+      }
    }
 
    &-form {
 
       &_2 {
          display: flex;
-         align-items: center;
-         gap: 5rem;
+         align-items: end;
+         justify-content: left;
+         gap: 2rem;
+
+         @media only screen and (max-width:$bp-smaller) {
+            align-items: start;
+            justify-content: left;
+            flex-direction: column;
+            gap: 0;
+         }
+
       }
 
       &_input {
-         margin-top: 3rem;
+         margin-top: 1.5rem;
+
+         @media only screen and (max-width:$bp-small) {
+            margin-top: 1rem;
+            width: 100%;
+         }
 
          label {
             display: block;
             text-align: left;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 500;
             margin-bottom: 1.2rem;
             color: $color-grey-light-1;
@@ -59,7 +81,7 @@
             width: 100%;
             outline: none;
             padding: 1rem;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-family: inherit;
             font-weight: 500;
             color: $color-primary;
@@ -108,8 +130,9 @@
 
       .hero-btn-dark,
       .hero-btn-light {
-         margin: 3rem 1rem 3rem 0;
+         margin: 2rem 1rem 2rem 0;
          padding: 1rem 2rem;
+         font-size: inherit;
       }
    }
 }

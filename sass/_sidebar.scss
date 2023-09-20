@@ -1,7 +1,6 @@
 .sidebar {
    grid-column: sidebar-start / sidebar-end;
    grid-row: rowOne-start / rowOne-end;
-   // margin-top: 8rem;
 
    overflow-y: auto;
    height: auto;
@@ -14,8 +13,13 @@
    flex-direction: column;
    position: relative;
 
+   @media only screen and (max-width:$bp-larger) {
+      padding: 2rem 0;
+   }
+
    &-fixed {
-      position: fixed
+      position: fixed;
+
    }
 
    &-header {
@@ -30,12 +34,12 @@
       }
 
       &-text {
-         font-size: 1.8rem;
+         font-size: 1.9rem;
       }
    }
 
    .side-nav {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       list-style: none;
       margin-top: 1rem;
 
@@ -45,6 +49,9 @@
          padding: 1rem 2rem;
          margin-left: 1rem;
 
+         @media only screen and (max-width:$bp-small) {
+            padding: 1rem 0 1rem 1rem;
+         }
 
          transform: perspective(1px) translateZ(0);
          box-shadow: 0 0 1px rgba(0, 0, 0, 0);
@@ -84,6 +91,11 @@
 
          .icon {
             margin-right: 2rem;
+
+
+            @media only screen and (max-width:$bp-small) {
+               margin-right: .5rem;
+            }
          }
       }
    }

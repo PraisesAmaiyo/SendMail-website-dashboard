@@ -2,12 +2,21 @@
    grid-column: main-start / main-end;
    grid-row: rowOne-start / rowOne-end;
    padding: 1.6rem;
-   // margin-top: 8rem;
+
+   @media only screen and (max-width:$bp-big) {
+      grid-column: 1/-1;
+   }
 
    &-heading {
       display: flex;
       align-items: center;
       justify-content: center;
+
+      @media only screen and (max-width:$bp-smaller) {
+         flex-direction: column;
+         gap: 2rem;
+
+      }
 
       &_intro {
          margin-right: auto;
@@ -16,6 +25,27 @@
       &_side {
          display: flex;
          align-items: center;
+
+         @media only screen and (max-width:$bp-big) {
+            .hero-btn-dark_square {
+               font-size: 1.2rem;
+            }
+
+            h2 {
+               font-size: 1.3rem;
+            }
+         }
+
+         @media only screen and (max-width:$bp-small) {
+            flex-direction: column;
+            gap: .5rem;
+            align-items: start;
+         }
+
+
+         @media only screen and (max-width:$bp-smaller) {
+            flex-direction: row;
+         }
       }
 
       &_update {
@@ -25,7 +55,7 @@
          display: flex;
          gap: 4px;
          margin-right: 2rem;
-         font-size: 1.2rem;
+         font-size: 1.3rem;
       }
    }
 
@@ -44,28 +74,56 @@
       &-dashboard {
          padding: 2rem 6rem;
          margin: 2rem 0;
+
+
+         @media only screen and (max-width:$bp-larger) {
+            margin: 4rem 0;
+            padding: 6rem 2rem;
+         }
+
+         @media only screen and (max-width:$bp-small) {
+            padding: 3rem 2rem;
+         }
       }
 
       &-mini {
          padding: 2rem;
-
          display: grid;
          grid-template-columns: 50% 50%;
          grid-template-rows: repeat(2, 1fr);
          align-items: center;
          justify-content: center;
          gap: 1rem;
+         width: 100%;
+
+         @media only screen and (max-width:$bp-smaller) {
+            padding: 3rem;
+            grid-template-columns: min-content;
+            grid-template-rows: repeat(2, min-content);
+            gap: 2rem;
+            width: 60%;
+            justify-items: center;
+         }
       }
 
       &-wide {
          padding: 2rem;
-
          display: grid;
          grid-template-columns: 50% 50%;
          grid-template-rows: repeat(2, 1fr);
          align-items: center;
          justify-content: center;
          gap: 1rem;
+
+         @media only screen and (max-width:$bp-smaller) {
+            padding: 3rem;
+            grid-template-columns: max-content;
+            grid-template-rows: repeat(2, min-content);
+            gap: 2rem;
+            width: 60%;
+            max-width: 40rem;
+            justify-items: center;
+         }
       }
    }
 
@@ -74,10 +132,28 @@
       grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
       align-items: center;
       justify-content: center;
-      gap: 20px;
+      gap: 2rem;
+
+      @media only screen and (max-width:$bp-small) {
+         gap: .5rem;
+      }
+
+      @media only screen and (max-width:$bp-smaller) {
+         grid-template-columns: 1fr;
+         grid-template-rows: repeat(2, max-content);
+         gap: 3rem;
+         align-items: center;
+         justify-content: center;
+      }
 
       &_profile {
          margin-right: auto;
+
+         @media only screen and (max-width:$bp-smaller) {
+            justify-items: center;
+            grid-column: 1/-1;
+            grid-row: 2/3;
+         }
       }
 
       &_image {
@@ -85,24 +161,54 @@
          display: grid;
          justify-content: end;
 
+         @media only screen and (max-width:$bp-smaller) {
+            grid-column: 1/-1;
+            grid-row: 1/2;
+            justify-content: center;
+         }
+
          .profile-image {
             height: 15rem;
             width: 15rem;
-            border-radius: 31% 69% 63% 37% / 34% 28% 72% 66%
+
+            border-radius: 31% 69% 63% 37% / 34% 28% 72% 66%;
+
+            @media only screen and (max-width:$bp-small) {
+               height: 10rem;
+               width: 10rem;
+            }
+
+            @media only screen and (max-width:$bp-smaller) {
+               height: 15rem;
+               width: 15rem;
+            }
          }
       }
 
       &_text {
-         font-size: 1.5rem;
+         font-size: 1.89em;
+
+         @media only screen and (max-width:$bp-large) {
+            font-size: 1.6rem;
+         }
+
+         @media only screen and (max-width:$bp-smaller) {
+            font-size: 1.9rem;
+         }
       }
    }
 
    &-statistics {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(35rem, max-content));
+      grid-template-columns: repeat(auto-fit, minmax(40rem, max-content));
       gap: 2rem;
       align-items: center;
       justify-content: center;
+
+
+      @media only screen and (max-width:$bp-larger) {
+         justify-items: center;
+      }
 
       .statistics-info {
          display: grid;
@@ -132,10 +238,18 @@
 
             .lists-a {
                grid-column: 1/2;
+
+               @media only screen and (max-width:$bp-smaller) {
+                  grid-column: 1/-1;
+               }
             }
 
             .lists-b {
                grid-column: 2/3;
+
+               @media only screen and (max-width:$bp-smaller) {
+                  grid-column: 1/-1;
+               }
             }
 
             .lists {
@@ -151,10 +265,14 @@
                   }
 
                   &-title {
-                     font-size: 1.2rem;
+                     font-size: 1.6rem;
                      list-style: none;
                      grid-column: 1/2;
                      word-wrap: break-word;
+
+                     @media only screen and (max-width:$bp-smaller) {
+                        // font-size: 1.3rem;
+                     }
                   }
 
                   &-icon {
@@ -176,8 +294,12 @@
    width: 75px;
    height: 75px;
    position: relative;
-
    justify-self: center;
+
+
+   @media only screen and (max-width:$bp-larger) {
+      margin-bottom: 3rem;
+   }
 
 
    .circle {
@@ -212,7 +334,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 14px;
+      font-size: 15px;
       font-weight: bold;
       color: $color-secondary-light;
    }

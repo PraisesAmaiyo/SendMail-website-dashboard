@@ -2,9 +2,15 @@
    padding: 2rem 6rem;
    z-index: 100;
 
+
+   @media only screen and (max-width:$bp-largest) {
+      padding: 6rem 2rem;
+   }
+
+
    &-heading {
       position: relative;
-      font-size: 1.8rem;
+      font-size: 1.9rem;
    }
 
    & form label {
@@ -18,6 +24,15 @@
          display: flex;
          flex-direction: column;
          width: 40rem;
+
+         @media only screen and (max-width:$bp-small) {
+            width: 30rem;
+         }
+
+         @media only screen and (max-width:$bp-smaller) {
+            width: 22rem;
+         }
+
       }
 
       &_double {
@@ -25,7 +40,18 @@
          display: flex;
          align-items: center;
          gap: 3rem;
-         // width: 40rem;
+
+
+         @media only screen and (max-width:$bp-small) {
+            gap: 2rem;
+         }
+
+         @media only screen and (max-width:$bp-smaller) {
+            flex-direction: column;
+            gap: 3rem;
+            width: 100%;
+            align-items: start;
+         }
       }
 
       &_single,
@@ -33,7 +59,7 @@
          label {
             display: block;
             text-align: left;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 500;
             margin-bottom: 1.2rem;
             color: $color-grey-light-1;
@@ -45,7 +71,7 @@
             width: 100%;
             outline: none;
             padding: 1rem;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-family: inherit;
             font-weight: 500;
             color: $color-primary;
@@ -54,6 +80,7 @@
             border-radius: 9px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            width: auto;
 
             &:focus {
                background-color: $color-grey-light-1;
@@ -75,9 +102,10 @@
       }
 
       .hero-btn-dark,
-      .hero-btn-dark {
+      .hero-btn-light {
          margin-top: 3rem;
          padding: 1rem 2rem;
+         font-size: inherit;
       }
    }
 }

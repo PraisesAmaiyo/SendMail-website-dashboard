@@ -4,28 +4,63 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 2rem;
+
+
+      @media only screen and (max-width:$bp-small) {
+         margin-bottom: 4rem;
+      }
+   }
+
+   @media only screen and (max-width:$bp-big) {
+
+      .hero-btn-dark_square,
+      .hero-btn-light {
+         font-size: 1.2rem;
+      }
    }
 
    &-button {
       margin-bottom: 1rem;
+
+      @media only screen and (max-width:$bp-small) {
+         margin-bottom: 3rem;
+      }
    }
 
    &-input {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 5rem;
+      // height: 5rem;
       margin-bottom: 2rem;
+
+      @media only screen and (max-width:$bp-small) {
+         flex-direction: column;
+         align-items: start;
+         justify-content: start;
+         gap: 2rem;
+         margin-bottom: 3rem;
+      }
+
+
+      @media only screen and (max-width:$bp-smaller) {
+         margin-bottom: 4rem;
+      }
+
 
       &_group {
          display: flex;
          gap: 1rem;
          align-items: center;
+
+         @media only screen and (max-width:$bp-smaller) {
+            display: block;
+         }
       }
 
       label {
          display: block;
-         font-size: 1.5rem;
+         font-size: 1.6rem;
       }
 
       input,
@@ -33,7 +68,7 @@
          // width: 100%;
          outline: none;
          padding: .5rem 1rem;
-         font-size: 1.5rem;
+         font-size: 1.6rem;
          font-family: inherit;
          font-weight: 500;
          color: $color-primary;
@@ -51,69 +86,38 @@
 
       &_select {
          padding: 1rem;
-         font-size: 1.6rem;
+         font-size: 1.7rem;
          border-radius: 5px;
 
          & option {
             padding: 5px;
-            font-size: 14px;
+            font-size: 15px;
             background-color: #fff;
             color: #333;
          }
       }
    }
-
-   .table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 3rem;
-      text-align: center;
-
-      &-heading {
-         font-size: 1.4rem;
-         background-color: $color-primary;
-         color: $color-grey-light-1;
-         padding: .8rem;
-         border: 1px solid $color-secondary-light;
-      }
-
-      &-data {
-         padding: 1rem;
-         border: 1px solid $color-secondary-light;
-         font-size: 1.2rem;
-         font-weight: 600;
-
-         &_text {
-            text-align: left;
-            font-size: 1.4rem;
-
-         }
-
-         button {
-
-            &:not(:last-child) {
-               margin-right: 3rem;
-            }
-
-            .hero-btn-light {
-               padding-right: 2rem;
-            }
-
-            .icon {
-               margin-right: 1rem;
-            }
-         }
-      }
-
-      /* Style alternate rows for better readability */
-      &-rows:nth-child(odd) {
-         background-color: $color-primary;
-         color: $color-grey-light-1;
-      }
-   }
 }
 
+
 .dnsModal {
+
+   @media only screen and (max-width:$bp-big) {
+      width: 85%;
+      height: 75%;
+      overflow-y: scroll;
+      // overflow-x: scroll;
+   }
+
+   &.modal {
+      overflow-y: auto;
+      height: 75%;
+
+      @media only screen and (max-width:$bp-big) {
+         padding: 6rem 2rem;
+      }
+   }
+
    &-header {
       display: flex;
       justify-content: space-between;
@@ -131,7 +135,7 @@
       margin-bottom: 1rem;
 
       &-text {
-         font-size: 1.3rem;
+         font-size: 1.6rem;
       }
    }
 
@@ -142,19 +146,18 @@
       text-align: center;
 
       &-heading {
-         font-size: 1.4rem;
+         font-size: 1.5rem;
          background-color: $color-primary;
          color: $color-grey-light-1;
          padding: .8rem;
-         border: 1px solid $color-secondary-light;
+         border: 2px solid $color-secondary-light;
       }
 
       &-data {
          padding: 1rem;
-         border: 1px solid $color-secondary-light;
-         font-size: 1.2rem;
+         border: 2px solid $color-secondary-light;
          font-weight: 600;
-         font-size: 1.4rem;
+         font-size: 1.5rem;
          text-align: left;
          min-width: 4rem;
          word-wrap: break-word;
@@ -188,10 +191,14 @@
    &-info {
       &>*:not(:last-child) {
          margin-bottom: 1rem;
+
+         .hero-btn-light {
+            font-size: inherit;
+         }
       }
 
       &_text {
-         font-size: 1.3rem;
+         font-size: 1.4rem;
 
          span {
             margin-right: 1rem;
@@ -235,5 +242,129 @@
    width: 100%;
    height: 100%;
    background-color: rgba(0, 0, 0, 0.46);
-   z-index: 2;
+   z-index: 2222222;
+}
+
+.sidebar.blur {
+
+   @media only screen and (max-width:$bp-big) {
+      backdrop-filter: blur(0px);
+      filter: none;
+   }
+}
+
+.sidebar.blur::before {
+
+   @media only screen and (max-width:$bp-big) {
+      background-color: none;
+   }
+}
+
+
+.table-container {
+   @media only screen and (max-width:$bp-mid) {
+      overflow-x: auto;
+      max-width: 100%;
+   }
+}
+
+.dnsModal .table-container {
+   @media only screen and (max-width:$bp-largeDns) {
+      overflow-x: auto;
+      max-width: 100%;
+   }
+}
+
+.table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-bottom: 3rem;
+   text-align: center;
+
+   @media only screen and (max-width:$bp-mid) {
+      width: auto;
+      white-space: nowrap;
+      table-layout: fixed;
+   }
+
+   &-heading {
+      font-size: 1.4rem;
+      background-color: $color-primary;
+      color: $color-grey-light-1;
+      padding: .8rem;
+      border: 1px solid $color-secondary-light;
+
+      @media only screen and (max-width:$bp-mid) {
+         position: sticky;
+         top: 0;
+
+      }
+   }
+
+   &-data {
+      padding: 1rem;
+      border: 1px solid $color-secondary-light;
+      font-size: 1.3rem;
+      font-weight: 600;
+
+      &_text {
+         text-align: left;
+         font-size: 1.5rem;
+
+      }
+
+      button {
+
+         &:not(:last-child) {
+            margin-right: 3rem;
+
+
+            @media only screen and (max-width:$bp-larger) {
+               margin-right: 1rem;
+            }
+
+            .hero-btn-light {
+               padding-right: 2rem;
+            }
+
+            .icon {
+               margin-right: 1rem;
+            }
+         }
+      }
+
+      /* Style alternate rows for better readability */
+      &-rows:nth-child(odd) {
+         background-color: $color-primary;
+         color: $color-grey-light-1;
+      }
+   }
+}
+
+.dnsModal .scroll-hint {
+   @media only screen and (max-width:$bp-largeDns) {
+      display: block;
+   }
+}
+
+.scroll-hint {
+   display: none;
+   background-color: $color-grey-light-2;
+   padding: .1rem 1rem;
+   border-radius: 5px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   font-size: 1.2rem;
+   color: $color-grey-dark-1;
+   width: max-content;
+   margin-bottom: 1rem;
+
+   @media only screen and (max-width:$bp-mid) {
+      display: block;
+   }
+
+   i {
+      margin-right: 8px;
+      font-size: 1.2rem;
+      color: #007bff;
+   }
 }
