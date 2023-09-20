@@ -51,6 +51,7 @@
       transform: translateY(-4%) translateX(-100%);
       transition: all .3s ease-in;
 
+
       & .sidebar-fixed {
          width: 90%;
       }
@@ -70,6 +71,10 @@
       position: fixed;
       top: 0;
       max-width: 50%;
+
+      @media only screen and (max-width:$bp-small-extra) {
+         max-width: 67%;
+      }
    }
 
    .nav-open .icon-mobile-nav[name="close-outline"] {

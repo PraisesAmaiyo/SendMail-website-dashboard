@@ -2,22 +2,43 @@
    background-image: linear-gradient(to right, rgba($color-primary-light, .9), rgba($color-primary, .9));
    grid-column: 2/3;
    grid-row: footer-start/ footer-end;
-   padding: 1.5rem 1rem;
+   padding: .5rem 1rem;
    height: max-content;
 
    // position: fixed;
-      // bottom: 0;
-      // right: 2rem;
-      // left: 26%;
+   // bottom: 0;
+   // right: 2rem;
+   // left: 26%;
+
+
+   @media screen and (min-width: 1400px) {
+      position: fixed;
+      bottom: 0;
+      right: 2rem;
+      left: 19%;
+   }
+
    @media only screen and (max-width:$bp-big) {
       left: 2rem;
       grid-template-columns: 1fr 100% 1fr;
       // padding: 4rem 2rem;
    }
 
-
-   @media only screen and (max-width:$bp-big) {
+   @media only screen and (max-width:$bp-small) {
       // padding: 2.5rem 1rem 1.5rem 1rem;
+      position: relative;
+      right: 0rem;
+      left: 0rem;
+   }
+}
+
+.main-content-with-margin {
+   margin-bottom: 100px;
+   /* Adjust this value as needed */
+
+
+   @media only screen and (max-width:$bp-small) {
+      margin-bottom: 5rem;
    }
 }
 

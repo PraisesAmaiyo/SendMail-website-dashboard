@@ -523,7 +523,12 @@ body {
     left: 0;
     position: fixed;
     top: 0;
-    max-width: 50%; }
+    max-width: 50%; } }
+  @media only screen and (max-width: 50.3em) and (max-width: 25.5em) {
+    .navigation-header.nav-open + nav.sidebar {
+      max-width: 67%; } }
+
+@media only screen and (max-width: 50.3em) {
   .nav-open .icon-mobile-nav[name="close-outline"] {
     display: block; }
   .nav-open .icon-mobile-nav[name="menu-outline"] {
@@ -815,12 +820,30 @@ body {
   background-image: linear-gradient(to right, rgba(43, 92, 157, 0.9), rgba(38, 92, 165, 0.9));
   grid-column: 2/3;
   grid-row: footer-start/ footer-end;
-  padding: 1.5rem 1rem;
+  padding: .5rem 1rem;
   height: max-content; }
+  @media screen and (min-width: 1400px) {
+    .section-footer {
+      position: fixed;
+      bottom: 0;
+      right: 2rem;
+      left: 19%; } }
   @media only screen and (max-width: 50.3em) {
     .section-footer {
       left: 2rem;
       grid-template-columns: 1fr 100% 1fr; } }
+  @media only screen and (max-width: 30.5em) {
+    .section-footer {
+      position: relative;
+      right: 0rem;
+      left: 0rem; } }
+
+.main-content-with-margin {
+  margin-bottom: 100px;
+  /* Adjust this value as needed */ }
+  @media only screen and (max-width: 30.5em) {
+    .main-content-with-margin {
+      margin-bottom: 5rem; } }
 
 .footer {
   grid-column: 2/3;
@@ -962,14 +985,17 @@ body {
   @media only screen and (max-width: 50.3em) {
     .main {
       grid-column: 1/-1; } }
+  @media only screen and (max-width: 25.5em) {
+    .main {
+      padding-top: 2.5rem; } }
   .main-heading {
     display: flex;
     align-items: center;
     justify-content: center; }
-    @media only screen and (max-width: 20.8em) {
+    @media only screen and (max-width: 25.5em) {
       .main-heading {
-        flex-direction: column;
-        gap: 2rem; } }
+        flex-direction: column-reverse;
+        gap: 1rem; } }
     .main-heading_intro {
       margin-right: auto; }
     .main-heading_side {
@@ -977,30 +1003,37 @@ body {
       align-items: center; }
       @media only screen and (max-width: 50.3em) {
         .main-heading_side .hero-btn-dark_square {
-          font-size: 1.2rem; }
+          font-size: 1.2rem; } }
+  @media only screen and (max-width: 50.3em) and (max-width: 25.5em) {
+    .main-heading_side .hero-btn-dark_square {
+      margin-right: 0;
+      font-size: 1rem; } }
+      @media only screen and (max-width: 50.3em) {
         .main-heading_side h2 {
           font-size: 1.3rem; } }
+  @media only screen and (max-width: 50.3em) and (max-width: 25.5em) {
+    .main-heading_side h2 {
+      font-size: 1rem; } }
       @media only screen and (max-width: 30.5em) {
         .main-heading_side {
           flex-direction: column;
           gap: .5rem;
           align-items: start; } }
-      @media only screen and (max-width: 20.8em) {
+      @media only screen and (max-width: 25.5em) {
         .main-heading_side {
-          flex-direction: row; } }
-    .main-heading_update {
-      background-image: linear-gradient(to right, #2b5c9d, #12468a);
-      color: #fff;
-      padding: 1rem;
-      display: flex;
-      gap: 4px;
-      margin-right: 2rem;
-      font-size: 1.3rem; }
+          flex-direction: row;
+          margin-left: auto; } }
   .main-welcome {
     font-size: 1.5rem;
     margin-right: auto; }
+    @media only screen and (max-width: 25.5em) {
+      .main-welcome {
+        font-size: 1.6rem; } }
   .main-name {
     font-size: 2rem; }
+    @media only screen and (max-width: 25.5em) {
+      .main-name {
+        font-size: 2.5rem; } }
   .main .card-dashboard {
     padding: 2rem 6rem;
     margin: 2rem 0; }
@@ -1010,7 +1043,8 @@ body {
         padding: 6rem 2rem; } }
     @media only screen and (max-width: 30.5em) {
       .main .card-dashboard {
-        padding: 3rem 2rem; } }
+        padding: 3rem 2rem;
+        margin-bottom: 6rem; } }
   .main .card-mini {
     padding: 2rem;
     display: grid;
@@ -1020,14 +1054,6 @@ body {
     justify-content: center;
     gap: 1rem;
     width: 100%; }
-    @media only screen and (max-width: 20.8em) {
-      .main .card-mini {
-        padding: 3rem;
-        grid-template-columns: min-content;
-        grid-template-rows: repeat(2, min-content);
-        gap: 2rem;
-        width: 60%;
-        justify-items: center; } }
   .main .card-wide {
     padding: 2rem;
     display: grid;
@@ -1036,15 +1062,14 @@ body {
     align-items: center;
     justify-content: center;
     gap: 1rem; }
-    @media only screen and (max-width: 20.8em) {
-      .main .card-wide {
-        padding: 3rem;
-        grid-template-columns: max-content;
-        grid-template-rows: repeat(2, min-content);
-        gap: 2rem;
-        width: 60%;
-        max-width: 40rem;
-        justify-items: center; } }
+  @media only screen and (max-width: 25.5em) {
+    .main .card-mini, .main .card-wide {
+      padding: 3rem 1.5rem;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, min-content);
+      gap: 4rem;
+      width: 80%;
+      justify-items: center; } }
   .main-dashboard {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
@@ -1054,7 +1079,7 @@ body {
     @media only screen and (max-width: 30.5em) {
       .main-dashboard {
         gap: .5rem; } }
-    @media only screen and (max-width: 20.8em) {
+    @media only screen and (max-width: 25.5em) {
       .main-dashboard {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(2, max-content);
@@ -1063,7 +1088,7 @@ body {
         justify-content: center; } }
     .main-dashboard_profile {
       margin-right: auto; }
-      @media only screen and (max-width: 20.8em) {
+      @media only screen and (max-width: 25.5em) {
         .main-dashboard_profile {
           justify-items: center;
           grid-column: 1/-1;
@@ -1072,7 +1097,7 @@ body {
       grid-column: 2/3;
       display: grid;
       justify-content: end; }
-      @media only screen and (max-width: 20.8em) {
+      @media only screen and (max-width: 25.5em) {
         .main-dashboard_image {
           grid-column: 1/-1;
           grid-row: 1/2;
@@ -1085,7 +1110,7 @@ body {
           .main-dashboard_image .profile-image {
             height: 10rem;
             width: 10rem; } }
-        @media only screen and (max-width: 20.8em) {
+        @media only screen and (max-width: 25.5em) {
           .main-dashboard_image .profile-image {
             height: 15rem;
             width: 15rem; } }
@@ -1094,7 +1119,7 @@ body {
       @media only screen and (max-width: 45.7em) {
         .main-dashboard_text {
           font-size: 1.6rem; } }
-      @media only screen and (max-width: 20.8em) {
+      @media only screen and (max-width: 25.5em) {
         .main-dashboard_text {
           font-size: 1.9rem; } }
   .main-statistics {
@@ -1102,7 +1127,8 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(40rem, max-content));
     gap: 2rem;
     align-items: center;
-    justify-content: center; }
+    justify-content: center;
+    margin-bottom: 5rem; }
     @media only screen and (max-width: 62.5em) {
       .main-statistics {
         justify-items: center; } }
@@ -1120,17 +1146,21 @@ body {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         justify-content: center;
+        width: 100%;
         gap: 1rem; }
+        @media only screen and (max-width: 45.7em) {
+          .main-statistics .statistics-info_lists {
+            width: 100%; } }
         .main-statistics .statistics-info_lists-single {
           display: block; }
         .main-statistics .statistics-info_lists .lists-a {
           grid-column: 1/2; }
-          @media only screen and (max-width: 20.8em) {
+          @media only screen and (max-width: 25.5em) {
             .main-statistics .statistics-info_lists .lists-a {
               grid-column: 1/-1; } }
         .main-statistics .statistics-info_lists .lists-b {
           grid-column: 2/3; }
-          @media only screen and (max-width: 20.8em) {
+          @media only screen and (max-width: 25.5em) {
             .main-statistics .statistics-info_lists .lists-b {
               grid-column: 1/-1; } }
         .main-statistics .statistics-info_lists .lists .list {

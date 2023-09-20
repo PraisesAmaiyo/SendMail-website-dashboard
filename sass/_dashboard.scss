@@ -7,14 +7,18 @@
       grid-column: 1/-1;
    }
 
+   @media only screen and (max-width:$bp-small-extra) {
+      padding-top: 2.5rem;
+   }
+
    &-heading {
       display: flex;
       align-items: center;
       justify-content: center;
 
-      @media only screen and (max-width:$bp-smaller) {
-         flex-direction: column;
-         gap: 2rem;
+      @media only screen and (max-width:$bp-small-extra) {
+         flex-direction: column-reverse;
+         gap: 1rem;
 
       }
 
@@ -29,10 +33,20 @@
          @media only screen and (max-width:$bp-big) {
             .hero-btn-dark_square {
                font-size: 1.2rem;
+
+               @media only screen and (max-width:$bp-small-extra) {
+                  margin-right: 0;
+                  font-size: 1rem;
+               }
             }
 
             h2 {
                font-size: 1.3rem;
+
+
+               @media only screen and (max-width:$bp-small-extra) {
+                  font-size: 1rem;
+               }
             }
          }
 
@@ -43,29 +57,44 @@
          }
 
 
-         @media only screen and (max-width:$bp-smaller) {
+         @media only screen and (max-width:$bp-small-extra) {
             flex-direction: row;
+            margin-left: auto;
          }
       }
 
-      &_update {
-         background-image: linear-gradient(to right, rgba($color-primary-light, 1), rgba($color-grey-dark-1, 1));
-         color: $color-grey-light-1;
-         padding: 1rem;
-         display: flex;
-         gap: 4px;
-         margin-right: 2rem;
-         font-size: 1.3rem;
-      }
+      // &_update {
+      //    background-image: linear-gradient(to right, rgba($color-primary-light, 1), rgba($color-grey-dark-1, 1));
+      //    color: $color-grey-light-1;
+      //    padding: 1rem;
+      //    display: flex;
+      //    gap: 4px;
+      //    margin-right: 2rem;
+      //    font-size: 1.3rem;
+
+      //    @media only screen and (max-width:$bp-small-extra) {
+      //       font-size: 1rem;
+      //    }
+
+      // }
    }
 
    &-welcome {
       font-size: 1.5rem;
       margin-right: auto;
+
+
+      @media only screen and (max-width:$bp-small-extra) {
+         font-size: 1.6rem;
+      }
    }
 
    &-name {
       font-size: 2rem;
+
+      @media only screen and (max-width:$bp-small-extra) {
+         font-size: 2.5rem;
+      }
    }
 
    .card {
@@ -83,6 +112,7 @@
 
          @media only screen and (max-width:$bp-small) {
             padding: 3rem 2rem;
+            margin-bottom: 6rem;
          }
       }
 
@@ -96,14 +126,6 @@
          gap: 1rem;
          width: 100%;
 
-         @media only screen and (max-width:$bp-smaller) {
-            padding: 3rem;
-            grid-template-columns: min-content;
-            grid-template-rows: repeat(2, min-content);
-            gap: 2rem;
-            width: 60%;
-            justify-items: center;
-         }
       }
 
       &-wide {
@@ -115,13 +137,16 @@
          justify-content: center;
          gap: 1rem;
 
-         @media only screen and (max-width:$bp-smaller) {
-            padding: 3rem;
-            grid-template-columns: max-content;
+      }
+
+      &-mini,
+      &-wide {
+         @media only screen and (max-width:$bp-small-extra) {
+            padding: 3rem 1.5rem;
+            grid-template-columns: 1fr;
             grid-template-rows: repeat(2, min-content);
-            gap: 2rem;
-            width: 60%;
-            max-width: 40rem;
+            gap: 4rem;
+            width: 80%;
             justify-items: center;
          }
       }
@@ -138,7 +163,7 @@
          gap: .5rem;
       }
 
-      @media only screen and (max-width:$bp-smaller) {
+      @media only screen and (max-width:$bp-small-extra) {
          grid-template-columns: 1fr;
          grid-template-rows: repeat(2, max-content);
          gap: 3rem;
@@ -149,7 +174,7 @@
       &_profile {
          margin-right: auto;
 
-         @media only screen and (max-width:$bp-smaller) {
+         @media only screen and (max-width:$bp-small-extra) {
             justify-items: center;
             grid-column: 1/-1;
             grid-row: 2/3;
@@ -161,7 +186,7 @@
          display: grid;
          justify-content: end;
 
-         @media only screen and (max-width:$bp-smaller) {
+         @media only screen and (max-width:$bp-small-extra) {
             grid-column: 1/-1;
             grid-row: 1/2;
             justify-content: center;
@@ -178,7 +203,7 @@
                width: 10rem;
             }
 
-            @media only screen and (max-width:$bp-smaller) {
+            @media only screen and (max-width:$bp-small-extra) {
                height: 15rem;
                width: 15rem;
             }
@@ -192,7 +217,7 @@
             font-size: 1.6rem;
          }
 
-         @media only screen and (max-width:$bp-smaller) {
+         @media only screen and (max-width:$bp-small-extra) {
             font-size: 1.9rem;
          }
       }
@@ -204,6 +229,7 @@
       gap: 2rem;
       align-items: center;
       justify-content: center;
+      margin-bottom: 5rem;
 
 
       @media only screen and (max-width:$bp-larger) {
@@ -218,7 +244,6 @@
          justify-content: center;
          gap: 1rem;
 
-
          &_header {
             font-size: 1rem;
          }
@@ -229,8 +254,13 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             justify-content: center;
-
+            width: 100%;
             gap: 1rem;
+
+            @media only screen and (max-width:$bp-large) {
+               width: 100%;
+            }
+
 
             &-single {
                display: block;
@@ -239,7 +269,7 @@
             .lists-a {
                grid-column: 1/2;
 
-               @media only screen and (max-width:$bp-smaller) {
+               @media only screen and (max-width:$bp-small-extra) {
                   grid-column: 1/-1;
                }
             }
@@ -247,7 +277,7 @@
             .lists-b {
                grid-column: 2/3;
 
-               @media only screen and (max-width:$bp-smaller) {
+               @media only screen and (max-width:$bp-small-extra) {
                   grid-column: 1/-1;
                }
             }
@@ -270,7 +300,7 @@
                      grid-column: 1/2;
                      word-wrap: break-word;
 
-                     @media only screen and (max-width:$bp-smaller) {
+                     @media only screen and (max-width:$bp-small-extra) {
                         // font-size: 1.3rem;
                      }
                   }
