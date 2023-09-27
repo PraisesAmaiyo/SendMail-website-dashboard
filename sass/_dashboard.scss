@@ -3,6 +3,8 @@
    grid-row: rowOne-start / rowOne-end;
    padding: 1.6rem;
 
+   position: relative;
+
    @media only screen and (max-width:$bp-big) {
       grid-column: 1/-1;
    }

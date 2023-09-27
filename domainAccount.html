@@ -23,6 +23,7 @@
    <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
 
    <script defer src="JS/script.js"></script>
+   <script defer src="JS/subscription.js"></script>
 
    <title>SendMail &mdash; secured mail</title>
    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
@@ -131,7 +132,7 @@
          </div>
 
          <div class="main-heading_side">
-            <a href="#">
+            <a href="./updateProfile.html">
                <button class="hero-btn-dark_square">Update Profile</button>
             </a>
 
@@ -266,6 +267,22 @@
          </div>
       </div>
 
+      <div class="nonSubscriber " data-nonsubscriber-modal>
+         <div class=" card notSubscribed modal" id="notSubscribed">
+            <h2 class="notSubscribed-heading">
+               You are not subscribed, Kindly click on the Button below to subscribe.
+            </h2>
+
+            <div class="notSubscribed-buttons">
+
+               <a href="./manageSubcription.html">
+                  <button class="hero-btn-dark">Subscribe</button>
+               </a>
+            </div>
+
+         </div>
+      </div>
+
       <footer class="section-footer">
          <div class="footers">
             <div class="footer">
@@ -374,6 +391,7 @@
 
       </form>
    </div>
+
 
 </body>
 

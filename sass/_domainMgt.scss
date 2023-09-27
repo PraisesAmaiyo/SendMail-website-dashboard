@@ -227,49 +227,16 @@
 
 }
 
-.main.blur,
-.sidebar.blur {
-   backdrop-filter: blur(1px);
-   filter: blur(1px);
-}
 
-.main.blur::before,
-.sidebar.blur::before {
-   content: '';
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background-color: rgba(0, 0, 0, 0.46);
-   z-index: 2222222;
-}
-
-.sidebar.blur {
-
-   @media only screen and (max-width:$bp-big) {
-      backdrop-filter: blur(0px);
-      filter: none;
-   }
-}
-
-.sidebar.blur::before {
-
-   @media only screen and (max-width:$bp-big) {
-      background-color: none;
-   }
-}
-
-
-.table-container {
-   @media only screen and (max-width:$bp-mid) {
+.dnsModal .table-container {
+   @media only screen and (max-width:$bp-largeDns) {
       overflow-x: auto;
       max-width: 100%;
    }
 }
 
-.dnsModal .table-container {
-   @media only screen and (max-width:$bp-largeDns) {
+.table-container {
+   @media only screen and (max-width:$bp-mid) {
       overflow-x: auto;
       max-width: 100%;
    }

@@ -91,3 +91,63 @@ body {
    border-radius: 10px 35px 5px 35px;
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.modal {
+   padding: 2rem 6rem;
+   opacity: 0;
+   visibility: hidden;
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: max-content;
+   max-width: 100rem;
+   height: max-content;
+   z-index: 10000;
+   transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+
+   @media only screen and (max-width:$bp-large) {
+      padding: 6rem 2rem;
+   }
+
+
+   &.active {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity .3s ease-in-out, visibility .2s;
+   }
+
+}
+
+.main.blur,
+.sidebar.blur {
+   backdrop-filter: blur(1px);
+   filter: blur(1px);
+}
+
+.main.blur::before,
+.sidebar.blur::before {
+   content: '';
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.46);
+   z-index: 2222222;
+}
+
+.sidebar.blur {
+
+   @media only screen and (max-width:$bp-big) {
+      backdrop-filter: blur(0px);
+      filter: none;
+   }
+}
+
+.sidebar.blur::before {
+
+   @media only screen and (max-width:$bp-big) {
+      background-color: none;
+   }
+}

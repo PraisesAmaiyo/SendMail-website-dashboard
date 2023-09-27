@@ -247,16 +247,18 @@ if (addDomainBtn) {
   });
 }
 
-document.addEventListener('click', function (event) {
-  if (
-    domainModal.classList.contains('active') &&
-    !domainModal.contains(event.target)
-  ) {
-    domainModal.classList.remove('active');
-    main.classList.remove('blur');
-    sidebar.classList.remove('blur');
-  }
-});
+if (domainModal) {
+  document.addEventListener('click', function (event) {
+    if (
+      domainModal.classList.contains('active') &&
+      !domainModal.contains(event.target)
+    ) {
+      domainModal.classList.remove('active');
+      main.classList.remove('blur');
+      sidebar.classList.remove('blur');
+    }
+  });
+}
 
 if (document.getElementById('save-btn')) {
   document.getElementById('save-btn').addEventListener('click', function () {
@@ -361,12 +363,117 @@ if (domainAccountForm) {
   });
 }
 
-const modal = document.querySelector('.modal');
+// JS for new password for update profile page
 
-document.addEventListener('click', function (event) {
-  if (modal.classList.contains('active') && !modal.contains(event.target)) {
-    modal.classList.remove('active');
+const changePasswordBtn = document.getElementById('changePasswordBtn');
+const newPasswordForm = document.getElementById('newPasswordForm');
+const newPassword = document.querySelector('.newPassword');
+
+if (changePasswordBtn) {
+  changePasswordBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    newPassword.classList.add('active');
+
+    main.classList.add('blur');
+    sidebar.classList.add('blur');
+  });
+}
+
+if (newPasswordForm) {
+  newPasswordForm.addEventListener('submit', function (e) {
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    const confirmPasswordField = document.getElementById('confirm-password');
+    const errorMessage = document.getElementById('password-error');
+
+    if (password !== confirmPassword) {
+      e.preventDefault();
+      errorMessage.style.display = 'block';
+      //  alert('Password and Confirm Password do not match');
+      confirmPasswordField.classList.add('error');
+    } else {
+      confirmPasswordField.classList.remove('error');
+      errorMessage.style.display = 'none';
+    }
+  });
+}
+
+const cancelPassword = document.getElementById('cancel-password');
+if (cancelPassword) {
+  cancelPassword.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.getElementById('password').removeAttribute('required');
+    newPassword.classList.remove('active');
+
     main.classList.remove('blur');
     sidebar.classList.remove('blur');
-  }
+  });
+}
+
+// JS for App password for update profile page
+
+const changeAppPassword = document.getElementById('changeAppPassword');
+const appPasswordForm = document.getElementById('appPasswordForm');
+const appPassword = document.querySelector('.appPassword');
+
+if (changeAppPassword) {
+  changeAppPassword.addEventListener('click', function (e) {
+    e.stopPropagation();
+    appPassword.classList.add('active');
+    main.classList.add('blur');
+    sidebar.classList.add('blur');
+  });
+}
+
+if (appPasswordForm) {
+  appPasswordForm.addEventListener('submit', function (e) {
+    const appPassword = document.getElementById('appPassword').value;
+    const confirmAppPassword = document.getElementById(
+      'confirm-appPassword'
+    ).value;
+    const confirmAppPasswordField = document.getElementById(
+      'confirm-appPassword'
+    );
+    const errorMessage = document.getElementById('appPassword-error');
+    if (appPassword !== confirmAppPassword) {
+      e.preventDefault();
+      errorMessage.style.display = 'block';
+      //  alert('Password and Confirm Password do not match');
+      confirmAppPasswordField.classList.add('error');
+    } else {
+      confirmAppPasswordField.classList.remove('error');
+      errorMessage.style.display = 'none';
+    }
+  });
+}
+
+const canceAppPassword = document.getElementById('cancel-appPassword');
+
+if (canceAppPassword) {
+  canceAppPassword.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.getElementById('password').removeAttribute('required');
+    appPassword.classList.remove('active');
+    console.log('uifhij');
+    main.classList.remove('blur');
+    sidebar.classList.remove('blur');
+  });
+}
+
+// JS for removing modal when outside the modal is clicked
+
+const modals = document.querySelectorAll('.modal');
+
+document.addEventListener('click', function (event) {
+  modals.forEach((modal) => {
+    if (
+      modal.classList.contains('active') &&
+      !modal.contains(event.target) &&
+      !event.target.hasAttribute('data-nonsubscriber-modal')
+    ) {
+      modal.classList.remove('active');
+      main.classList.remove('blur');
+      sidebar.classList.remove('blur');
+    }
+  });
 });

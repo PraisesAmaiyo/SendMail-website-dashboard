@@ -106,9 +106,18 @@
 
          <ul class="side-nav">
             <a href="/alias.html" class="side-nav_link">
-               <li class="side-nav_item active">
+               <li class="side-nav_item ">
                   <i class="fas fa-mask icon"></i>
                   <span>Alias</span>
+               </li>
+            </a>
+         </ul>
+
+         <ul class="side-nav">
+            <a href="/alias.html" class="side-nav_link">
+               <li class="side-nav_item active ">
+                  <i class="fas fa-mask icon"></i>
+                  <span>Update Profile</span>
                </li>
             </a>
          </ul>
@@ -124,104 +133,71 @@
       </div>
    </nav>
 
-   <!-- shares thesame css with domain management -->
-
    <main class="main ">
       <div class="main-heading">
          <div class="main-heading_intro">
-            <h2 class="main-welcome">Welcome Back, <span class="main-name">Johnson Cane </span></h2>
-            <h2 class="main-welcome">Alias</h2>
+            <h2 class="main-welcome">Hello, <span class="main-name">Johnson Cane </span></h2>
+            <h2 class="main-welcome">Update Profile</h2>
          </div>
 
          <div class="main-heading_side">
-            <a href="./updateProfile.html">
-               <button class="hero-btn-dark_square">Update Profile</button>
-            </a>
-
             <div>
-               <h2 class="main-date"></h2>
-               <h2 class="main-time"></h2>
+               <h2 class="main-date">Sept 10th, 2023</h2>
+               <h2 class="main-time">3:14Pm</h2>
             </div>
          </div>
       </div>
 
       <div class="card card-dashboard">
-         <div class="domain">
+         <div class="updateProfile">
 
-            <div class="domain-header">
-               <h2 class="domain-heading">Alias</h2>
-
-               <a href="#">
-                  <button class="hero-btn-dark_square">Refresh</button>
-               </a>
-            </div>
-
-            <div class="domain-button">
-               <button class="hero-btn-light" id="addAliasButton"> <i class="fas fa-plus icon"></i> Add Alias</button>
-            </div>
-
-
-            <div class="domain-input">
-
-               <div class="domain-input_group">
-                  <label for="search"> Search: </label>
-                  <input type="text" id="searchInput-text" placeholder="search..." name="search">
+            <div class="change-password">
+               <div class="updateProfile-header">
+                  <h2 class="updateProfile-heading">Change Password</h2>
                </div>
 
-               <div class="domain-input_group">
-                  <label for="numberSelect" class="domain-input_label">Show:
-                     <select id="domain-input_select" name="numberSelect" class="domain-input_select"></select> entries
-                  </label>
+               <div class="updateProfile-button">
+                  <button class="hero-btn-light" id="changePasswordBtn"> <i class="fas fa-key"></i> CLICK TO
+                     CHANGE
+                     PASSWORD </button>
                </div>
             </div>
 
-
-            <div class="scroll-hint">
+            <!-- <div class="scroll-hint">
                <i class="fas fa-arrows-h"></i> Scroll horizontally for table info
-            </div>
+            </div> -->
 
-            <div class="table-container">
-               <table border="1" class="table">
+            <div class="app-password">
+               <div class="updateProfile-header">
+                  <h2 class="updateProfile-heading">App Password</h2>
+               </div>
 
-                  <tr class="table-rows">
-                     <th class="table-heading">Alias</th>
-                     <th class="table-heading">Active</th>
-                     <th class="table-heading">Action</th>
-                  </tr>
+               <div class="table-container">
+                  <table border="1" class="table">
 
-                  <tr class="table-rows">
-                     <td class="table-data table-data_text">ez-mail.space</td>
-                     <td class="table-data"> <i class="fa-regular fa-circle-check icon"></i></td>
-                     <td class="table-data">
-                        <button class="hero-btn-light"><i class="fas fa-edit icon"></i>Edit</button>
-                        <button class="hero-btn-light"><i class="fas fa-trash icon"></i> Remove</button>
-                     </td>
-                  </tr>
+                     <tr class="table-rows">
+                        <td class="table-data table-data_text">IPhone</td>
 
-                  <tr class="table-rows">
-                     <td class="table-data  table-data_text">getSend.online</td>
-                     <td class="table-data"> <i class="fa-regular fa-circle-check icon"></i></td>
-                     <td class="table-data">
-                        <button class="hero-btn-light"><i class="fas fa-edit icon"></i>Edit</button>
-                        <button class="hero-btn-light"><i class="fas fa-trash icon"></i> Remove</button>
-                     </td>
-                  </tr>
+                        <td class="table-data table-data_text">thisis-adummy-applepassword</td>
+                     </tr>
 
-                  <tr class="table-rows">
-                     <td class="table-data  table-data_text">Johnsoncaneclassxap.domain.com</td>
-                     <td class="table-data"> <i class="fa-regular fa-circle-check icon"></i></td>
-                     <td class="table-data">
-                        <button class="hero-btn-light"><i class="fas fa-edit icon"></i>Edit</button>
+                     <tr class="table-rows">
+                        <td class="table-data table-data_text">Android</td>
 
-                        <button class="hero-btn-light"><i class="fas fa-trash icon"></i> Remove</button>
-                     </td>
-                  </tr>
-               </table>
+                        <td class="table-data table-data_text">thisis-adummy-googlepassword</td>
+                     </tr>
+                  </table>
+               </div>
+
+               <div class="updateProfile-button">
+                  <button class="hero-btn-light" id="changeAppPassword"> <i class="fas fa-plus icon"></i> CHANGE APP
+                     PASSWORD </button>
+               </div>
             </div>
 
          </div>
       </div>
-
+      <!-- 
       <div class="nonSubscriber " data-nonsubscriber-modal>
          <div class=" card notSubscribed modal" id="notSubscribed">
             <h2 class="notSubscribed-heading">
@@ -235,7 +211,7 @@
             </div>
 
          </div>
-      </div>
+      </div> -->
 
       <footer class="section-footer">
          <div class="footers">
@@ -281,38 +257,67 @@
       </footer>
    </main>
 
-   <div class="card addDomainOrAlias modal" id="alias-Modal">
-      <h2 class="addDomainOrAlias-heading">
-         Enter a Username.
+   <div class=" card newPassword modal" id="newPasswordForm">
+      <h2 class="newPassword-heading">
+         Create a Domain
       </h2>
 
-      <form class="addDomainOrAlias-form" name="addDomainOrAlias" netlify>
+      <form class="newPassword-form" name="newPasswords" netlify>
 
-         <!-- <div class="account-form_inputs"> -->
-         <div class="addDomainOrAlias-form_double">
-            <div>
-               <label for="username ">Enter Username:</label>
-               <input id="username" type="text" placeholder="Enter username" name='username'>
-            </div>
-
-            <div>
-               <label for="domains">Select available domains:</label>
-               <select id="domain-available" name="domainAvalable">
-                  <option value="swapDomain">swapDomain.com</option>
-                  <option value="niceDomain">niceDomain.com</option>
-                  <option value="kingDomain">kingDomain.com</option>
-                  <option value="pingDomain">pingDomain.com</option>
-                  <option value="mailDomain">mailDomain.com</option>
-                  <option value="wapeDomain">wapeDomain.com</option>
-                  <option value="shanDomain">shanDomain.com</option>
-                  <option value="readDomain">readDomain.com</option>
-
-               </select>
-            </div>
+         <div class="newPassword-form_input">
+            <label for="password">Create new password:</label>
+            <input id="password" type="password" placeholder="Enter new password" name="password"
+               class="cancel-button-input" required>
          </div>
 
-         <button class="hero-btn-dark" id="save-btn">Save</button>
-         <button class="hero-btn-light" id="alias-cancel-btn">Cancel</button>
+         <div class="newPassword-form_input">
+            <label for="confirm-password">Confirm new password:</label>
+            <input id="confirm-password" type="password" placeholder="Confirm new password" name="confirm-password"
+               class="cancel-button-input" required>
+            <p id="password-error" class="error-message"> <i
+                  class="fas fa-exclamation-triangle error-icon"></i><strong>Password do
+                  not match!</strong>
+            <p>
+         </div>
+
+         <button class="hero-btn-dark" id="create-domain">Create</button>
+
+         <button class="hero-btn-light" id="cancel-password">Cancel</button>
+      </form>
+   </div>
+
+   <div class=" card appPassword modal " id="appPasswordForm">
+      <h2 class="newPassword-heading">
+         Create a Domain
+      </h2>
+
+      <form class="newPassword-form" name="newPasswords" netlify>
+
+         <div class="domainAccount-form_input">
+            <label for="newApp ">App Name:</label>
+            <input id="newApp" type="text" placeholder="Enter app name" name='newApp' class="cancel-button-input"
+               required>
+         </div>
+
+         <div class="newPassword-form_input">
+            <label for="appPassword">Create new password:</label>
+            <input id="appPassword" type="password" placeholder="Enter new app password" name="appPassword"
+               class="cancel-button-input" required>
+         </div>
+
+         <div class="newPassword-form_input">
+            <label for="confirm-appPassword">Confirm new password:</label>
+            <input id="confirm-appPassword" type="password" placeholder="Confirm new app password"
+               name="confirm-password" class="cancel-button-input" required>
+            <p id="appPassword-error" class="error-message"> <i
+                  class="fas fa-exclamation-triangle error-icon"></i><strong>Password do
+                  not match!</strong>
+            <p>
+         </div>
+
+         <button class="hero-btn-dark" id="create-appPassword">Create</button>
+
+         <button class="hero-btn-light" id="cancel-appPassword">Cancel</button>
       </form>
    </div>
 </body>
