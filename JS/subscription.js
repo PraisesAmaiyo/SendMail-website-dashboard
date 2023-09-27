@@ -2,7 +2,7 @@ const nonSubscriber = document.querySelector('.nonSubscriber');
 const notSubscribed = document.querySelector('.notSubscribed');
 const modal = document.querySelector('.modal');
 
-let subscribed = false;
+let subscribed = true;
 
 // if (subscribed) {***} is the same as if (subscribed === true) {***}
 

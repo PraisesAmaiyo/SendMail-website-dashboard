@@ -189,33 +189,44 @@ if (numberSelect) {
 }
 
 // JS for DNS modal.
-const dnsModal = document.getElementById('dns-modal');
-const main = document.querySelector('.main');
+const dnsModals = document.querySelectorAll('.dnsModal');
 const dnsButtons = document.querySelectorAll('.dns-button');
-const closeModal = document.querySelector('.icon-close');
+
+const main = document.querySelector('.main');
+
 const sidebar = document.querySelector('.sidebar');
 
 dnsButtons.forEach((btn) => {
   btn.addEventListener('click', function (e) {
     e.stopPropagation();
-    dnsModal.classList.add('active');
-    //  dnsModal.style.display = 'block';
 
-    main.classList.add('blur');
-    sidebar.classList.add('blur');
-    main.classList.add('no-scroll');
-    console.log('object');
+    const targetModalId = btn.getAttribute('data-target');
+
+    // Find the corresponding modal by its ID
+    const targetModal = document.getElementById(targetModalId);
+
+    //  dnsModals.classList.add('active');
+    //  dnsModals.style.display = 'block';
+    if (targetModal) {
+      targetModal.classList.add('active');
+      main.classList.add('blur');
+      sidebar.classList.add('blur');
+      main.classList.add('no-scroll');
+    }
   });
 });
 
-if (closeModal) {
-  closeModal.addEventListener('click', function () {
-    dnsModal.classList.remove('active');
-    // dnsModal.style.display = 'none';
-    main.classList.remove('blur');
-    sidebar.classList.remove('blur');
-  });
-}
+dnsModals.forEach((dnsModal) => {
+  const closeModalBtns = dnsModal.querySelector('.icon-close');
+  if (closeModalBtns) {
+    closeModalBtns.addEventListener('click', function () {
+      dnsModal.classList.remove('active');
+      // dnsModals.style.display = 'none';
+      main.classList.remove('blur');
+      sidebar.classList.remove('blur');
+    });
+  }
+});
 
 // JS for add domain and alias modal.
 

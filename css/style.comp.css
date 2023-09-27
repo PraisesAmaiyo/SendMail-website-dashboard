@@ -47,6 +47,52 @@ body {
   border-radius: 10px 35px 5px 35px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
 
+.modal {
+  padding: 2rem 6rem;
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
+  max-width: 100rem;
+  height: max-content;
+  z-index: 10000;
+  transition: opacity .3s ease-in-out, visibility .3s ease-in-out; }
+  @media only screen and (max-width: 45.7em) {
+    .modal {
+      padding: 6rem 2rem; } }
+  .modal.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .3s ease-in-out, visibility .2s; }
+
+.main.blur,
+.sidebar.blur {
+  backdrop-filter: blur(1px);
+  filter: blur(1px); }
+
+.main.blur::before,
+.sidebar.blur::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.46);
+  z-index: 2222222; }
+
+@media only screen and (max-width: 50.3em) {
+  .sidebar.blur {
+    backdrop-filter: blur(0px);
+    filter: none; } }
+
+@media only screen and (max-width: 50.3em) {
+  .sidebar.blur::before {
+    background-color: none; } }
+
 .hero-btn-dark,
 .hero-btn-light,
 .hero-btn-dark_square {
@@ -95,27 +141,6 @@ body {
 .hero-btn-dark_square {
   border-radius: 5px;
   margin-right: 1.5rem; }
-
-.modal {
-  padding: 2rem 6rem;
-  opacity: 0;
-  visibility: hidden;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: max-content;
-  max-width: 100rem;
-  height: max-content;
-  z-index: 10000;
-  transition: opacity .3s ease-in-out, visibility .3s ease-in-out; }
-  @media only screen and (max-width: 45.7em) {
-    .modal {
-      padding: 6rem 2rem; } }
-  .modal.active {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity .3s ease-in-out, visibility .2s; }
 
 .domainAccount {
   width: 60%; }
@@ -369,105 +394,6 @@ body {
     color: #0056b3;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     background-color: #f0f0f0;
-    color: #007bff; }
-
-.main.blur,
-.sidebar.blur {
-  backdrop-filter: blur(1px);
-  filter: blur(1px); }
-
-.main.blur::before,
-.sidebar.blur::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.46);
-  z-index: 2222222; }
-
-@media only screen and (max-width: 50.3em) {
-  .sidebar.blur {
-    backdrop-filter: blur(0px);
-    filter: none; } }
-
-@media only screen and (max-width: 50.3em) {
-  .sidebar.blur::before {
-    background-color: none; } }
-
-@media only screen and (max-width: 35.6em) {
-  .table-container {
-    overflow-x: auto;
-    max-width: 100%; } }
-
-@media only screen and (max-width: 43.3em) {
-  .dnsModal .table-container {
-    overflow-x: auto;
-    max-width: 100%; } }
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 3rem;
-  text-align: center; }
-  @media only screen and (max-width: 35.6em) {
-    .table {
-      width: auto;
-      white-space: nowrap;
-      table-layout: fixed; } }
-  .table-heading {
-    font-size: 1.4rem;
-    background-color: #265ca5;
-    color: #fff;
-    padding: .8rem;
-    border: 1px solid #d4deed; }
-    @media only screen and (max-width: 35.6em) {
-      .table-heading {
-        position: sticky;
-        top: 0; } }
-  .table-data {
-    padding: 1rem;
-    border: 1px solid #d4deed;
-    font-size: 1.3rem;
-    font-weight: 600;
-    /* Style alternate rows for better readability */ }
-    .table-data_text {
-      text-align: left;
-      font-size: 1.5rem; }
-    .table-data button:not(:last-child) {
-      margin-right: 3rem; }
-      @media only screen and (max-width: 62.5em) {
-        .table-data button:not(:last-child) {
-          margin-right: 1rem; } }
-      .table-data button:not(:last-child) .hero-btn-light {
-        padding-right: 2rem; }
-      .table-data button:not(:last-child) .icon {
-        margin-right: 1rem; }
-    .table-data-rows:nth-child(odd) {
-      background-color: #265ca5;
-      color: #fff; }
-
-@media only screen and (max-width: 43.3em) {
-  .dnsModal .scroll-hint {
-    display: block; } }
-
-.scroll-hint {
-  display: none;
-  background-color: #eef1f6;
-  padding: .1rem 1rem;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 1.2rem;
-  color: #12468a;
-  width: max-content;
-  margin-bottom: 1rem; }
-  @media only screen and (max-width: 35.6em) {
-    .scroll-hint {
-      display: block; } }
-  .scroll-hint i {
-    margin-right: 8px;
-    font-size: 1.2rem;
     color: #007bff; }
 
 /* MOBILE */
@@ -814,7 +740,7 @@ body {
 
 .sticky .section-hero,
 .sticky .section-login {
-  margin-top: 8rem; }
+  margin-top: 5.5rem; }
 
 .section-footer {
   background-image: linear-gradient(to right, rgba(43, 92, 157, 0.9), rgba(38, 92, 165, 0.9));
@@ -981,7 +907,8 @@ body {
 .main {
   grid-column: main-start / main-end;
   grid-row: rowOne-start / rowOne-end;
-  padding: 1.6rem; }
+  padding: 1.6rem;
+  position: relative; }
   @media only screen and (max-width: 50.3em) {
     .main {
       grid-column: 1/-1; } }
@@ -1223,6 +1150,7 @@ body {
   grid-column: 1/-1;
   grid-row: header-start/ header-end;
   padding: 8rem 2rem;
+  height: 80vh;
   display: grid;
   grid-template-columns: 1fr 100rem 1fr; }
   @media only screen and (max-width: 75em) {
@@ -1334,3 +1262,267 @@ body {
             background-color: #22b6d8; }
           .section-login .login-form-user_login-link:hover::before {
             width: 100%; }
+
+.nonSubscriber {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: red;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.46);
+  backdrop-filter: blur(1px);
+  z-index: 10000; }
+
+.notSubscribed {
+  display: none;
+  padding: 6rem;
+  position: absolute;
+  width: 50%;
+  height: max-content; }
+  @media only screen and (max-width: 43.3em) {
+    .notSubscribed {
+      padding: 6rem 2rem;
+      width: 70%; } }
+  .notSubscribed-heading {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    text-align: center; }
+    @media only screen and (max-width: 25.5em) {
+      .notSubscribed-heading {
+        font-size: 1.5rem; } }
+  .notSubscribed-buttons {
+    text-align: center; }
+    .notSubscribed-buttons button {
+      margin-right: 1rem;
+      font-size: 1.5rem; }
+
+.updateProfile .change-password {
+  margin-bottom: 5rem; }
+
+.updateProfile-header {
+  margin-bottom: 2rem; }
+
+.updateProfile-button {
+  margin-bottom: 1rem; }
+  @media only screen and (max-width: 30.5em) {
+    .updateProfile-button {
+      margin-bottom: 3rem; } }
+
+.newPassword,
+.appPassword {
+  width: 60%; }
+  @media only screen and (max-width: 30.5em) {
+    .newPassword,
+    .appPassword {
+      width: 85%; } }
+  .newPassword .card-white.payment-method,
+  .appPassword .card-white.payment-method {
+    color: #265ca5; }
+    .newPassword .card-white.payment-method form label,
+    .appPassword .card-white.payment-method form label {
+      color: #265ca5; }
+    .newPassword .card-white.payment-method input,
+    .newPassword .card-white.payment-method select,
+    .appPassword .card-white.payment-method input,
+    .appPassword .card-white.payment-method select {
+      background-color: rgba(43, 92, 157, 0.36);
+      color: #265ca5; }
+      .newPassword .card-white.payment-method input:focus, .newPassword .card-white.payment-method input:valid,
+      .newPassword .card-white.payment-method select:focus,
+      .newPassword .card-white.payment-method select:valid,
+      .appPassword .card-white.payment-method input:focus,
+      .appPassword .card-white.payment-method input:valid,
+      .appPassword .card-white.payment-method select:focus,
+      .appPassword .card-white.payment-method select:valid {
+        background-color: #d4deed;
+        box-shadow: 0 0 0 0.8rem rgba(38, 92, 165, 0.56); }
+      .newPassword .card-white.payment-method input::placeholder,
+      .newPassword .card-white.payment-method select::placeholder,
+      .appPassword .card-white.payment-method input::placeholder,
+      .appPassword .card-white.payment-method select::placeholder {
+        color: #265ca5; }
+  .newPassword-heading,
+  .appPassword-heading {
+    position: relative;
+    font-size: 1.9rem;
+    margin-bottom: 1rem; }
+    @media only screen and (max-width: 45.7em) {
+      .newPassword-heading,
+      .appPassword-heading {
+        margin-bottom: 2rem; } }
+  .newPassword-form_2,
+  .appPassword-form_2 {
+    display: flex;
+    align-items: end;
+    justify-content: left;
+    gap: 2rem; }
+    @media only screen and (max-width: 20.8em) {
+      .newPassword-form_2,
+      .appPassword-form_2 {
+        align-items: start;
+        justify-content: left;
+        flex-direction: column;
+        gap: 0; } }
+  .newPassword-form_input,
+  .appPassword-form_input {
+    margin-top: 1.5rem; }
+    @media only screen and (max-width: 30.5em) {
+      .newPassword-form_input,
+      .appPassword-form_input {
+        margin-top: 1rem;
+        width: 100%; } }
+    .newPassword-form_input label,
+    .appPassword-form_input label {
+      display: block;
+      text-align: left;
+      font-size: 1.6rem;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      color: #fff; }
+    .newPassword-form_input input,
+    .newPassword-form_input select,
+    .appPassword-form_input input,
+    .appPassword-form_input select {
+      height: 100%;
+      width: 100%;
+      outline: none;
+      padding: 1rem;
+      font-size: 1.4rem;
+      font-family: inherit;
+      font-weight: 500;
+      color: #265ca5;
+      border: none;
+      background-color: #e9eff6;
+      border-radius: 9px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease; }
+      .newPassword-form_input input:focus,
+      .newPassword-form_input select:focus,
+      .appPassword-form_input input:focus,
+      .appPassword-form_input select:focus {
+        background-color: #fff;
+        box-shadow: 0 0 0 0.8rem rgba(212, 222, 237, 0.36); }
+      .newPassword-form_input input.error,
+      .newPassword-form_input select.error,
+      .appPassword-form_input input.error,
+      .appPassword-form_input select.error {
+        background-color: #f4e0e0;
+        box-shadow: 0 0 0 0.8rem rgba(255, 0, 0, 0.36); }
+    .newPassword-form_input .error-message,
+    .appPassword-form_input .error-message {
+      color: #f73109;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-top: 0.5rem;
+      background-color: #d4deed;
+      width: max-content;
+      padding: .2rem .5rem;
+      margin-top: 1.2rem;
+      display: none; }
+      .newPassword-form_input .error-message .error-icon,
+      .appPassword-form_input .error-message .error-icon {
+        margin-right: 1rem; }
+    .newPassword-form_input select,
+    .appPassword-form_input select {
+      width: max-content; }
+    .newPassword-form_input .wallet-name_usdt,
+    .appPassword-form_input .wallet-name_usdt {
+      margin-top: 2rem; }
+  .newPassword-form .hero-btn-dark,
+  .newPassword-form .hero-btn-light,
+  .appPassword-form .hero-btn-dark,
+  .appPassword-form .hero-btn-light {
+    margin: 2rem 1rem 2rem 0;
+    padding: 1rem 2rem;
+    font-size: inherit; }
+
+@media only screen and (max-width: 43.3em) {
+  .dnsModal .table-container {
+    overflow-x: auto;
+    max-width: 100%; } }
+
+@media only screen and (max-width: 35.6em) {
+  .table-container {
+    overflow-x: auto;
+    max-width: 100%; } }
+
+.dnsModal-table,
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 3rem;
+  text-align: center; }
+  @media only screen and (max-width: 35.6em) {
+    .dnsModal-table,
+    .table {
+      width: auto;
+      white-space: nowrap;
+      table-layout: fixed; } }
+  .dnsModal-table-heading,
+  .table-heading {
+    font-size: 1.4rem;
+    background-color: #265ca5;
+    color: #fff;
+    padding: .8rem;
+    border: 1px solid #d4deed; }
+    @media only screen and (max-width: 35.6em) {
+      .dnsModal-table-heading,
+      .table-heading {
+        position: sticky;
+        top: 0; } }
+  .dnsModal-table-data,
+  .table-data {
+    padding: 1rem;
+    border: 1px solid #d4deed;
+    font-size: 1.3rem;
+    font-weight: 600;
+    word-wrap: break-word;
+    max-width: 20rem;
+    white-space: normal;
+    /* Style alternate rows for better readability */ }
+    .dnsModal-table-data_text,
+    .table-data_text {
+      text-align: left;
+      font-size: 1.5rem; }
+    .dnsModal-table-data button:not(:last-child),
+    .table-data button:not(:last-child) {
+      margin-right: 3rem; }
+      @media only screen and (max-width: 62.5em) {
+        .dnsModal-table-data button:not(:last-child),
+        .table-data button:not(:last-child) {
+          margin-right: 1rem; } }
+      .dnsModal-table-data button:not(:last-child) .hero-btn-light,
+      .table-data button:not(:last-child) .hero-btn-light {
+        padding-right: 2rem; }
+      .dnsModal-table-data button:not(:last-child) .icon,
+      .table-data button:not(:last-child) .icon {
+        margin-right: 1rem; }
+    .dnsModal-table-data-rows:nth-child(odd),
+    .table-data-rows:nth-child(odd) {
+      background-color: #265ca5;
+      color: #fff; }
+
+@media only screen and (max-width: 43.3em) {
+  .dnsModal .scroll-hint {
+    display: block; } }
+
+.scroll-hint {
+  display: none;
+  background-color: #eef1f6;
+  padding: .1rem 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  color: #12468a;
+  width: max-content;
+  margin-bottom: 1rem; }
+  @media only screen and (max-width: 35.6em) {
+    .scroll-hint {
+      display: block; } }
+  .scroll-hint i {
+    margin-right: 8px;
+    font-size: 1.2rem;
+    color: #007bff; }

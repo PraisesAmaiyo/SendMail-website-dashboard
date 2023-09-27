@@ -192,7 +192,8 @@
                      <td class="table-data">
                         <button class="hero-btn-light"><i class="fas fa-edit icon"></i>Edit</button>
                         <button class="hero-btn-light"><i class="fas fa-trash icon"></i> Remove</button>
-                        <button class="hero-btn-light dns-button"><i class="fas fa-network-wired icon"></i>DNS</button>
+                        <button class="hero-btn-light dns-button" id="dns-button-1" data-target="dns-modal-1"><i
+                              class="fas fa-network-wired icon"></i>DNS</button>
                      </td>
                   </tr>
 
@@ -202,7 +203,8 @@
                      <td class="table-data">
                         <button class="hero-btn-light"><i class="fas fa-edit icon"></i>Edit</button>
                         <button class="hero-btn-light"><i class="fas fa-trash icon"></i> Remove</button>
-                        <button class="hero-btn-light dns-button"><i class="fas fa-network-wired icon"></i>DNS</button>
+                        <button class="hero-btn-light dns-button" id="dns-button-2" data-target="dns-modal-2"><i
+                              class="fas fa-network-wired icon"></i>DNS</button>
                      </td>
                   </tr>
 
@@ -214,13 +216,27 @@
 
                         <button class="hero-btn-light"><i class="fas fa-trash icon"></i> Remove</button>
 
-                        <button class="hero-btn-light dns-button"><i class="fas fa-network-wired icon"></i>DNS</button>
+                        <button class="hero-btn-light dns-button" id="dns-button-3" data-target="dns-modal-3"><i
+                              class="fas fa-network-wired icon"></i>DNS</button>
+
+                     </td>
+                  </tr>
+
+                  <tr class="table-rows">
+                     <td class="table-data  table-data_text">Anothermodal.domain.com</td>
+                     <td class="table-data"> <i class="fa-regular fa-circle-check icon"></i></td>
+                     <td class="table-data">
+                        <button class="hero-btn-light"><i class="fas fa-edit icon"></i>Edit</button>
+
+                        <button class="hero-btn-light"><i class="fas fa-trash icon"></i> Remove</button>
+
+                        <button class="hero-btn-light dns-button" id="dns-button-4" data-target="dns-modal-4"><i
+                              class="fas fa-network-wired icon"></i>DNS</button>
 
                      </td>
                   </tr>
                </table>
             </div>
-
          </div>
       </div>
 
@@ -284,8 +300,7 @@
       </footer>
    </main>
 
-
-   <div class="card modal dnsModal " id="dns-modal">
+   <div class="card modal dnsModal " id="dns-modal-1">
       <div class="dnsModal-header">
          <h2 class="dnsModal-heading">DNS Records</h2>
          <i class="fas fa-times icon-close"></i>
@@ -315,6 +330,306 @@
 
             <tr class="dnsModal-table-rows">
                <td class="dnsModal-table-data">mail.ez-mail.space</td>
+               <td class="dnsModal-table-data">A</td>
+               <td class="dnsModal-table-data"> 108.181.169.98</td>
+               <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+               </td>
+            </tr>
+
+            <tr class="dnsModal-table-rows">
+               <td class="dnsModal-table-data ">Johnsoncane.domain.com</td>
+               <td class="dnsModal-table-data"> 138.141.493.03</td>
+               <td class="dnsModal-table-data">PTR</td>
+               <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+               </td>
+            </tr>
+
+            <tr class="dnsModal-table-rows">
+               <td class="dnsModal-table-data ">Johnsoncane.domain.com</td>
+               <td class="dnsModal-table-data"> 138.141.493.03</td>
+               <td class="dnsModal-table-data">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut aliquam
+                  aperiam sunt fugiat voluptatem praesentium cum, molestias sint doloribus inventore maiores
+                  consequatur. Consequuntur numquam architecto explicabo, minima eum perspiciatis inventore.</td>
+               <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+               </td>
+            </tr>
+
+            <tr class="dnsModal-table-rows">
+               <td class="dnsModal-table-data ">Johnsoncaneclassxap.domain.com</td>
+               <td class="dnsModal-table-data">TLSA</td>
+               <td class="dnsModal-table-data">4892390r9402022-0r904u89449-2984092420u94802929202</td>
+               <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+               </td>
+            </tr>
+
+            <tr class="dnsModal-table-rows">
+               <td class="dnsModal-table-data ">trapesxapxtml.domain.com</td>
+               <td class="dnsModal-table-data">MX</td>
+
+               <td class="dnsModal-table-data">
+                  <a href="#" class="dnsModal-text-link">
+                     inCaseOfALink.useThis.com
+                  </a>
+               </td>
+
+               <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+               </td>
+            </tr>
+         </table>
+      </div>
+
+      <div class="dnsModal-info">
+         <div>
+            <a href="#">
+               <button class="hero-btn-light"><i class="fas fa-download icon"></i>Download</button>
+            </a>
+         </div>
+
+         <div>
+            <p class="dnsModal-info_text"><span>1.</span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+
+            <p class="dnsModal-info_text"><span>2.</span>Sit tempore neque ab at nemo optio ullam, ducimus
+               officia, tenetur nihil animi quia fugit
+               repudiandae.
+            </p>
+         </div>
+
+
+         <div>
+            <p class="dnsModal-info_text">
+               Please, also consult <a href="#" class="dnsModal-text-link">the documentation.</a>
+            </p>
+         </div>
+      </div>
+   </div>
+
+   <div class="card modal dnsModal " id="dns-modal-2">
+      <div class="dnsModal-header">
+         <h2 class="dnsModal-heading">DNS Records</h2>
+         <i class="fas fa-times icon-close"></i>
+      </div>
+
+      <div class="dnsModal-sub">
+         <p class="dnsModal-sub-text">Modal 2</p>
+      </div>
+
+
+      <div class="scroll-hint">
+         <i class="fas fa-arrows-h"></i> Scroll horizontally for table info
+      </div>
+
+      <div class="table-container">
+         <table border="1" class="dnsModal-table">
+            <tr class="dnsModal-table-rows">
+               <th class="dnsModal-table-heading">Name</th>
+               <th class="dnsModal-table-heading">Type</th>
+               <th class="dnsModal-table-heading">Correct Data</th>
+               <th class="dnsModal-table-heading">Current State</th>
+            </tr>
+
+            <tr class="dnsModal-table-rows">
+               <td class="dnsModal-table-data">mail.ez-mail.space</td>
+               <td class="dnsModal-table-data">A</td>
+               <td class="dnsModal-table-data"> 108.181.169.98</td>
+               <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+               </td>
+            </tr>
+
+            <tr class="dnsModal-table-rows">
+               <td class="dnsModal-table-data ">Johnsoncane.domain.com</td>
+               <td class="dnsModal-table-data"> 138.141.493.03</td>
+               <td class="dnsModal-table-data">PTR</td>
+               <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+               </td>
+            </tr>
+
+            <tr class="dnsModal-table-rows">
+               <td class="dnsModal-table-data ">Johnsoncane.domain.com</td>
+               <td class="dnsModal-table-data"> 138.141.493.03</td>
+               <td class="dnsModal-table-data">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut aliquam
+                  aperiam sunt fugiat voluptatem praesentium cum, molestias sint doloribus inventore maiores
+                  consequatur. Consequuntur numquam architecto explicabo, minima eum perspiciatis inventore.</td>
+               <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+               </td>
+            </tr>
+
+            <tr class="dnsModal-table-rows">
+               <td class="dnsModal-table-data ">Johnsoncaneclassxap.domain.com</td>
+               <td class="dnsModal-table-data">TLSA</td>
+               <td class="dnsModal-table-data">4892390r9402022-0r904u89449-2984092420u94802929202</td>
+               <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+               </td>
+            </tr>
+
+            <tr class="dnsModal-table-rows">
+               <td class="dnsModal-table-data ">trapesxapxtml.domain.com</td>
+               <td class="dnsModal-table-data">MX</td>
+
+               <td class="dnsModal-table-data">
+                  <a href="#" class="dnsModal-text-link">
+                     inCaseOfALink.useThis.com
+                  </a>
+               </td>
+
+               <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+               </td>
+            </tr>
+         </table>
+      </div>
+
+      <div class="dnsModal-info">
+         <div>
+            <a href="#">
+               <button class="hero-btn-light"><i class="fas fa-download icon"></i>Download</button>
+            </a>
+         </div>
+
+         <div>
+            <p class="dnsModal-info_text"><span>1.</span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+
+            <p class="dnsModal-info_text"><span>2.</span>Sit tempore neque ab at nemo optio ullam, ducimus
+               officia, tenetur nihil animi quia fugit
+               repudiandae.
+            </p>
+         </div>
+
+
+         <div>
+            <p class="dnsModal-info_text">
+               Please, also consult <a href="#" class="dnsModal-text-link">the documentation.</a>
+            </p>
+         </div>
+      </div>
+   </div>
+
+   <div class="card modal dnsModal " id="dns-modal-3">
+      <div class="dnsModal-header">
+         <h2 class="dnsModal-heading">DNS Records</h2>
+         <i class="fas fa-times icon-close"></i>
+      </div>
+
+      <div class="dnsModal-sub">
+         <p class="dnsModal-sub-text">Modal 3</p>
+      </div>
+
+
+      <div class="scroll-hint">
+         <i class="fas fa-arrows-h"></i> Scroll horizontally for table info
+      </div>
+
+      <div class="table-container">
+         <table border="1" class="dnsModal-table">
+            <tr class="dnsModal-table-rows">
+               <th class="dnsModal-table-heading">Name</th>
+               <th class="dnsModal-table-heading">Type</th>
+               <th class="dnsModal-table-heading">Correct Data</th>
+               <th class="dnsModal-table-heading">Current State</th>
+            </tr>
+
+            <tr class="dnsModal-table-rows">
+               <td class="dnsModal-table-data">mail.ez-mail.space</td>
+               <td class="dnsModal-table-data">A</td>
+               <td class="dnsModal-table-data"> 108.181.169.98</td>
+               <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+               </td>
+            </tr>
+
+            <tr class="dnsModal-table-rows">
+               <td class="dnsModal-table-data ">Johnsoncane.domain.com</td>
+               <td class="dnsModal-table-data"> 138.141.493.03</td>
+               <td class="dnsModal-table-data">PTR</td>
+               <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+               </td>
+            </tr>
+
+            <tr class="dnsModal-table-rows">
+               <td class="dnsModal-table-data ">Johnsoncane.domain.com</td>
+               <td class="dnsModal-table-data"> 138.141.493.03</td>
+               <td class="dnsModal-table-data">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut aliquam
+                  aperiam sunt fugiat voluptatem praesentium cum, molestias sint doloribus inventore maiores
+                  consequatur. Consequuntur numquam architecto explicabo, minima eum perspiciatis inventore.</td>
+               <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+               </td>
+            </tr>
+
+            <tr class="dnsModal-table-rows">
+               <td class="dnsModal-table-data ">Johnsoncaneclassxap.domain.com</td>
+               <td class="dnsModal-table-data">TLSA</td>
+               <td class="dnsModal-table-data">4892390r9402022-0r904u89449-2984092420u94802929202</td>
+               <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+               </td>
+            </tr>
+
+            <tr class="dnsModal-table-rows">
+               <td class="dnsModal-table-data ">trapesxapxtml.domain.com</td>
+               <td class="dnsModal-table-data">MX</td>
+
+               <td class="dnsModal-table-data">
+                  <a href="#" class="dnsModal-text-link">
+                     inCaseOfALink.useThis.com
+                  </a>
+               </td>
+
+               <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>
+               </td>
+            </tr>
+         </table>
+      </div>
+
+      <div class="dnsModal-info">
+         <div>
+            <a href="#">
+               <button class="hero-btn-light"><i class="fas fa-download icon"></i>Download</button>
+            </a>
+         </div>
+
+         <div>
+            <p class="dnsModal-info_text"><span>1.</span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+
+            <p class="dnsModal-info_text"><span>2.</span>Sit tempore neque ab at nemo optio ullam, ducimus
+               officia, tenetur nihil animi quia fugit
+               repudiandae.
+            </p>
+         </div>
+
+
+         <div>
+            <p class="dnsModal-info_text">
+               Please, also consult <a href="#" class="dnsModal-text-link">the documentation.</a>
+            </p>
+         </div>
+      </div>
+   </div>
+
+   <div class="card modal dnsModal" id="dns-modal-4">
+      <div class="dnsModal-header">
+         <h2 class="dnsModal-heading">DNS Records</h2>
+         <i class="fas fa-times icon-close"></i>
+      </div>
+
+      <div class="dnsModal-sub">
+         <p class="dnsModal-sub-text">Modal 4</p>
+      </div>
+
+
+      <div class="scroll-hint">
+         <i class="fas fa-arrows-h"></i> Scroll horizontally for table info
+      </div>
+
+      <div class="table-container">
+         <table border="1" class="dnsModal-table">
+            <tr class="dnsModal-table-rows">
+               <th class="dnsModal-table-heading">Name</th>
+               <th class="dnsModal-table-heading">Type</th>
+               <th class="dnsModal-table-heading">Correct Data</th>
+               <th class="dnsModal-table-heading">Current State</th>
+            </tr>
+
+            <tr class="dnsModal-table-rows">
+               <td class="dnsModal-table-data">Modal4.space</td>
                <td class="dnsModal-table-data">A</td>
                <td class="dnsModal-table-data"> 108.181.169.98</td>
                <td class="dnsModal-table-data dnsModal-table-data-icon"> <i class="fa-regular fa-circle-check icon"></i>

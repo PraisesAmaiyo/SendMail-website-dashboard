@@ -1,0 +1,113 @@
+.dnsModal .table-container {
+   @media only screen and (max-width:$bp-largeDns) {
+      overflow-x: auto;
+      max-width: 100%;
+   }
+}
+
+.table-container {
+   @media only screen and (max-width:$bp-mid) {
+      overflow-x: auto;
+      max-width: 100%;
+   }
+}
+
+.dnsModal-table,
+.table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-bottom: 3rem;
+   text-align: center;
+
+   @media only screen and (max-width:$bp-mid) {
+      width: auto;
+      white-space: nowrap;
+      table-layout: fixed;
+   }
+
+   &-heading {
+      font-size: 1.4rem;
+      background-color: $color-primary;
+      color: $color-grey-light-1;
+      padding: .8rem;
+      border: 1px solid $color-secondary-light;
+
+      @media only screen and (max-width:$bp-mid) {
+         position: sticky;
+         top: 0;
+
+      }
+   }
+
+   &-data {
+      padding: 1rem;
+      border: 1px solid $color-secondary-light;
+      font-size: 1.3rem;
+      font-weight: 600;
+      word-wrap: break-word;
+      max-width: 20rem;
+      white-space: normal;
+
+      &_text {
+         text-align: left;
+         font-size: 1.5rem;
+
+      }
+
+      button {
+
+         &:not(:last-child) {
+            margin-right: 3rem;
+
+
+            @media only screen and (max-width:$bp-larger) {
+               margin-right: 1rem;
+            }
+
+            .hero-btn-light {
+               padding-right: 2rem;
+            }
+
+            .icon {
+               margin-right: 1rem;
+            }
+         }
+      }
+
+      /* Style alternate rows for better readability */
+      &-rows:nth-child(odd) {
+         background-color: $color-primary;
+         color: $color-grey-light-1;
+      }
+   }
+}
+
+.dnsModal .scroll-hint {
+   @media only screen and (max-width:$bp-largeDns) {
+      display: block;
+   }
+}
+
+// Scroll horrizontal message that shows when the the table overflows
+
+.scroll-hint {
+   display: none;
+   background-color: $color-grey-light-2;
+   padding: .1rem 1rem;
+   border-radius: 5px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   font-size: 1.2rem;
+   color: $color-grey-dark-1;
+   width: max-content;
+   margin-bottom: 1rem;
+
+   @media only screen and (max-width:$bp-mid) {
+      display: block;
+   }
+
+   i {
+      margin-right: 8px;
+      font-size: 1.2rem;
+      color: #007bff;
+   }
+}
