@@ -465,7 +465,6 @@ if (canceAppPassword) {
     e.preventDefault();
     document.getElementById('password').removeAttribute('required');
     appPassword.classList.remove('active');
-    console.log('uifhij');
     main.classList.remove('blur');
     sidebar.classList.remove('blur');
   });

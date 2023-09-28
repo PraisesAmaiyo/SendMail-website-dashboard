@@ -1150,7 +1150,6 @@ body {
   grid-column: 1/-1;
   grid-row: header-start/ header-end;
   padding: 8rem 2rem;
-  height: 80vh;
   display: grid;
   grid-template-columns: 1fr 100rem 1fr; }
   @media only screen and (max-width: 75em) {
