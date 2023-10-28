@@ -92,6 +92,33 @@ body {
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+
+.inbox-card {
+   background-image: linear-gradient(111.4deg, rgba($color-primary-light, .75) 1%, rgba($color-grey-dark-1, .75) 58%), url(../img/image-1.jpg);
+   background-size: cover;
+   color: $color-grey-light-1;
+   // border: 1px solid #ddd;
+   border-radius: 10px;
+   box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
+   padding: 2rem 2rem;
+   margin: 2rem 4rem;
+   width: 90%;
+   margin-right: auto;
+}
+
+.inbox-card.user {
+   background-image: linear-gradient(111.4deg, rgba($color-grey-dark-2, .75) 1%, rgba($color-grey-dark-2, .75) 58%), url(../img/image-1.jpg);
+   background-size: cover;
+   color: $color-grey-light-1;
+   // border: 1px solid #ddd;
+   border-radius: 10px;
+   box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
+   padding: 2rem 2rem;
+   margin: 2rem 4rem;
+   width: 90%;
+   margin-left: auto;
+}
+
 .modal {
    padding: 2rem 6rem;
    opacity: 0;
