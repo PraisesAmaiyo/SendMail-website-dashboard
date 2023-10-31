@@ -24,11 +24,11 @@ body {
   overflow-x: hidden;
   display: grid;
   grid-template-rows: [navigation-start] max-content [navigation-end rowOne-start] 1fr [rowOne-end footer-start] min-content [footer-end];
-  grid-template-columns: [sidebar-start] 25% [sidebar-end main-start] 1fr [main-end];
+  grid-template-columns: [sidebar-start] 23% [sidebar-end main-start] 1fr [main-end];
   min-height: 100vh; }
-  @media screen and (min-width: 1400px) {
+  @media screen and (max-width: 1200px) {
     .container {
-      grid-template-columns: [sidebar-start] 18% [sidebar-end main-start] 1fr [main-end];
+      grid-template-columns: [sidebar-start] 20% [sidebar-end main-start] 1fr [main-end];
       grid-template-rows: [navigation-start] max-content [navigation-end rowOne-start] minmax(100vh, 1fr) [rowOne-end footer-start] min-content [footer-end]; } }
 
 .card {
@@ -54,9 +54,17 @@ body {
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
   padding: 2rem 2rem;
-  margin: 2rem 4rem;
-  width: 90%;
-  margin-right: auto; }
+  margin: 2rem 0;
+  width: 90%; }
+
+.inbox-card-white {
+  background-image: linear-gradient(111.4deg, rgba(255, 255, 255, 0.75) 1%, rgba(255, 255, 255, 0.75) 58%), url(../img/image-1.jpg);
+  background-size: cover;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
+  padding: 2rem 2rem;
+  width: 100%; }
 
 .inbox-card.user {
   background-image: linear-gradient(111.4deg, rgba(32, 44, 108, 0.75) 1%, rgba(32, 44, 108, 0.75) 58%), url(../img/image-1.jpg);
@@ -65,9 +73,8 @@ body {
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
   padding: 2rem 2rem;
-  margin: 2rem 4rem;
-  width: 90%;
-  margin-left: auto; }
+  margin: 2rem 0;
+  width: 90%; }
 
 .modal {
   padding: 2rem 6rem;
@@ -496,7 +503,7 @@ body {
   width: 100%;
   background-image: linear-gradient(to right, rgba(43, 92, 157, 0.9), rgba(38, 92, 165, 0.9));
   color: white;
-  padding: 2rem;
+  padding: 2rem 0;
   display: flex;
   flex-direction: column;
   position: relative; }
@@ -504,7 +511,11 @@ body {
     .sidebar {
       padding: 2rem 0; } }
   .sidebar-fixed {
-    position: fixed; }
+    position: fixed;
+    width: 23%; }
+    @media screen and (max-width: 1200px) {
+      .sidebar-fixed {
+        width: 20%; } }
   .sidebar-header {
     display: flex;
     justify-content: center;
@@ -519,11 +530,12 @@ body {
     font-size: 1.6rem;
     list-style: none;
     margin-top: 1rem; }
+    @media screen and (max-width: 1200px) {
+      .sidebar .side-nav {
+        font-size: 1.3rem; } }
     .sidebar .side-nav_item {
       position: relative;
-      padding: 5px 0;
-      padding: 1rem 2rem;
-      margin-left: 1rem;
+      padding: 1rem 1.5rem;
       transform: perspective(1px) translateZ(0);
       box-shadow: 0 0 1px rgba(0, 0, 0, 0);
       transition-property: color;
@@ -553,7 +565,7 @@ body {
       color: white;
       text-decoration: none; }
       .sidebar .side-nav_link:link .icon, .sidebar .side-nav_link:visited .icon {
-        margin-right: 2rem; }
+        margin-right: 1rem; }
         @media only screen and (max-width: 30.5em) {
           .sidebar .side-nav_link:link .icon, .sidebar .side-nav_link:visited .icon {
             margin-right: .5rem; } }
@@ -1576,29 +1588,40 @@ body {
     .main .message-type select:focus {
       box-shadow: 0 0 0 0.8rem rgba(7, 21, 92, 0.5); }
 
-.main .inbox-card .user-inbox {
+.main .messaging {
   display: flex;
-  gap: 2rem;
+  justify-content: space-evenly; }
+  .main .messaging .chats,
+  .main .messaging .compose {
+    width: 48%; }
+
+.main .inbox-card .user-inbox {
   align-items: center;
   position: relative; }
+  .main .inbox-card .user-inbox_header {
+    display: flex;
+    align-items: center;
+    gap: 2rem; }
   .main .inbox-card .user-inbox .user-image {
-    width: 8rem;
-    height: 8rem;
+    margin-top: 1rem;
+    width: 5rem;
+    height: 5rem;
     border-radius: 100%;
     object-fit: cover; }
   .main .inbox-card .user-inbox_tab {
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     gap: .3rem; }
     .main .inbox-card .user-inbox_tab-name {
-      font-size: 1.8rem;
-      font-weight: 600;
-      margin-bottom: .5rem; }
-    .main .inbox-card .user-inbox_tab-subject {
       font-size: 1.6rem;
+      font-weight: 600;
+      margin-top: 1rem; }
+    .main .inbox-card .user-inbox_tab-subject {
+      font-size: 1.4rem;
       font-weight: 400; }
     .main .inbox-card .user-inbox_tab-text {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 300; }
   .main .inbox-card .user-inbox_info {
     position: absolute;
@@ -1606,7 +1629,7 @@ body {
     top: 0;
     width: max-content;
     text-align: right;
-    font-size: 1.1rem; }
+    font-size: 1rem; }
   .main .inbox-card .user-inbox_actions {
     position: absolute;
     right: -6rem;
@@ -1637,3 +1660,112 @@ body {
       font-weight: 500; }
       .main .inbox-card .user-inbox .inbox-actions_btns:not(:last-child) {
         margin-bottom: 1.5rem; }
+
+.compose {
+  margin-bottom: 5rem; }
+  .compose-header {
+    display: flex;
+    gap: 2rem; }
+    .compose-header .user-image {
+      width: 8rem;
+      height: 8rem;
+      border-radius: 100%;
+      object-fit: cover; }
+    .compose-header_info {
+      width: 100%;
+      color: #265ca5; }
+      .compose-header_info-name {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 1rem; }
+      .compose-header_info-input {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem; }
+      .compose-header_info label {
+        font-size: 1.5rem;
+        font-weight: 500; }
+  .compose input,
+  .compose textarea {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding: .5rem;
+    padding-left: 2rem;
+    font-size: 1.5rem;
+    font-family: inherit;
+    font-weight: 600;
+    color: #265ca5;
+    border: none;
+    background-color: #e9eff6;
+    border-radius: 9px;
+    box-shadow: 0 0 0 0.1rem rgba(18, 70, 138, 0.36);
+    resize: none; }
+  .compose textarea {
+    margin-top: 2rem;
+    padding: 2rem; }
+  .compose input:focus,
+  .compose textarea:focus {
+    box-shadow: 0 0 0 0.2rem rgba(7, 21, 92, 0.5); }
+  .compose textarea::placeholder {
+    font-style: italic;
+    color: rgba(43, 92, 157, 0.75); }
+  .compose-sendBtn {
+    margin: 3rem;
+    text-align: center; }
+    .compose-sendBtn button {
+      font-size: 1.5rem;
+      padding: 1rem; }
+
+.files {
+  display: none;
+  height: 13rem;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: flex-start; }
+
+.file-container {
+  margin-top: 2rem; }
+  .file-container #file-input {
+    display: none; }
+
+.file-card {
+  width: 10rem;
+  height: 10rem;
+  margin: 5px;
+  border: 0.1px solid #265ca5;
+  border-radius: 10px;
+  object-fit: cover;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  background: linear-gradient(111.4deg, rgba(43, 92, 157, 0.75) 1%, rgba(18, 70, 138, 0.75) 58%);
+  backdrop-filter: blur(5px); }
+
+.doc-icon {
+  color: #eef1f6; }
+
+.delete-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #fff; }
+
+textarea::-webkit-scrollbar {
+  margin-right: 2rem;
+  width: 4px;
+  background-color: #d4deed; }
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: #12468a;
+  border-radius: 3px;
+  margin: 10px; }
+
+textarea::-webkit-scrollbar-track:hover {
+  background-color: #c0d0e9; }

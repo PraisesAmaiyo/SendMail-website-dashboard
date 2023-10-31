@@ -1,7 +1,6 @@
 // COLOR VARIABLES
 $color-primary: #265ca5;
 $color-primary-light: #2b5c9d;
-
 $color-secondary-light: #d4deed;
 $color-secondary-dark: #22b6d8;
 $color-grey-light-1: #fff;
@@ -65,11 +64,11 @@ body {
    display: grid;
    grid-template-rows: [navigation-start] max-content [navigation-end rowOne-start] 1fr [rowOne-end footer-start] min-content [footer-end];
 
-   grid-template-columns: [sidebar-start] 25% [sidebar-end main-start] 1fr [main-end];
+   grid-template-columns: [sidebar-start] 23% [sidebar-end main-start] 1fr [main-end];
    min-height: 100vh;
 
-   @media screen and (min-width: 1400px) {
-      grid-template-columns: [sidebar-start] 18% [sidebar-end main-start] 1fr [main-end];
+   @media screen and (max-width: 1200px) {
+      grid-template-columns: [sidebar-start] 20% [sidebar-end main-start] 1fr [main-end];
       grid-template-rows: [navigation-start] max-content [navigation-end rowOne-start] minmax(100vh, 1fr) [rowOne-end footer-start] min-content [footer-end];
    }
 }
@@ -101,22 +100,33 @@ body {
    border-radius: 10px;
    box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
    padding: 2rem 2rem;
-   margin: 2rem 4rem;
+   margin: 2rem 0;
    width: 90%;
-   margin-right: auto;
+   // margin-right: auto;
+}
+
+.inbox-card-white {
+   background-image: linear-gradient(111.4deg, rgba($color-grey-light-1, .75) 1%, rgba($color-grey-light-1, .75) 58%), url(../img/image-1.jpg);
+   background-size: cover;
+   color: $color-grey-light-1;
+   border-radius: 10px;
+   box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
+   padding: 2rem 2rem;
+   // margin: 2rem 0;
+   width: 100%;
+   // margin-right: auto;
 }
 
 .inbox-card.user {
    background-image: linear-gradient(111.4deg, rgba($color-grey-dark-2, .75) 1%, rgba($color-grey-dark-2, .75) 58%), url(../img/image-1.jpg);
    background-size: cover;
    color: $color-grey-light-1;
-   // border: 1px solid #ddd;
    border-radius: 10px;
    box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
    padding: 2rem 2rem;
-   margin: 2rem 4rem;
+   margin: 2rem 0;
    width: 90%;
-   margin-left: auto;
+   // margin-left: auto;
 }
 
 .modal {

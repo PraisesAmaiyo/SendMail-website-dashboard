@@ -35,39 +35,56 @@
       }
    }
 
+   .messaging {
+      display: flex;
+
+      justify-content: space-evenly;
+
+      .chats,
+      .compose {
+         width: 48%;
+      }
+   }
+
    .inbox-card {
       .user {
          &-inbox {
-            display: flex;
-            gap: 2rem;
             align-items: center;
             position: relative;
 
+            &_header {
+               display: flex;
+               align-items: center;
+               gap: 2rem;
+            }
+
             .user-image {
-               width: 8rem;
-               height: 8rem;
+               margin-top: 1rem;
+               width: 5rem;
+               height: 5rem;
                border-radius: 100%;
                object-fit: cover;
             }
 
             &_tab {
+               margin-top: 1rem;
                display: flex;
                flex-direction: column;
                gap: .3rem;
 
                &-name {
-                  font-size: 1.8rem;
+                  font-size: 1.6rem;
                   font-weight: 600;
-                  margin-bottom: .5rem;
+                  margin-top: 1rem;
                }
 
                &-subject {
-                  font-size: 1.6rem;
+                  font-size: 1.4rem;
                   font-weight: 400;
                }
 
                &-text {
-                  font-size: 1.3rem;
+                  font-size: 1.2rem;
                   font-weight: 300;
                }
             }
@@ -78,7 +95,7 @@
                top: 0;
                width: max-content;
                text-align: right;
-               font-size: 1.1rem;
+               font-size: 1rem;
             }
 
             &_actions {
@@ -133,4 +150,152 @@
          }
       }
    }
+}
+
+.compose {
+   // padding: 2rem;
+   margin-bottom: 5rem;
+
+   &-header {
+      display: flex;
+      gap: 2rem;
+
+      .user-image {
+         width: 8rem;
+         height: 8rem;
+         border-radius: 100%;
+         object-fit: cover;
+      }
+
+      &_info {
+         width: 100%;
+         color: $color-primary;
+
+         &-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+         }
+
+         &-input {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+         }
+
+         label {
+            font-size: 1.5rem;
+            font-weight: 500;
+         }
+      }
+   }
+
+
+   input,
+   textarea {
+      height: 100%;
+      width: 100%;
+      outline: none;
+      padding: .5rem;
+      padding-left: 2rem;
+      font-size: 1.5rem;
+      font-family: inherit;
+      font-weight: 600;
+      color: $color-primary;
+      border: none;
+      background-color: #e9eff6;
+      border-radius: 9px;
+      box-shadow: 0 0 0 0.1rem rgba($color-grey-dark-1, .36);
+      resize: none;
+   }
+
+
+   textarea {
+      margin-top: 2rem;
+      padding: 2rem;
+   }
+
+   input:focus,
+   textarea:focus {
+      box-shadow: 0 0 0 0.2rem rgba($color-grey-dark-3, .5);
+   }
+
+   textarea::placeholder {
+      font-style: italic;
+      color: rgba($color-primary-light, .75);
+   }
+
+   &-sendBtn {
+      margin: 3rem;
+      text-align: center;
+
+      button {
+         font-size: 1.5rem;
+         padding: 1rem;
+      }
+   }
+}
+
+.files {
+   display: none;
+   height: 13rem;
+   width: 100%;
+   flex-wrap: wrap;
+   justify-content: flex-start;
+}
+
+.file-container {
+   margin-top: 2rem;
+
+   #file-input {
+      display: none;
+   }
+}
+
+.file-card {
+   width: 10rem;
+   height: 10rem;
+   margin: 5px;
+   border: .1px solid $color-primary;
+   border-radius: 10px;
+   object-fit: cover;
+   overflow: hidden;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-wrap: wrap;
+   position: relative;
+   background: linear-gradient(111.4deg, rgba($color-primary-light, .75) 1%, rgba($color-grey-dark-1, .75) 58%);
+   backdrop-filter: blur(5px);
+}
+
+.doc-icon {
+   color: $color-grey-light-2 ;
+}
+
+.delete-button {
+   position: absolute;
+   top: 1rem;
+   right: 1rem;
+   background: none;
+   border: none;
+   color: $color-grey-light-1;
+
+}
+
+textarea::-webkit-scrollbar {
+   margin-right: 2rem;
+   width: 4px;
+   background-color: $color-secondary-light;
+}
+
+textarea::-webkit-scrollbar-thumb {
+   background-color: $color-grey-dark-1;
+   border-radius: 3px;
+   margin: 10px;
+}
+
+textarea::-webkit-scrollbar-track:hover {
+   background-color: #c0d0e9;
 }

@@ -7,7 +7,7 @@
    width: 100%;
    background-image: linear-gradient(to right, rgba($color-primary-light, .9), rgba($color-primary, .9));
    color: white;
-   padding: 2rem;
+   padding: 2rem 0;
 
    display: flex;
    flex-direction: column;
@@ -19,6 +19,11 @@
 
    &-fixed {
       position: fixed;
+      width: 23%;
+
+      @media screen and (max-width: 1200px) {
+         width: 20%;
+      }
 
    }
 
@@ -43,11 +48,17 @@
       list-style: none;
       margin-top: 1rem;
 
+      @media screen and (max-width: 1200px) {
+         font-size: 1.3rem;
+      }
+
+
+
       &_item {
          position: relative;
-         padding: 5px 0;
-         padding: 1rem 2rem;
-         margin-left: 1rem;
+         // padding: 5px 0;
+         padding: 1rem 1.5rem;
+         // margin-left: 1rem;
 
          @media only screen and (max-width:$bp-small) {
             padding: 1rem 0 1rem 1rem;
@@ -90,7 +101,7 @@
          text-decoration: none;
 
          .icon {
-            margin-right: 2rem;
+            margin-right: 1rem;
 
 
             @media only screen and (max-width:$bp-small) {
