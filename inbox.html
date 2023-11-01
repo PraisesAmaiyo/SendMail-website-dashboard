@@ -167,7 +167,7 @@
 
       <div class="messaging">
          <div class="chats">
-            <div class="inbox-card">
+            <!-- <div class="inbox-card">
                <div class="user-inbox">
                   <div class="user-inbox_header">
                      <div>
@@ -206,7 +206,7 @@
                      <p class="inbox-actions_btns">Delete</p>
                   </div>
                </div>
-            </div>
+            </div> -->
 
             <div class="inbox-card">
                <div class="user-inbox">
@@ -274,8 +274,8 @@
                   </div>
 
                   <div class="user-inbox_info">
-                     <p class="user-inbox_info-date">October 23rd</p>
-                     <p class="user-inbox_info-time">03:22 pm</p>
+                     <p class="user-inbox_info-date main-time">October 23rd</p>
+                     <p class="user-inbox_info-time main-date">03:22 pm</p>
                   </div>
 
                   <div class="user-inbox_actions">
@@ -290,7 +290,7 @@
                </div>
             </div>
 
-            <div class="inbox-card">
+            <!-- <div class="inbox-card">
                <div class="user-inbox">
                   <div class="user-inbox_header">
                      <div>
@@ -331,9 +331,9 @@
                      <p class="inbox-actions_btns">Delete</p>
                   </div>
                </div>
-            </div>
+            </div> -->
 
-            <div class="inbox-card">
+            <!-- <div class="inbox-card">
                <div class="user-inbox">
                   <div class="user-inbox_header">
                      <div>
@@ -371,7 +371,7 @@
                      <p class="inbox-actions_btns">Delete</p>
                   </div>
                </div>
-            </div>
+            </div> -->
          </div>
 
          <div class="compose">
@@ -379,15 +379,15 @@
 
                <div class="compose-header">
                   <div class="compose-header_image">
-                     <img src="https://randomuser.me/api/portraits/women/30.jpg" alt="Client Image"
-                        class="user-image" />
+                     <img src="https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg" alt="Client Image"
+                        class="user-image" id="userImage" />
                   </div>
 
                   <div class="compose-header_info">
-                     <h3 class="compose-header_info-name">Sarah Kims </h3>
+                     <h3 class="compose-header_info-name" id="userName">Sarah Kims </h3>
                      <div class="compose-header_info-input">
                         <label for="subject">Subject:</label>
-                        <input type="text">
+                        <input type="text" id="subject">
                      </div>
                   </div>
                </div>
@@ -408,7 +408,7 @@
             </div>
 
             <div class="compose-sendBtn">
-               <button for="file-input" class="hero-btn-dark">
+               <button type="submit" for="file-input" class="hero-btn-dark" id="sendMessage">
                   SEND
                </button>
             </div>

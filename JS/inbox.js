@@ -1,52 +1,10 @@
-const inboxAction = document.querySelectorAll('.user-inbox_actions');
-const inboxActionTab = document.querySelectorAll('.inbox-actions');
-const inboxActionBtn = document.querySelectorAll('.inbox_actions_btns');
-
-function hideAllTabs() {
-  inboxActionTab.forEach((tab) => {
-    tab.style.display = 'none';
-  });
-}
-
-document.body.addEventListener('click', function (event) {
-  const target = event.target;
-
-  let isInsideInbox = false;
-
-  for (let i = 0; i < inboxAction.length; i++) {
-    if (inboxAction[i].contains(target) || inboxActionTab[i].contains(target)) {
-      isInsideInbox = true;
-      break;
-    }
-  }
-
-  if (!isInsideInbox) {
-    hideAllTabs();
-  }
-});
-
-inboxAction.forEach((openActionBtn, index) => {
-  openActionBtn.addEventListener('click', function (e) {
-    e.stopPropagation();
-
-    if (inboxActionTab[index].style.display === 'block') {
-      inboxActionTab[index].style.display = 'none';
-    } else {
-      hideAllTabs();
-      inboxActionTab[index].style.display = 'block';
-    }
-  });
-});
-
-///////////////////////
-
 const filesContainer = document.querySelector('.files');
 const fileContainer = document.querySelector('.file-container');
 const fileInput = document.getElementById('file-input');
 
-fileInput.addEventListener('change', handleFileSelect);
-
 const selectedFiles = [];
+
+fileInput.addEventListener('change', handleFileSelect);
 
 function handleFileSelect(event) {
   const files = event.target.files;
@@ -75,7 +33,9 @@ function handleFileSelect(event) {
         docIcon.style.fontSize = '8rem';
         fileX.appendChild(docIcon);
       }
-      selectedFiles.push(fileCardContainer);
+      // selectedFiles.push(fileCardContainer);
+      selectedFiles.push(file);
+      console.log(selectedFiles);
 
       const deleteButton = document.createElement('button');
       deleteButton.innerHTML = '<i class="fas fa-times"></i>';
@@ -84,7 +44,7 @@ function handleFileSelect(event) {
       deleteButton.addEventListener('click', function () {
         const fileCardContainer = this.parentNode;
 
-        const index = selectedFiles.indexOf(fileCardContainer);
+        const index = selectedFiles.indexOf(file);
         if (index !== -1) {
           selectedFiles.splice(index, 1);
         }
@@ -101,4 +61,143 @@ function handleFileSelect(event) {
       filesContainer.appendChild(fileCardContainer);
     }
   }
+}
+
+///////////////////////////
+
+const submit = document.getElementById('sendMessage');
+const chatContainer = document.querySelector('.chats');
+
+const chatMessages = [
+  {
+    // Dummy message data
+    name: 'Johnson Cane',
+    subject: 'Lorem ipsum dolor sit amet...',
+    message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit...',
+    image: 'https://randomuser.me/api/portraits/women/30.jpg',
+    date: 'October 23rd',
+    time: '03:22 pm',
+  },
+];
+
+submit.addEventListener('click', function submitMessage() {
+  const name = document.getElementById('userName').innerText;
+  const image = document.getElementById('userImage').src;
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('inputField').value;
+
+  //   document.addEventListener('DOMContentLoaded', function () {
+  //     subject.addEventListener('input', updateValues);
+  //     message.addEventListener('input', updateValues);
+
+  //     function updateValues() {
+  //       inboxValues.subject = subject.value;
+  //       inboxValues.message = message.value;
+  //       console.log(inboxValues);
+  //     }
+  //     //   console.log(inboxValues);
+  //   });
+
+  let inboxValues = {
+    name,
+    subject: subject,
+    message: message,
+    image,
+    file: selectedFiles,
+  };
+
+  chatMessages.push(inboxValues);
+  console.log(chatMessages);
+
+  renderChatMessages();
+});
+
+function renderChatMessages() {
+  chatContainer.innerHTML = '';
+  chatMessages.forEach((message) => {
+    const chatMessage = document.createElement('div');
+    chatMessage.className = 'inbox-card user';
+
+    chatMessage.innerHTML = `
+<div class="user-inbox">
+<div class="user-inbox_header">
+     <div>
+     <img
+     src="${message.image}"
+     alt="Client Image" class="user-image" />
+     </div>
+     <div>
+        <h3 class="user-inbox_tab-name">${message.name}</h3>
+        <h4 class="user-inbox_tab-subject">Subject: ${message.subject}</h4>
+           </div>
+  </div>
+
+  <div class="user-inbox_tab">
+
+     <p class="user-inbox_tab-text">${message.message}</p>
+  </div>
+
+  <div class="user-inbox_info">
+  <p class="user-inbox_info-date main-date"></p>
+     <p class="user-inbox_info-time main-date"></p>
+  </div>
+
+  <div class="user-inbox_actions">
+     <i class="fa-solid fa-ellipsis-vertical"></i>
+  </div>
+
+  <div class="inbox-actions user">
+     <p class="inbox-actions_btns">Archive</p>
+     <p class="inbox-actions_btns">Report Spam</p>
+     <p class="inbox-actions_btns">Delete</p>
+     </div>
+</div>
+   `;
+
+    chatContainer.appendChild(chatMessage);
+  });
+
+  //////////////////////
+
+  const inboxAction = document.querySelectorAll('.user-inbox_actions');
+  const inboxActionTab = document.querySelectorAll('.inbox-actions');
+
+  function hideAllTabs() {
+    inboxActionTab.forEach((tab) => {
+      tab.style.display = 'none';
+    });
+  }
+
+  document.body.addEventListener('click', function (event) {
+    const target = event.target;
+
+    let isInsideInbox = false;
+
+    for (let i = 0; i < inboxAction.length; i++) {
+      if (
+        inboxAction[i].contains(target) ||
+        inboxActionTab[i].contains(target)
+      ) {
+        isInsideInbox = true;
+        break;
+      }
+    }
+
+    if (!isInsideInbox) {
+      hideAllTabs();
+    }
+  });
+
+  inboxAction.forEach((openActionBtn, index) => {
+    openActionBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+
+      if (inboxActionTab[index].style.display === 'block') {
+        inboxActionTab[index].style.display = 'none';
+      } else {
+        hideAllTabs();
+        inboxActionTab[index].style.display = 'block';
+      }
+    });
+  });
 }

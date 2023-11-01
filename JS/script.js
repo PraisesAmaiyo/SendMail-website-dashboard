@@ -10,7 +10,6 @@ window.addEventListener('load', function () {
   const obs = new IntersectionObserver(
     function (entries) {
       const ent = entries[0];
-      console.log(ent);
 
       if (ent.isIntersecting === false) {
         document.body.classList.add('sticky');
@@ -85,16 +84,12 @@ document.addEventListener('click', function (event) {
 });
 
 function updateDateTime() {
-  // Create a new Date object for the current date and time
   const currentDate = new Date();
 
-  // Define an array of day names
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-  // Get the day of the week (0 for Sun, 1 for Mon, 2 for Tue, etc.)
   const dayOfWeek = dayNames[currentDate.getDay()];
 
-  // Define an array of month names
   const monthNames = [
     'Jan',
     'Feb',
