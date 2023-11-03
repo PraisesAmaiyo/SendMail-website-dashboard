@@ -134,17 +134,17 @@ function renderChatMessages() {
     const chatMessage = document.createElement('div');
     chatMessage.className = 'inbox-card user';
 
-    const attachmentsHTML = message.files
-      .map((file) => {
-        if (file.type.startsWith('image')) {
-          return `<img src="${URL.createObjectURL(file)}" alt="Attachment" />`;
-        } else {
-          return `<a href="${URL.createObjectURL(
-            file
-          )}" download>Download File</a>`;
-        }
-      })
-      .join('');
+    //  const attachmentsHTML = message.files
+    //    .map((file) => {
+    //      if (file.type.startsWith('image')) {
+    //        return `<img src="${URL.createObjectURL(file)}" alt="Attachment" />`;
+    //      } else {
+    //        return `<a href="${URL.createObjectURL(
+    //          file
+    //        )}" download>Download File</a>`;
+    //      }
+    //    })
+    //    .join('');
 
     chatMessage.innerHTML = `
 <div class="user-inbox">
@@ -167,7 +167,7 @@ function renderChatMessages() {
 
   <div class="user-inbox_tab">
 
-     <p class="user-inbox_tab-text">${attachmentsHTML}</p>
+
   </div>
 
   <div class="user-inbox_info">
