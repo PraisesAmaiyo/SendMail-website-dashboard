@@ -1,3 +1,11 @@
+import { updateDateTime } from './script.js';
+
+document.addEventListener('DOMContentLoaded', function () {
+  updateDateTime();
+  console.log(updateDateTime());
+  console.log(updateDateTime().slice(19, 28));
+});
+
 const filesContainer = document.querySelector('.files');
 const fileContainer = document.querySelector('.file-container');
 const fileInput = document.getElementById('file-input');
@@ -35,7 +43,6 @@ function handleFileSelect(event) {
       }
       // selectedFiles.push(fileCardContainer);
       selectedFiles.push(file);
-      console.log(selectedFiles);
 
       const deleteButton = document.createElement('button');
       deleteButton.innerHTML = '<i class="fas fa-times"></i>';
@@ -70,7 +77,6 @@ const chatContainer = document.querySelector('.chats');
 
 const chatMessages = [
   {
-    // Dummy message data
     name: 'Johnson Cane',
     subject: 'Lorem ipsum dolor sit amet...',
     message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit...',
@@ -85,6 +91,8 @@ submit.addEventListener('click', function submitMessage() {
   const image = document.getElementById('userImage').src;
   const subject = document.getElementById('subject').value;
   const message = document.getElementById('inputField').value;
+
+  //   const timestamp = new Date().getTime();
 
   //   document.addEventListener('DOMContentLoaded', function () {
   //     subject.addEventListener('input', updateValues);
@@ -103,13 +111,21 @@ submit.addEventListener('click', function submitMessage() {
     subject: subject,
     message: message,
     image,
-    file: selectedFiles,
+    file: selectedFiles || [],
+    id: Math.random(),
+    time: updateDateTime().slice(19, 28),
+    date: updateDateTime().slice(5, 19),
   };
-
+  console.log(inboxValues.file);
   chatMessages.push(inboxValues);
+
+  //  inboxValues.date = updateDateTime(inboxValues.timestamp);
+
+  console.log(inboxValues);
   console.log(chatMessages);
 
   renderChatMessages();
+  updateDateTime();
 });
 
 function renderChatMessages() {
@@ -117,6 +133,18 @@ function renderChatMessages() {
   chatMessages.forEach((message) => {
     const chatMessage = document.createElement('div');
     chatMessage.className = 'inbox-card user';
+
+    const attachmentsHTML = message.files
+      .map((file) => {
+        if (file.type.startsWith('image')) {
+          return `<img src="${URL.createObjectURL(file)}" alt="Attachment" />`;
+        } else {
+          return `<a href="${URL.createObjectURL(
+            file
+          )}" download>Download File</a>`;
+        }
+      })
+      .join('');
 
     chatMessage.innerHTML = `
 <div class="user-inbox">
@@ -137,9 +165,14 @@ function renderChatMessages() {
      <p class="user-inbox_tab-text">${message.message}</p>
   </div>
 
+  <div class="user-inbox_tab">
+
+     <p class="user-inbox_tab-text">${attachmentsHTML}</p>
+  </div>
+
   <div class="user-inbox_info">
-  <p class="user-inbox_info-date main-date"></p>
-     <p class="user-inbox_info-time main-date"></p>
+  <p class="user-inbox_info-date ">${message.time}</p>
+     <p class="user-inbox_info-time">${message.date}</p>
   </div>
 
   <div class="user-inbox_actions">

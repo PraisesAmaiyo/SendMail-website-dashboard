@@ -1,3 +1,5 @@
+export { updateDateTime };
+
 const btnNavEl = document.querySelector('.btn-mobile-nav');
 const headerEl = document.querySelector('.navigation-header');
 
@@ -130,6 +132,8 @@ function updateDateTime() {
   // Update the HTML elements with the formatted date and time
   document.querySelector('.main-date').textContent = formattedDate;
   document.querySelector('.main-time').textContent = formattedTime;
+
+  return `${formattedDate} ${formattedTime}`;
 }
 
 // Call the updateDateTime function initially to set the initial values
