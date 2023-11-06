@@ -2,20 +2,22 @@ import { updateDateTime } from './script.js';
 
 document.addEventListener('DOMContentLoaded', function () {
   updateDateTime();
-  console.log(updateDateTime());
-  console.log(updateDateTime().slice(19, 28));
 });
 
 const filesContainer = document.querySelector('.files');
 const fileContainer = document.querySelector('.file-container');
 const fileInput = document.getElementById('file-input');
 
-const selectedFiles = [];
+let selectedFiles = [];
 
 fileInput.addEventListener('change', handleFileSelect);
 
+console.log(fileInput.value);
+
 function handleFileSelect(event) {
   const files = event.target.files;
+
+  console.log(files);
 
   if (files.length > 0) {
     filesContainer.style.display = 'flex';
@@ -77,20 +79,22 @@ const chatContainer = document.querySelector('.chats');
 
 const chatMessages = [
   {
-    name: 'Johnson Cane',
+    name: 'Sarah Kins',
     subject: 'Lorem ipsum dolor sit amet...',
     message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit...',
     image: 'https://randomuser.me/api/portraits/women/30.jpg',
     date: 'October 23rd',
     time: '03:22 pm',
+    files: [],
+    id: Math.random(),
   },
 ];
 
 submit.addEventListener('click', function submitMessage() {
   const name = document.getElementById('userName').innerText;
   const image = document.getElementById('userImage').src;
-  const subject = document.getElementById('subject').value;
-  const message = document.getElementById('inputField').value;
+  const subject = document.getElementById('subject');
+  const message = document.getElementById('inputField');
 
   //   const timestamp = new Date().getTime();
 
@@ -106,23 +110,34 @@ submit.addEventListener('click', function submitMessage() {
   //     //   console.log(inboxValues);
   //   });
 
+  const subjectValue = subject.value;
+  const messageValue = message.value;
+
   let inboxValues = {
     name,
-    subject: subject,
-    message: message,
+    subject: subjectValue,
+    message: messageValue,
     image,
-    file: selectedFiles || [],
+    files: selectedFiles || [],
     id: Math.random(),
     time: updateDateTime().slice(19, 28),
     date: updateDateTime().slice(5, 19),
   };
-  console.log(inboxValues.file);
+
   chatMessages.push(inboxValues);
 
-  //  inboxValues.date = updateDateTime(inboxValues.timestamp);
-
-  console.log(inboxValues);
   console.log(chatMessages);
+
+  subject.value = '';
+  message.value = '';
+
+  //   console.log(selectedFiles);
+  selectedFiles = [];
+  //   console.log(selectedFiles);
+
+  console.log(fileInput.value);
+  fileInput.value = '';
+  console.log(fileInput.value);
 
   renderChatMessages();
   updateDateTime();
@@ -130,61 +145,72 @@ submit.addEventListener('click', function submitMessage() {
 
 function renderChatMessages() {
   chatContainer.innerHTML = '';
+
   chatMessages.forEach((message) => {
     const chatMessage = document.createElement('div');
     chatMessage.className = 'inbox-card user';
 
-    //  const attachmentsHTML = message.files
-    //    .map((file) => {
-    //      if (file.type.startsWith('image')) {
-    //        return `<img src="${URL.createObjectURL(file)}" alt="Attachment" />`;
-    //      } else {
-    //        return `<a href="${URL.createObjectURL(
-    //          file
-    //        )}" download>Download File</a>`;
-    //      }
-    //    })
-    //    .join('');
+    const attachmentsHTML = message.files
+      .map((file) => {
+        if (file.type.startsWith('image')) {
+          return `<img src="${URL.createObjectURL(
+            file
+          )}" alt="Attachment" class="attachmentFile" />`;
+        } else {
+          return `<a href="${URL.createObjectURL(
+            file
+          )}" download>Download File</a>`;
+        }
+      })
+      .join('');
+
+    console.log(attachmentsHTML);
 
     chatMessage.innerHTML = `
-<div class="user-inbox">
-<div class="user-inbox_header">
-     <div>
-     <img
-     src="${message.image}"
-     alt="Client Image" class="user-image" />
-     </div>
-     <div>
-        <h3 class="user-inbox_tab-name">${message.name}</h3>
-        <h4 class="user-inbox_tab-subject">Subject: ${message.subject}</h4>
-           </div>
-  </div>
+         <div class="user-inbox">
+         <div class="user-inbox_header">
+            <div>
+            <img
+            src="${message.image}"
+            alt="Client Image" class="user-image" />
+            </div>
+            <div>
+               <h3 class="user-inbox_tab-name">${message.name}</h3>
+               <h4 class="user-inbox_tab-subject">Subject: ${message.subject}</h4>
+                  </div>
+         </div>
 
-  <div class="user-inbox_tab">
+         <div class="user-inbox_tab">
 
-     <p class="user-inbox_tab-text">${message.message}</p>
-  </div>
+            <p class="user-inbox_tab-text">${message.message}</p>
+         </div>
 
-  <div class="user-inbox_tab">
+         <div class="filesDisplay" style="display: flex;">
+            <div class="file-card_display">
+            <div style="display: flex;">
+                  ${attachmentsHTML}
+              
+            </div>
+            </div>
+         </div>
 
 
-  </div>
 
-  <div class="user-inbox_info">
-  <p class="user-inbox_info-date ">${message.time}</p>
-     <p class="user-inbox_info-time">${message.date}</p>
-  </div>
+         <div class="user-inbox_info">
+         <p class="user-inbox_info-date ">${message.time}</p>
+            <p class="user-inbox_info-time">${message.date}</p>
+         </div>
 
-  <div class="user-inbox_actions">
-     <i class="fa-solid fa-ellipsis-vertical"></i>
-  </div>
+         <div class="user-inbox_actions">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+         </div>
 
-  <div class="inbox-actions user">
-     <p class="inbox-actions_btns">Archive</p>
-     <p class="inbox-actions_btns">Report Spam</p>
-     <p class="inbox-actions_btns">Delete</p>
-     </div>
-</div>
+         <div class="inbox-actions user">
+            <p class="inbox-actions_btns">Archive</p>
+            <p class="inbox-actions_btns">Report Spam</p>
+            <p class="inbox-actions_btns">Delete</p>
+            </div>
+         </div>
    `;
 
     chatContainer.appendChild(chatMessage);
