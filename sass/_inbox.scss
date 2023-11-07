@@ -309,3 +309,19 @@ textarea::-webkit-scrollbar-thumb {
 textarea::-webkit-scrollbar-track:hover {
    background-color: #c0d0e9;
 }
+
+.close {
+   position: absolute;
+   top: 10px;
+   right: 25px;
+   color: white;
+   font-size: 35px;
+   font-weight: bold;
+   cursor: pointer;
+}
+
+.modal-image {
+   height: 60vh;
+   width: 50vw;
+   border-radius: 3px;
+}

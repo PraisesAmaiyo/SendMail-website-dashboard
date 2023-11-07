@@ -76,8 +76,10 @@ const chatContainer = document.querySelector('.chats');
 const chatMessages = [
   {
     name: 'Sarah Kins',
-    subject: 'Lorem ipsum dolor sit amet...',
-    message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit...',
+    subject: 'Domain and alias addition',
+    message:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molesti voluptatem repellendus eaque sunt harum  odio adipisci magni architecto corrupti, veniam consequuntur iusto dicta accusantium aut perspiciatis illo autem at.',
+
     image: 'https://randomuser.me/api/portraits/women/30.jpg',
     date: 'October 23rd',
     time: '03:22 pm',
@@ -145,33 +147,25 @@ function renderChatMessages() {
       .map((file) => {
         if (file.type.startsWith('image')) {
           return `
-          
           <div class="file-card_display">
             <div style="display: flex;">
-            <img src="${URL.createObjectURL(
-              file
-            )}" alt="Attachment" class="attachmentFile" />     
-                      
+               <img src="${URL.createObjectURL(
+                 file
+               )}" alt="Attachment" class="attachmentFile" />        
             </div>
-            </div>
-          
-          `;
+         </div>
+         `;
         } else {
           return `
-
           <div class="file-card_display">
-            <div style="display: flex; ">
+          <div style="display: flex;">
+          <a href="${URL.createObjectURL(file)}" download>
             <div class="fa-solid fa-file-lines doc-icon"></div>
-         
-            <a href="${URL.createObjectURL(file)}" download> </a>    
-                     
-            </div>
+             </a>
           </div>
-
-      
+        </div>
+        
          `;
-
-          //  return `<div class="fa-solid fa-file-lines doc-icon"></div>`;
         }
       })
       .join('');
@@ -267,4 +261,31 @@ function renderChatMessages() {
       }
     });
   });
+
+  // Enlarge image
+
+  const imageModal = document.getElementById('imageModal');
+
+  function openModal(src) {
+    const img = document.getElementById('enlargedImg');
+    imageModal.classList.add('openImage');
+    img.src = src;
+
+    console.log(imageModal, img);
+  }
+
+  function closeModal() {
+    imageModal.classList.remove('openImage');
+  }
+
+  const images = document.querySelectorAll('.attachmentFile');
+
+  images.forEach((image) => {
+    image.addEventListener('click', function () {
+      openModal(this.src);
+    });
+  });
+
+  const closeModalButton = document.getElementById('closeModal');
+  closeModalButton.addEventListener('click', closeModal);
 }

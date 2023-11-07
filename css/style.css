@@ -92,7 +92,7 @@ body {
   @media only screen and (max-width: 45.7em) {
     .modal {
       padding: 6rem 2rem; } }
-  .modal.active {
+  .modal.active, .modal.openImage {
     opacity: 1;
     visibility: visible;
     transition: opacity .3s ease-in-out, visibility .2s; }
@@ -1777,3 +1777,17 @@ textarea::-webkit-scrollbar-thumb {
 
 textarea::-webkit-scrollbar-track:hover {
   background-color: #c0d0e9; }
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer; }
+
+.modal-image {
+  height: 60vh;
+  width: 50vw;
+  border-radius: 3px; }
