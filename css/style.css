@@ -1591,8 +1591,14 @@ body {
 .main .messaging {
   display: flex;
   justify-content: space-evenly; }
+  .main .messaging .chats {
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
+    overflow-x: hidden;
+    overflow-y: scroll; }
   .main .messaging .chats,
   .main .messaging .compose {
+    height: 40rem;
     width: 48%; }
 
 .main .inbox-card .user-inbox {
@@ -1614,14 +1620,14 @@ body {
     flex-direction: column;
     gap: .3rem; }
     .main .inbox-card .user-inbox_tab-name {
-      font-size: 1.6rem;
+      font-size: 1.3rem;
       font-weight: 600;
       margin-top: 1rem; }
     .main .inbox-card .user-inbox_tab-subject {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 400; }
     .main .inbox-card .user-inbox_tab-text {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 300; }
   .main .inbox-card .user-inbox_info {
     position: absolute;
@@ -1728,8 +1734,8 @@ body {
   .files .file-card_display,
   .filesDisplay .file-card,
   .filesDisplay .file-card_display {
-    width: 10rem;
-    height: 10rem;
+    width: 6rem;
+    height: 6rem;
     margin: 5px;
     border: 0.1px solid #265ca5;
     border-radius: 10px;
@@ -1765,16 +1771,19 @@ body {
   color: #fff;
   cursor: pointer; }
 
+.chats::-webkit-scrollbar,
 textarea::-webkit-scrollbar {
   margin-right: 2rem;
   width: 4px;
   background-color: #d4deed; }
 
+.chats::-webkit-scrollbar-thumb,
 textarea::-webkit-scrollbar-thumb {
   background-color: #12468a;
   border-radius: 3px;
   margin: 10px; }
 
+.chats::-webkit-scrollbar-track:hover,
 textarea::-webkit-scrollbar-track:hover {
   background-color: #c0d0e9; }
 
