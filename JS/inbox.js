@@ -12,12 +12,8 @@ let selectedFiles = [];
 
 fileInput.addEventListener('change', handleFileSelect);
 
-console.log(fileInput.value);
-
 function handleFileSelect(event) {
   const files = event.target.files;
-
-  console.log(files);
 
   if (files.length > 0) {
     filesContainer.style.display = 'flex';
@@ -130,14 +126,9 @@ submit.addEventListener('click', function submitMessage() {
 
   subject.value = '';
   message.value = '';
-
-  //   console.log(selectedFiles);
   selectedFiles = [];
-  //   console.log(selectedFiles);
-
-  console.log(fileInput.value);
   fileInput.value = '';
-  console.log(fileInput.value);
+  filesContainer.innerHTML = '';
 
   renderChatMessages();
   updateDateTime();
@@ -153,18 +144,37 @@ function renderChatMessages() {
     const attachmentsHTML = message.files
       .map((file) => {
         if (file.type.startsWith('image')) {
-          return `<img src="${URL.createObjectURL(
-            file
-          )}" alt="Attachment" class="attachmentFile" />`;
+          return `
+          
+          <div class="file-card_display">
+            <div style="display: flex;">
+            <img src="${URL.createObjectURL(
+              file
+            )}" alt="Attachment" class="attachmentFile" />     
+                      
+            </div>
+            </div>
+          
+          `;
         } else {
-          return `<a href="${URL.createObjectURL(
-            file
-          )}" download>Download File</a>`;
+          return `
+
+          <div class="file-card_display">
+            <div style="display: flex; ">
+            <div class="fa-solid fa-file-lines doc-icon"></div>
+         
+            <a href="${URL.createObjectURL(file)}" download> </a>    
+                     
+            </div>
+          </div>
+
+      
+         `;
+
+          //  return `<div class="fa-solid fa-file-lines doc-icon"></div>`;
         }
       })
       .join('');
-
-    console.log(attachmentsHTML);
 
     chatMessage.innerHTML = `
          <div class="user-inbox">
@@ -185,13 +195,11 @@ function renderChatMessages() {
             <p class="user-inbox_tab-text">${message.message}</p>
          </div>
 
-         <div class="filesDisplay" style="display: flex;">
-            <div class="file-card_display">
-            <div style="display: flex;">
-                  ${attachmentsHTML}
+         <div class="files" style="display:flex" >
+          
+            ${attachmentsHTML}
               
-            </div>
-            </div>
+         
          </div>
 
 

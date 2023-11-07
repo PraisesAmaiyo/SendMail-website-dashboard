@@ -1742,12 +1742,10 @@ body {
     position: relative;
     background: linear-gradient(111.4deg, rgba(43, 92, 157, 0.75) 1%, rgba(18, 70, 138, 0.75) 58%);
     backdrop-filter: blur(5px); }
-    .files .file-card .attachmentFile,
-    .files .file-card_display .attachmentFile,
-    .filesDisplay .file-card .attachmentFile,
-    .filesDisplay .file-card_display .attachmentFile {
-      max-width: 100%;
-      max-height: 100%; }
+
+.attachmentFile {
+  max-width: 100%;
+  max-height: 100%; }
 
 .file-container {
   margin-top: 2rem; }
@@ -1755,7 +1753,8 @@ body {
     display: none; }
 
 .doc-icon {
-  color: #eef1f6; }
+  color: #eef1f6;
+  font-size: 8rem; }
 
 .delete-button {
   position: absolute;
