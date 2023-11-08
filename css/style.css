@@ -58,13 +58,23 @@ body {
   width: 90%; }
 
 .inbox-card-white {
+  position: relative;
   background-image: linear-gradient(111.4deg, rgba(255, 255, 255, 0.75) 1%, rgba(255, 255, 255, 0.75) 58%), url(../img/image-1.jpg);
   background-size: cover;
   color: #fff;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
   padding: 2rem 2rem;
-  width: 100%; }
+  width: 60%; }
+  .inbox-card-white .close {
+    position: absolute;
+    padding: 1rem;
+    top: 5px;
+    right: 5px;
+    color: #265ca5;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer; }
 
 .inbox-card.user {
   background-image: linear-gradient(111.4deg, rgba(32, 44, 108, 0.75) 1%, rgba(32, 44, 108, 0.75) 58%), url(../img/image-1.jpg);
@@ -1567,28 +1577,28 @@ body {
     margin-top: 3rem;
     position: fixed;
     bottom: 5rem;
-    right: 5rem; }
+    right: 2rem; }
     .main .composeButton .hero-btn-light {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       display: flex;
       align-items: center; }
       .main .composeButton .hero-btn-light .icon {
-        font-size: 2rem;
-        margin-right: 2rem; }
+        font-size: 1.4rem;
+        margin-right: 1rem; }
   .main .message-type {
-    margin-top: 2rem; }
+    margin-top: 1rem; }
     .main .message-type label {
       display: block;
       text-align: left;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: 500;
       margin-bottom: 1.2rem;
       color: #2b5c9d; }
     .main .message-type select {
       width: 100%;
       outline: none;
-      padding: 1rem;
-      font-size: 1.5rem;
+      padding: .5rem;
+      font-size: 1.2rem;
       font-family: inherit;
       font-weight: 600;
       margin-bottom: 2rem;
@@ -1604,16 +1614,16 @@ body {
   .main .chats {
     height: calc(100vh - 212px);
     padding: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
     overflow-x: hidden;
-    overflow-y: scroll; }
+    overflow-y: scroll;
+    border-bottom: 0.3px solid rgba(18, 70, 138, 0.5); }
     .main .chats .no-messages {
       text-align: center;
       font-size: 1.8rem;
       margin-top: 3rem; }
   .main .chats,
   .main .compose {
-    width: 100%; }
+    width: 85%; }
 
 .inbox-card:last-child {
   margin-bottom: 5rem; }
@@ -1685,7 +1695,9 @@ body {
         margin-bottom: 1.5rem; }
 
 .compose {
-  margin-bottom: 5rem; }
+  margin-bottom: 5rem;
+  display: flex;
+  justify-content: center; }
   .compose-header {
     display: flex;
     gap: 2rem; }
@@ -1711,7 +1723,6 @@ body {
         font-weight: 500; }
   .compose input,
   .compose textarea {
-    height: 100%;
     width: 100%;
     outline: none;
     padding: .5rem;
@@ -1735,11 +1746,12 @@ body {
     font-style: italic;
     color: rgba(43, 92, 157, 0.75); }
   .compose-sendBtn {
-    margin: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
     text-align: center; }
     .compose-sendBtn button {
       font-size: 1.5rem;
-      padding: 1rem; }
+      padding: 1rem 2rem; }
 
 .files,
 .filesDisplay {

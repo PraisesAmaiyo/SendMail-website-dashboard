@@ -106,6 +106,7 @@ body {
 }
 
 .inbox-card-white {
+   position: relative;
    background-image: linear-gradient(111.4deg, rgba($color-grey-light-1, .75) 1%, rgba($color-grey-light-1, .75) 58%), url(../img/image-1.jpg);
    background-size: cover;
    color: $color-grey-light-1;
@@ -113,8 +114,19 @@ body {
    box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
    padding: 2rem 2rem;
    // margin: 2rem 0;
-   width: 100%;
+   width: 60%;
    // margin-right: auto;
+
+   .close {
+      position: absolute;
+      padding: 1rem;
+      top: 5px;
+      right: 5px;
+      color: $color-primary;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+   }
 }
 
 .inbox-card.user {

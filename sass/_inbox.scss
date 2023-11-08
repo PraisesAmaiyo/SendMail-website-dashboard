@@ -7,27 +7,27 @@
       margin-top: 3rem;
       position: fixed;
       bottom: 5rem;
-      right: 5rem;
+      right: 2rem;
 
       .hero-btn-light {
-         font-size: 1.5rem;
+         font-size: 1.2rem;
          display: flex;
          align-items: center;
 
          .icon {
-            font-size: 2rem;
-            margin-right: 2rem;
+            font-size: 1.4rem;
+            margin-right: 1rem;
          }
       }
    }
 
    .message-type {
-      margin-top: 2rem;
+      margin-top: 1rem;
 
       label {
          display: block;
          text-align: left;
-         font-size: 1.5rem;
+         font-size: 1.2rem;
          font-weight: 500;
          margin-bottom: 1.2rem;
          color: $color-primary-light;
@@ -37,8 +37,8 @@
          // height: 100%;
          width: 100%;
          outline: none;
-         padding: 1rem;
-         font-size: 1.5rem;
+         padding: .5rem;
+         font-size: 1.2rem;
          font-family: inherit;
          font-weight: 600;
          margin-bottom: 2rem;
@@ -63,9 +63,10 @@
    .chats {
       height: calc(100vh - 212px);
       padding: 1rem;
-      box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
+      // box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
       overflow-x: hidden;
       overflow-y: scroll;
+      border-bottom: .3px solid rgba($color-grey-dark-1, .5);
       // flex: 1;
 
       .no-messages {
@@ -77,8 +78,7 @@
 
    .chats,
    .compose {
-      // height: 40rem;
-      width: 100%;
+      width: 85%;
    }
 }
 
@@ -87,8 +87,6 @@
       margin-bottom: 5rem;
 
    }
-
-
 
    .user {
       &-inbox {
@@ -198,6 +196,9 @@
 .compose {
    // padding: 2rem;
    margin-bottom: 5rem;
+   display: flex;
+   justify-content: center;
+   // height: 50%;
 
    &-header {
       display: flex;
@@ -236,7 +237,7 @@
 
    input,
    textarea {
-      height: 100%;
+      // height: 100%;
       width: 100%;
       outline: none;
       padding: .5rem;
@@ -269,12 +270,13 @@
    }
 
    &-sendBtn {
-      margin: 3rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
       text-align: center;
 
       button {
          font-size: 1.5rem;
-         padding: 1rem;
+         padding: 1rem 2rem;
       }
    }
 }
