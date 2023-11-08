@@ -4,6 +4,17 @@ document.addEventListener('DOMContentLoaded', function () {
   updateDateTime();
 });
 
+// Open Compose message modal
+const composeBtn = document.querySelector('.composeBtn');
+const composeModal = document.querySelector('.compose');
+
+composeBtn.addEventListener('click', openComposeModal);
+
+function openComposeModal() {
+  composeModal.classList.add('openModal');
+}
+
+// JavaScript for addition of files and documents from device memory
 const filesContainer = document.querySelector('.files');
 const fileContainer = document.querySelector('.file-container');
 const fileInput = document.getElementById('file-input');
@@ -36,7 +47,7 @@ function handleFileSelect(event) {
       } else {
         const docIcon = document.createElement('i');
         docIcon.className = 'fa-solid fa-file-lines doc-icon';
-        docIcon.style.fontSize = '8rem';
+        //   docIcon.style.fontSize = '8rem';
         fileX.appendChild(docIcon);
       }
       // selectedFiles.push(fileCardContainer);
@@ -70,25 +81,34 @@ function handleFileSelect(event) {
   }
 }
 
-///////////////////////////
+// JavaScript for Submit and Message addition
 
 const submit = document.getElementById('sendMessage');
 const chatContainer = document.querySelector('.chats');
 
 const chatMessages = [
-  {
-    name: 'Sarah Kins',
-    subject: 'Domain and alias addition',
-    message:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molesti voluptatem repellendus eaque sunt harum  odio adipisci magni architecto corrupti, veniam consequuntur iusto dicta accusantium aut perspiciatis illo autem at.',
-
-    image: 'https://randomuser.me/api/portraits/women/30.jpg',
-    date: 'October 23rd',
-    time: '03:22 pm',
-    files: [],
-    id: Math.random(),
-  },
+  //   {
+  //     name: 'Sarah Kins',
+  //     subject: 'Domain and alias addition',
+  //     message:
+  //       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molesti voluptatem repellendus eaque sunt harum  odio adipisci magni architecto corrupti, veniam consequuntur iusto dicta accusantium aut perspiciatis illo autem at.',
+  //     image: 'https://randomuser.me/api/portraits/women/30.jpg',
+  //     date: 'October 23rd',
+  //     time: '03:22 pm',
+  //     files: [],
+  //     id: Math.random(),
+  //   },
 ];
+
+// Initialize the inbox tab when there are no messages
+if (chatMessages < 1) {
+  chatContainer.innerHTML = `
+   <p class ="no-messages">You have no Messages. Click on the Compose Button to send a message</p>
+   `;
+  console.log('fffff');
+} else {
+  chatContainer.innerHTML = `${{ chatMessages }}`;
+}
 
 submit.addEventListener('click', function submitMessage() {
   const name = document.getElementById('userName').innerText;
@@ -122,8 +142,10 @@ submit.addEventListener('click', function submitMessage() {
 
   renderChatMessages();
   updateDateTime();
+  composeModal.classList.remove('openModal');
 });
 
+// JavaScript to add or render new messages to the DOM
 function renderChatMessages() {
   chatContainer.innerHTML = '';
 
@@ -253,31 +275,36 @@ function renderChatMessages() {
   });
 
   // Enlarge image
-
   const imageModal = document.getElementById('imageModal');
+  const images = document.querySelectorAll('.attachmentFile');
 
   function openModal(src) {
     const img = document.getElementById('enlargedImg');
-    imageModal.classList.add('openImage');
+    imageModal.classList.add('openModal');
     img.src = src;
 
     console.log(imageModal, img);
   }
-
-  function closeModal() {
-    imageModal.classList.remove('openImage');
-  }
-
-  const images = document.querySelectorAll('.attachmentFile');
 
   images.forEach((image) => {
     image.addEventListener('click', function () {
       openModal(this.src);
     });
   });
+}
 
-  const closeModalButton = document.getElementById('closeModal');
-  closeModalButton.addEventListener('click', closeModal);
+// Close opened Modal for compose and enlarged image
+const closeModalButton = document.querySelectorAll('.closeModal');
+const imageModal = document.getElementById('imageModal');
+
+closeModalButton.forEach((closeButton) => {
+  closeButton.addEventListener('click', closeModal);
+});
+
+function closeModal() {
+  imageModal.classList.remove('openModal');
+  composeModal.classList.remove('openModal');
+  console.log('object');
 }
 
 // Function to scroll the chat container to the bottom i.e to alwasy display a new chat

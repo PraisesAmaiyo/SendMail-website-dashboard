@@ -1,7 +1,28 @@
 .main {
+   display: flex;
+   flex-direction: column;
+   // height: calc(100vh - 124px);
+
+   .composeButton {
+      margin-top: 3rem;
+      position: fixed;
+      bottom: 5rem;
+      right: 5rem;
+
+      .hero-btn-light {
+         font-size: 1.5rem;
+         display: flex;
+         align-items: center;
+
+         .icon {
+            font-size: 2rem;
+            margin-right: 2rem;
+         }
+      }
+   }
 
    .message-type {
-      margin-top: 3rem;
+      margin-top: 2rem;
 
       label {
          display: block;
@@ -13,7 +34,7 @@
       }
 
       select {
-         height: 100%;
+         // height: 100%;
          width: 100%;
          outline: none;
          padding: 1rem;
@@ -35,128 +56,144 @@
       }
    }
 
-   .messaging {
-      display: flex;
-      justify-content: space-evenly;
+   // .messaging {
+   //    display: flex;
+   //    // justify-content: space-evenly;
 
-      .chats {
-         padding: 1rem;
-         box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
-         overflow-x: hidden;
-         overflow-y: auto;
-      }
+   .chats {
+      height: calc(100vh - 212px);
+      padding: 1rem;
+      box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      // flex: 1;
 
-      .chats,
-      .compose {
-         height: 40rem;
-         width: 48%;
+      .no-messages {
+         text-align: center;
+         font-size: 1.8rem;
+         margin-top: 3rem;
       }
    }
 
-   .inbox-card {
-      .user {
-         &-inbox {
+   .chats,
+   .compose {
+      // height: 40rem;
+      width: 100%;
+   }
+}
+
+.inbox-card {
+   &:last-child {
+      margin-bottom: 5rem;
+
+   }
+
+
+
+   .user {
+      &-inbox {
+         align-items: center;
+         position: relative;
+
+         &_header {
+            display: flex;
             align-items: center;
-            position: relative;
-
-            &_header {
-               display: flex;
-               align-items: center;
-               gap: 2rem;
-            }
-
-            .user-image {
-               margin-top: 1rem;
-               width: 5rem;
-               height: 5rem;
-               border-radius: 100%;
-               object-fit: cover;
-            }
-
-            &_tab {
-               margin-top: 1rem;
-               display: flex;
-               flex-direction: column;
-               gap: .3rem;
-
-               &-name {
-                  font-size: 1.3rem;
-                  font-weight: 600;
-                  margin-top: 1rem;
-               }
-
-               &-subject {
-                  font-size: 1.3rem;
-                  font-weight: 400;
-               }
-
-               &-text {
-                  font-size: 1.1rem;
-                  font-weight: 300;
-               }
-            }
-
-            &_info {
-               position: absolute;
-               right: 0;
-               top: 0;
-               width: max-content;
-               text-align: right;
-               font-size: 1rem;
-            }
-
-            &_actions {
-               position: absolute;
-               right: -6rem;
-               top: -4rem;
-               width: max-content;
-               text-align: right;
-               font-size: 2.5rem;
-               color: $color-primary-light;
-               padding: 2rem;
-            }
-
-
-            .inbox-actions.user {
-               background-color: rgba($color-grey-dark-2, .5);
-            }
-
-            .inbox-actions {
-               background-color: rgba($color-grey-dark-1, .5);
-               padding: 2rem 3rem;
-               color: #fff;
-               width: max-content;
-               margin-bottom: 1rem;
-               position: absolute;
-               top: -1.6rem;
-               right: -1.6rem;
-               backdrop-filter: blur(5px);
-               box-shadow: rgba(0, 0, 0, 0.5) -2px 4px 11px;
-               z-index: 100;
-               text-align: center;
-               display: none;
-
-               &_btns {
-                  font-size: 1.2rem;
-                  font-weight: 500;
-
-                  &:not(:last-child) {
-                     margin-bottom: 1.5rem;
-                  }
-               }
-            }
-
-            // &_actions:hover~.inbox-actions {
-            //    display: block;
-            // }
-
-            // .inbox-actions:hover {
-            //    display: block;
-            // }
+            gap: 2rem;
          }
+
+         .user-image {
+            margin-top: 1rem;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 100%;
+            object-fit: cover;
+         }
+
+         &_tab {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: .3rem;
+
+            &-name {
+               font-size: 1.3rem;
+               font-weight: 600;
+               margin-top: 1rem;
+            }
+
+            &-subject {
+               font-size: 1.3rem;
+               font-weight: 400;
+            }
+
+            &-text {
+               font-size: 1.1rem;
+               font-weight: 300;
+            }
+         }
+
+         &_info {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: max-content;
+            text-align: right;
+            font-size: 1rem;
+         }
+
+         &_actions {
+            position: absolute;
+            right: -6rem;
+            top: -4rem;
+            width: max-content;
+            text-align: right;
+            font-size: 2.5rem;
+            color: $color-primary-light;
+            padding: 2rem;
+         }
+
+
+         .inbox-actions.user {
+            background-color: rgba($color-grey-dark-2, .5);
+         }
+
+         .inbox-actions {
+            background-color: rgba($color-grey-dark-1, .5);
+            padding: 2rem 3rem;
+            color: #fff;
+            width: max-content;
+            margin-bottom: 1rem;
+            position: absolute;
+            top: -1.6rem;
+            right: -1.6rem;
+            backdrop-filter: blur(5px);
+            box-shadow: rgba(0, 0, 0, 0.5) -2px 4px 11px;
+            z-index: 100;
+            text-align: center;
+            display: none;
+
+            &_btns {
+               font-size: 1.2rem;
+               font-weight: 500;
+
+               &:not(:last-child) {
+                  margin-bottom: 1.5rem;
+               }
+            }
+         }
+
+         // &_actions:hover~.inbox-actions {
+         //    display: block;
+         // }
+
+         // .inbox-actions:hover {
+         //    display: block;
+         // }
       }
    }
 }
+
+// }
 
 .compose {
    // padding: 2rem;
@@ -330,6 +367,7 @@ textarea::-webkit-scrollbar-track:hover {
 
 .modal-image {
    height: 60vh;
-   width: 50vw;
-   border-radius: 3px;
+   width: 60vh;
+   border-radius: 10px;
+   box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
 }

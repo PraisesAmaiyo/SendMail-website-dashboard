@@ -92,7 +92,7 @@ body {
   @media only screen and (max-width: 45.7em) {
     .modal {
       padding: 6rem 2rem; } }
-  .modal.active, .modal.openImage {
+  .modal.active, .modal.openModal {
     opacity: 1;
     visibility: visible;
     transition: opacity .3s ease-in-out, visibility .2s; }
@@ -1560,83 +1560,100 @@ body {
     font-size: 1.2rem;
     color: #007bff; }
 
-.main .message-type {
-  margin-top: 3rem; }
-  .main .message-type label {
-    display: block;
-    text-align: left;
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin-bottom: 1.2rem;
-    color: #2b5c9d; }
-  .main .message-type select {
-    height: 100%;
-    width: 100%;
-    outline: none;
-    padding: 1rem;
-    font-size: 1.5rem;
-    font-family: inherit;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    color: #265ca5;
-    border: none;
-    background-color: #e9eff6;
-    border-radius: 9px;
-    box-shadow: 0 0 0 0.8rem rgba(18, 70, 138, 0.36);
-    transition: all 0.3s ease;
-    width: max-content; }
-    .main .message-type select:focus {
-      box-shadow: 0 0 0 0.8rem rgba(7, 21, 92, 0.5); }
-
-.main .messaging {
+.main {
   display: flex;
-  justify-content: space-evenly; }
-  .main .messaging .chats {
+  flex-direction: column; }
+  .main .composeButton {
+    margin-top: 3rem;
+    position: fixed;
+    bottom: 5rem;
+    right: 5rem; }
+    .main .composeButton .hero-btn-light {
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center; }
+      .main .composeButton .hero-btn-light .icon {
+        font-size: 2rem;
+        margin-right: 2rem; }
+  .main .message-type {
+    margin-top: 2rem; }
+    .main .message-type label {
+      display: block;
+      text-align: left;
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      color: #2b5c9d; }
+    .main .message-type select {
+      width: 100%;
+      outline: none;
+      padding: 1rem;
+      font-size: 1.5rem;
+      font-family: inherit;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: #265ca5;
+      border: none;
+      background-color: #e9eff6;
+      border-radius: 9px;
+      box-shadow: 0 0 0 0.8rem rgba(18, 70, 138, 0.36);
+      transition: all 0.3s ease;
+      width: max-content; }
+      .main .message-type select:focus {
+        box-shadow: 0 0 0 0.8rem rgba(7, 21, 92, 0.5); }
+  .main .chats {
+    height: calc(100vh - 212px);
     padding: 1rem;
     box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
     overflow-x: hidden;
-    overflow-y: auto; }
-  .main .messaging .chats,
-  .main .messaging .compose {
-    height: 40rem;
-    width: 48%; }
+    overflow-y: scroll; }
+    .main .chats .no-messages {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-top: 3rem; }
+  .main .chats,
+  .main .compose {
+    width: 100%; }
 
-.main .inbox-card .user-inbox {
+.inbox-card:last-child {
+  margin-bottom: 5rem; }
+
+.inbox-card .user-inbox {
   align-items: center;
   position: relative; }
-  .main .inbox-card .user-inbox_header {
+  .inbox-card .user-inbox_header {
     display: flex;
     align-items: center;
     gap: 2rem; }
-  .main .inbox-card .user-inbox .user-image {
+  .inbox-card .user-inbox .user-image {
     margin-top: 1rem;
     width: 5rem;
     height: 5rem;
     border-radius: 100%;
     object-fit: cover; }
-  .main .inbox-card .user-inbox_tab {
+  .inbox-card .user-inbox_tab {
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
     gap: .3rem; }
-    .main .inbox-card .user-inbox_tab-name {
+    .inbox-card .user-inbox_tab-name {
       font-size: 1.3rem;
       font-weight: 600;
       margin-top: 1rem; }
-    .main .inbox-card .user-inbox_tab-subject {
+    .inbox-card .user-inbox_tab-subject {
       font-size: 1.3rem;
       font-weight: 400; }
-    .main .inbox-card .user-inbox_tab-text {
+    .inbox-card .user-inbox_tab-text {
       font-size: 1.1rem;
       font-weight: 300; }
-  .main .inbox-card .user-inbox_info {
+  .inbox-card .user-inbox_info {
     position: absolute;
     right: 0;
     top: 0;
     width: max-content;
     text-align: right;
     font-size: 1rem; }
-  .main .inbox-card .user-inbox_actions {
+  .inbox-card .user-inbox_actions {
     position: absolute;
     right: -6rem;
     top: -4rem;
@@ -1645,9 +1662,9 @@ body {
     font-size: 2.5rem;
     color: #2b5c9d;
     padding: 2rem; }
-  .main .inbox-card .user-inbox .inbox-actions.user {
+  .inbox-card .user-inbox .inbox-actions.user {
     background-color: rgba(32, 44, 108, 0.5); }
-  .main .inbox-card .user-inbox .inbox-actions {
+  .inbox-card .user-inbox .inbox-actions {
     background-color: rgba(18, 70, 138, 0.5);
     padding: 2rem 3rem;
     color: #fff;
@@ -1661,10 +1678,10 @@ body {
     z-index: 100;
     text-align: center;
     display: none; }
-    .main .inbox-card .user-inbox .inbox-actions_btns {
+    .inbox-card .user-inbox .inbox-actions_btns {
       font-size: 1.2rem;
       font-weight: 500; }
-      .main .inbox-card .user-inbox .inbox-actions_btns:not(:last-child) {
+      .inbox-card .user-inbox .inbox-actions_btns:not(:last-child) {
         margin-bottom: 1.5rem; }
 
 .compose {
@@ -1798,5 +1815,6 @@ textarea::-webkit-scrollbar-track:hover {
 
 .modal-image {
   height: 60vh;
-  width: 50vw;
-  border-radius: 3px; }
+  width: 60vh;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px; }
