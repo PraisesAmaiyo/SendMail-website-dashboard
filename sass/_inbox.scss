@@ -37,14 +37,13 @@
 
    .messaging {
       display: flex;
-
       justify-content: space-evenly;
 
       .chats {
          padding: 1rem;
          box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
          overflow-x: hidden;
-         overflow-y: scroll;
+         overflow-y: auto;
       }
 
       .chats,
@@ -147,7 +146,6 @@
                }
             }
 
-
             // &_actions:hover~.inbox-actions {
             //    display: block;
             // }
@@ -198,7 +196,6 @@
          }
       }
    }
-
 
    input,
    textarea {
@@ -288,7 +285,7 @@
 
 .doc-icon {
    color: $color-grey-light-2 ;
-   font-size: 8rem;
+   font-size: 5rem;
 }
 
 .delete-button {

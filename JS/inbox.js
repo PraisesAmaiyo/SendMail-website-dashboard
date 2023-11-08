@@ -59,6 +59,8 @@ function handleFileSelect(event) {
         if (selectedFiles.length === 0) {
           filesContainer.style.display = 'none';
         }
+
+        fileInput.value = '';
       });
 
       fileCardContainer.appendChild(fileX);
@@ -94,20 +96,6 @@ submit.addEventListener('click', function submitMessage() {
   const subject = document.getElementById('subject');
   const message = document.getElementById('inputField');
 
-  //   const timestamp = new Date().getTime();
-
-  //   document.addEventListener('DOMContentLoaded', function () {
-  //     subject.addEventListener('input', updateValues);
-  //     message.addEventListener('input', updateValues);
-
-  //     function updateValues() {
-  //       inboxValues.subject = subject.value;
-  //       inboxValues.message = message.value;
-  //       console.log(inboxValues);
-  //     }
-  //     //   console.log(inboxValues);
-  //   });
-
   const subjectValue = subject.value;
   const messageValue = message.value;
 
@@ -124,7 +112,7 @@ submit.addEventListener('click', function submitMessage() {
 
   chatMessages.push(inboxValues);
 
-  console.log(chatMessages);
+  addChatMessage(chatMessages);
 
   subject.value = '';
   message.value = '';
@@ -216,6 +204,8 @@ function renderChatMessages() {
    `;
 
     chatContainer.appendChild(chatMessage);
+
+    scrollToBottom();
   });
 
   //////////////////////
@@ -288,4 +278,14 @@ function renderChatMessages() {
 
   const closeModalButton = document.getElementById('closeModal');
   closeModalButton.addEventListener('click', closeModal);
+}
+
+// Function to scroll the chat container to the bottom i.e to alwasy display a new chat
+function scrollToBottom() {
+  chatContainer.scrollTop =
+    chatContainer.scrollHeight - chatContainer.clientHeight + 1;
+}
+
+function addChatMessage() {
+  scrollToBottom();
 }

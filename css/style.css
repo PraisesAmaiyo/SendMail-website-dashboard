@@ -1595,7 +1595,7 @@ body {
     padding: 1rem;
     box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
     overflow-x: hidden;
-    overflow-y: scroll; }
+    overflow-y: auto; }
   .main .messaging .chats,
   .main .messaging .compose {
     height: 40rem;
@@ -1760,7 +1760,7 @@ body {
 
 .doc-icon {
   color: #eef1f6;
-  font-size: 8rem; }
+  font-size: 5rem; }
 
 .delete-button {
   position: absolute;
