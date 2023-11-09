@@ -1632,7 +1632,10 @@ body {
   display: none; }
   .messageDisplay .inbox-card {
     width: 100%;
-    margin-top: 5rem; }
+    height: 100%;
+    margin-top: 5rem;
+    overflow-y: scroll;
+    overflow-x: hidden; }
     .messageDisplay .inbox-card .user-inbox_tab-name {
       font-size: 2rem; }
     .messageDisplay .inbox-card .user-inbox_tab-subject {
@@ -1816,18 +1819,21 @@ body {
   color: #fff;
   cursor: pointer; }
 
+.messageDisplay .inbox-card::-webkit-scrollbar,
 .chats::-webkit-scrollbar,
 textarea::-webkit-scrollbar {
   margin-right: 2rem;
   width: 4px;
   background-color: #d4deed; }
 
+.messageDisplay .inbox-card::-webkit-scrollbar-thumb,
 .chats::-webkit-scrollbar-thumb,
 textarea::-webkit-scrollbar-thumb {
   background-color: #12468a;
   border-radius: 3px;
   margin: 10px; }
 
+.messageDisplay .inbox-card::-webkit-scrollbar-track:hover,
 .chats::-webkit-scrollbar-track:hover,
 textarea::-webkit-scrollbar-track:hover {
   background-color: #c0d0e9; }

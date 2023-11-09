@@ -111,6 +111,7 @@ function openModal(i) {
       <div class="close closeModal" id="">&times;</div>
       </div>`;
   const newElement = document.createElement('div');
+  newElement.style.height = '80%';
   newElement.innerHTML = example;
   messageDisplay.appendChild(newElement);
 
