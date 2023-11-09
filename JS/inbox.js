@@ -100,32 +100,40 @@ dummymessage.forEach((message) => {
 
 // display messages when clicked
 const inboxCard = document.querySelectorAll('.inbox-card');
+const messageDisplay = document.querySelector('.messageDisplay');
+const closeModalButton = document.querySelectorAll('.closeModal');
+
+function openModal(i) {
+  messageDisplay.style.display = 'block';
+  const example = `
+      <div class="inbox-card ">
+      ${inboxCard[i].innerHTML}
+      <div class="close closeModal" id="">&times;</div>
+      </div>`;
+  const newElement = document.createElement('div');
+  newElement.innerHTML = example;
+  messageDisplay.appendChild(newElement);
+
+  const userInboxTabText = messageDisplay.querySelector('.user-inbox_tab-text');
+  userInboxTabText.textContent = originalMessageText[i];
+  messageDisplay.classList.add('card', 'modal', 'openModal');
+
+  const closeButton = newElement.querySelector('.close');
+  closeButton.addEventListener('click', function () {
+    // Clear the content and hide the modal when the close button is clicked
+    messageDisplay.style.display = 'none';
+    messageDisplay.innerHTML = '';
+    console.log('Closed Modal');
+  });
+  closeButton.style.display = 'block';
+}
 
 document.body.addEventListener('click', function (event) {
   const target = event.target;
 
-  function hideAllTabs() {
-    inboxCard.forEach((tab) => {
-      tab.style.display = 'none';
-    });
-  }
-
-  let isInsideInbox = false;
   for (let i = 0; i < inboxCard.length; i++) {
     if (inboxCard[i].contains(target)) {
-      const messageDisplay = document.querySelector('.messageDisplay');
-      messageDisplay.innerHTML = `
-      <div class="inbox-card ">
-         ${inboxCard[i].innerHTML}
-         </div>`;
-
-      const userInboxTabText = messageDisplay.querySelector(
-        '.user-inbox_tab-text'
-      );
-      userInboxTabText.textContent = originalMessageText[i];
-      messageDisplay.classList.add('modal', 'openModal');
-
-      console.log(originalMessageText[i]);
+      openModal(i);
     }
   }
 });
@@ -343,17 +351,23 @@ function renderChatMessages() {
 }
 
 // Close opened Modal for compose and enlarged image
-const closeModalButton = document.querySelectorAll('.closeModal');
+
 const imageModal = document.getElementById('imageModal');
 
 closeModalButton.forEach((closeButton) => {
-  closeButton.addEventListener('click', closeModal);
+  closeButton.addEventListener('click', function (event) {
+    closeModal();
+  });
 });
 
 function closeModal() {
   imageModal.classList.remove('openModal');
   composeModal.classList.remove('openModal');
-  console.log('object');
+  messageDisplay.classList.remove('card', 'modal', 'openModal');
+  messageDisplay.style.display = 'none';
+  messageDisplay.innerHTML = '';
+
+  console.log('Closed Modal');
 }
 
 // Function to scroll the chat container to the bottom i.e to alwasy display a new chat

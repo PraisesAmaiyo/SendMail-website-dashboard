@@ -82,6 +82,31 @@
    }
 }
 
+.messageDisplay {
+   width: 50%;
+   height: 70%;
+   overflow-y: scroll;
+   display: none;
+
+   .inbox-card {
+      width: 100%;
+      margin-top: 5rem;
+
+      .user-inbox_tab-name {
+         font-size: 2rem;
+      }
+
+      .user-inbox_tab-subject {
+         font-size: 1.5rem;
+      }
+
+      .user-inbox_tab-text {
+         font-size: 1.5rem;
+         line-height: 1.6;
+      }
+   }
+}
+
 .inbox-card {
    &:last-child {
       margin-bottom: 5rem;

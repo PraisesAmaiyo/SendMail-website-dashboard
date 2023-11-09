@@ -1625,6 +1625,22 @@ body {
   .main .compose {
     width: 85%; }
 
+.messageDisplay {
+  width: 50%;
+  height: 70%;
+  overflow-y: scroll;
+  display: none; }
+  .messageDisplay .inbox-card {
+    width: 100%;
+    margin-top: 5rem; }
+    .messageDisplay .inbox-card .user-inbox_tab-name {
+      font-size: 2rem; }
+    .messageDisplay .inbox-card .user-inbox_tab-subject {
+      font-size: 1.5rem; }
+    .messageDisplay .inbox-card .user-inbox_tab-text {
+      font-size: 1.5rem;
+      line-height: 1.6; }
+
 .inbox-card:last-child {
   margin-bottom: 5rem; }
 
