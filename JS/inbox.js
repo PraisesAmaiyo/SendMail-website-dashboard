@@ -81,6 +81,55 @@ function handleFileSelect(event) {
   }
 }
 
+// Function to extract the first 20 words from a text
+const dummymessage = document.querySelectorAll('.user-inbox_tab-text');
+const originalMessageText = [];
+
+function getFirst20Words(text) {
+  const words = text.split(' ');
+  const slicedWords = words.slice(0, 40).join(' ') + '...';
+  originalMessageText.push(text);
+  return slicedWords;
+}
+
+dummymessage.forEach((message) => {
+  const text = message.textContent;
+  const snippet = getFirst20Words(text);
+  message.textContent = snippet;
+});
+
+// display messages when clicked
+const inboxCard = document.querySelectorAll('.inbox-card');
+
+document.body.addEventListener('click', function (event) {
+  const target = event.target;
+
+  function hideAllTabs() {
+    inboxCard.forEach((tab) => {
+      tab.style.display = 'none';
+    });
+  }
+
+  let isInsideInbox = false;
+  for (let i = 0; i < inboxCard.length; i++) {
+    if (inboxCard[i].contains(target)) {
+      const messageDisplay = document.querySelector('.messageDisplay');
+      messageDisplay.innerHTML = `
+      <div class="inbox-card ">
+         ${inboxCard[i].innerHTML}
+         </div>`;
+
+      const userInboxTabText = messageDisplay.querySelector(
+        '.user-inbox_tab-text'
+      );
+      userInboxTabText.textContent = originalMessageText[i];
+      messageDisplay.classList.add('modal', 'openModal');
+
+      console.log(originalMessageText[i]);
+    }
+  }
+});
+
 // JavaScript for Submit and Message addition
 
 const submit = document.getElementById('sendMessage');
@@ -101,14 +150,14 @@ const chatMessages = [
 ];
 
 // Initialize the inbox tab when there are no messages
-if (chatMessages < 1) {
-  chatContainer.innerHTML = `
-   <p class ="no-messages">You have no Messages. Click on the Compose Button to send a message</p>
-   `;
-  console.log('fffff');
-} else {
-  chatContainer.innerHTML = `${{ chatMessages }}`;
-}
+// if (chatMessages < 1) {
+//   chatContainer.innerHTML = `
+//    <p class ="no-messages">You have no Messages. Click on the Compose Button to send a message</p>
+//    `;
+//   console.log('fffff');
+// } else {
+//   chatContainer.innerHTML = `${{ chatMessages }}`;
+// }
 
 submit.addEventListener('click', function submitMessage() {
   const name = document.getElementById('userName').innerText;
