@@ -47,6 +47,7 @@ body {
   border-radius: 10px 35px 5px 35px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
 
+.sent-card,
 .inbox-card {
   background-image: linear-gradient(111.4deg, rgba(43, 92, 157, 0.75) 1%, rgba(18, 70, 138, 0.75) 58%), url(../img/image-1.jpg);
   background-size: cover;
@@ -1644,37 +1645,57 @@ body {
       font-size: 1.5rem;
       line-height: 1.6; }
 
+.sentMessages {
+  display: none; }
+
+.sent-card:last-child,
 .inbox-card:last-child {
   margin-bottom: 5rem; }
 
+.sent-card .user-sent, .sent-card .user-inbox,
+.inbox-card .user-sent,
 .inbox-card .user-inbox {
   align-items: center;
   position: relative; }
+  .sent-card .user-sent_header, .sent-card .user-inbox_header,
+  .inbox-card .user-sent_header,
   .inbox-card .user-inbox_header {
     display: flex;
     align-items: center;
     gap: 2rem; }
+  .sent-card .user-sent .user-image, .sent-card .user-inbox .user-image,
+  .inbox-card .user-sent .user-image,
   .inbox-card .user-inbox .user-image {
     margin-top: 1rem;
     width: 5rem;
     height: 5rem;
     border-radius: 100%;
     object-fit: cover; }
+  .sent-card .user-sent_tab, .sent-card .user-inbox_tab,
+  .inbox-card .user-sent_tab,
   .inbox-card .user-inbox_tab {
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
     gap: .3rem; }
+    .sent-card .user-sent_tab-name, .sent-card .user-inbox_tab-name,
+    .inbox-card .user-sent_tab-name,
     .inbox-card .user-inbox_tab-name {
       font-size: 1.3rem;
       font-weight: 600;
       margin-top: 1rem; }
+    .sent-card .user-sent_tab-subject, .sent-card .user-inbox_tab-subject,
+    .inbox-card .user-sent_tab-subject,
     .inbox-card .user-inbox_tab-subject {
       font-size: 1.3rem;
       font-weight: 400; }
+    .sent-card .user-sent_tab-text, .sent-card .user-inbox_tab-text,
+    .inbox-card .user-sent_tab-text,
     .inbox-card .user-inbox_tab-text {
       font-size: 1.1rem;
       font-weight: 300; }
+  .sent-card .user-sent_info, .sent-card .user-inbox_info,
+  .inbox-card .user-sent_info,
   .inbox-card .user-inbox_info {
     position: absolute;
     right: 0;
@@ -1682,6 +1703,8 @@ body {
     width: max-content;
     text-align: right;
     font-size: 1rem; }
+  .sent-card .user-sent_actions, .sent-card .user-inbox_actions,
+  .inbox-card .user-sent_actions,
   .inbox-card .user-inbox_actions {
     position: absolute;
     right: -6rem;
@@ -1691,8 +1714,20 @@ body {
     font-size: 2.5rem;
     color: #2b5c9d;
     padding: 2rem; }
+  .sent-card .user-sent .sent-actions.user,
+  .sent-card .user-sent .inbox-actions.user, .sent-card .user-inbox .sent-actions.user,
+  .sent-card .user-inbox .inbox-actions.user,
+  .inbox-card .user-sent .sent-actions.user,
+  .inbox-card .user-sent .inbox-actions.user,
+  .inbox-card .user-inbox .sent-actions.user,
   .inbox-card .user-inbox .inbox-actions.user {
     background-color: rgba(32, 44, 108, 0.5); }
+  .sent-card .user-sent .sent-actions,
+  .sent-card .user-sent .inbox-actions, .sent-card .user-inbox .sent-actions,
+  .sent-card .user-inbox .inbox-actions,
+  .inbox-card .user-sent .sent-actions,
+  .inbox-card .user-sent .inbox-actions,
+  .inbox-card .user-inbox .sent-actions,
   .inbox-card .user-inbox .inbox-actions {
     background-color: rgba(18, 70, 138, 0.5);
     padding: 2rem 3rem;
@@ -1707,9 +1742,21 @@ body {
     z-index: 100;
     text-align: center;
     display: none; }
+    .sent-card .user-sent .sent-actions_btns,
+    .sent-card .user-sent .inbox-actions_btns, .sent-card .user-inbox .sent-actions_btns,
+    .sent-card .user-inbox .inbox-actions_btns,
+    .inbox-card .user-sent .sent-actions_btns,
+    .inbox-card .user-sent .inbox-actions_btns,
+    .inbox-card .user-inbox .sent-actions_btns,
     .inbox-card .user-inbox .inbox-actions_btns {
       font-size: 1.2rem;
       font-weight: 500; }
+      .sent-card .user-sent .sent-actions_btns:not(:last-child),
+      .sent-card .user-sent .inbox-actions_btns:not(:last-child), .sent-card .user-inbox .sent-actions_btns:not(:last-child),
+      .sent-card .user-inbox .inbox-actions_btns:not(:last-child),
+      .inbox-card .user-sent .sent-actions_btns:not(:last-child),
+      .inbox-card .user-sent .inbox-actions_btns:not(:last-child),
+      .inbox-card .user-inbox .sent-actions_btns:not(:last-child),
       .inbox-card .user-inbox .inbox-actions_btns:not(:last-child) {
         margin-bottom: 1.5rem; }
 

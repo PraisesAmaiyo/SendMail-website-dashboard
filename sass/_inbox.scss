@@ -56,18 +56,12 @@
       }
    }
 
-   // .messaging {
-   //    display: flex;
-   //    // justify-content: space-evenly;
-
    .chats {
       height: calc(100vh - 212px);
       padding: 1rem;
-      // box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
       overflow-x: hidden;
       overflow-y: scroll;
       border-bottom: .3px solid rgba($color-grey-dark-1, .5);
-      // flex: 1;
 
       .no-messages {
          text-align: center;
@@ -81,8 +75,6 @@
       width: 85%;
    }
 }
-
-.messageDisplay .inbox-card {}
 
 .messageDisplay {
    width: 50%;
@@ -112,12 +104,19 @@
    }
 }
 
+.sentMessages {
+   display: none;
+}
+
+.sent-card,
 .inbox-card {
    &:last-child {
       margin-bottom: 5rem;
    }
 
    .user {
+
+      &-sent,
       &-inbox {
          align-items: center;
          position: relative;
@@ -179,11 +178,12 @@
             padding: 2rem;
          }
 
-
+         .sent-actions.user,
          .inbox-actions.user {
             background-color: rgba($color-grey-dark-2, .5);
          }
 
+         .sent-actions,
          .inbox-actions {
             background-color: rgba($color-grey-dark-1, .5);
             padding: 2rem 3rem;
@@ -221,7 +221,7 @@
 
 }
 
-// }
+
 
 .compose {
    // padding: 2rem;
@@ -337,7 +337,6 @@
 
    }
 }
-
 
 .attachmentFile {
    max-width: 100%;

@@ -4,6 +4,21 @@ document.addEventListener('DOMContentLoaded', function () {
   updateDateTime();
 });
 
+// JavaScript to toggle the display for INBOX, SENT, SPAM AND TRASH
+const chatContainer = document.querySelector('.chats');
+const sentContainer = document.querySelector('.sentMessages');
+
+const messageSelect = document.getElementById('messageSelect');
+messageSelect.addEventListener('change', function selectedFiles() {
+  if (messageSelect.value === 'inbox') {
+    chatContainer.style.display = 'block';
+    sentContainer.style.display = 'none';
+  } else if (messageSelect.value === 'sent') {
+    chatContainer.style.display = 'none';
+    sentContainer.style.display = 'block';
+  }
+});
+
 // Open Compose message modal
 const composeBtn = document.querySelector('.composeBtn');
 const composeModal = document.querySelector('.compose');
@@ -82,19 +97,28 @@ function handleFileSelect(event) {
 }
 
 // Function to extract the first 20 words from a text
-const dummymessage = document.querySelectorAll('.user-inbox_tab-text');
-const originalMessageText = [];
+const inboxMessage = document.querySelectorAll('.user-inbox_tab-text');
+const sentMessage = document.querySelectorAll('.user-sent_tab-text');
 
-function getFirst20Words(text) {
+const originalInboxText = [];
+const originalSentText = [];
+
+function getFirst20Words(text, originalTextArray) {
   const words = text.split(' ');
   const slicedWords = words.slice(0, 40).join(' ') + '...';
-  originalMessageText.push(text);
+  originalTextArray.push(text);
   return slicedWords;
 }
 
-dummymessage.forEach((message) => {
+inboxMessage.forEach((message) => {
   const text = message.textContent;
-  const snippet = getFirst20Words(text);
+  const snippet = getFirst20Words(text, originalInboxText);
+  message.textContent = snippet;
+});
+
+sentMessage.forEach((message) => {
+  const text = message.textContent;
+  const snippet = getFirst20Words(text, originalSentText);
   message.textContent = snippet;
 });
 
@@ -140,9 +164,7 @@ document.body.addEventListener('click', function (event) {
 });
 
 // JavaScript for Submit and Message addition
-
 const submit = document.getElementById('sendMessage');
-const chatContainer = document.querySelector('.chats');
 
 const chatMessages = [
   //   {
@@ -232,7 +254,6 @@ function renderChatMessages() {
              </a>
           </div>
         </div>
-        
          `;
         }
       })
