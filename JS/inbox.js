@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function () {
 const chatContainer = document.querySelector('.chats');
 const sentContainer = document.querySelector('.sentMessages');
 
+const main = document.querySelector('.main');
+const sidebar = document.querySelector('.sidebar');
+
 const messageSelect = document.getElementById('messageSelect');
 messageSelect.addEventListener('change', function selectedFiles() {
   if (messageSelect.value === 'inbox') {
@@ -25,8 +28,19 @@ const composeModal = document.querySelector('.compose');
 
 composeBtn.addEventListener('click', openComposeModal);
 
-function openComposeModal() {
-  composeModal.classList.add('openModal');
+function openComposeModal(event) {
+  event.stopPropagation();
+  composeModal.classList.toggle('openModal');
+
+  if (composeModal.classList.contains('openModal')) {
+    main.classList.add('blur');
+    sidebar.classList.add('blur');
+    main.classList.add('no-scroll');
+  } else {
+    main.classList.remove('blur');
+    sidebar.classList.remove('blur');
+    main.classList.remove('no-scroll');
+  }
 }
 
 // JavaScript for addition of files and documents from device memory
@@ -140,12 +154,11 @@ function openModal(i) {
   messageDisplay.appendChild(newElement);
 
   const userInboxTabText = messageDisplay.querySelector('.user-inbox_tab-text');
-  userInboxTabText.textContent = originalMessageText[i];
+  userInboxTabText.textContent = originalInboxText[i];
   messageDisplay.classList.add('card', 'modal', 'openModal');
 
   const closeButton = newElement.querySelector('.close');
   closeButton.addEventListener('click', function () {
-    // Clear the content and hide the modal when the close button is clicked
     messageDisplay.style.display = 'none';
     messageDisplay.innerHTML = '';
     console.log('Closed Modal');
@@ -166,7 +179,7 @@ document.body.addEventListener('click', function (event) {
 // JavaScript for Submit and Message addition
 const submit = document.getElementById('sendMessage');
 
-const chatMessages = [
+const sentMessages = [
   //   {
   //     name: 'Sarah Kins',
   //     subject: 'Domain and alias addition',
@@ -181,14 +194,14 @@ const chatMessages = [
 ];
 
 // Initialize the inbox tab when there are no messages
-// if (chatMessages < 1) {
-//   chatContainer.innerHTML = `
-//    <p class ="no-messages">You have no Messages. Click on the Compose Button to send a message</p>
-//    `;
-//   console.log('fffff');
-// } else {
-//   chatContainer.innerHTML = `${{ chatMessages }}`;
-// }
+if (sentMessages.length < 1) {
+  sentContainer.innerHTML = `
+   <p class ="no-messages">You have no Messages. Click on the Compose Button to send a message</p>
+   `;
+} else {
+  //   sentContainer.innerHTML = `${{ sentMessages }}`;
+  rendersentMessages();
+}
 
 submit.addEventListener('click', function submitMessage() {
   const name = document.getElementById('userName').innerText;
@@ -210,9 +223,8 @@ submit.addEventListener('click', function submitMessage() {
     date: updateDateTime().slice(5, 19),
   };
 
-  chatMessages.push(inboxValues);
-
-  addChatMessage(chatMessages);
+  sentMessages.push(inboxValues);
+  addChatMessage(sentMessages);
 
   subject.value = '';
   message.value = '';
@@ -220,18 +232,26 @@ submit.addEventListener('click', function submitMessage() {
   fileInput.value = '';
   filesContainer.innerHTML = '';
 
-  renderChatMessages();
+  messageSelect.value = 'sent';
+  chatContainer.style.display = 'none';
+  sentContainer.style.display = 'block';
+
+  main.classList.remove('blur');
+  sidebar.classList.remove('blur');
+  main.classList.remove('no-scroll');
+
+  rendersentMessages();
   updateDateTime();
   composeModal.classList.remove('openModal');
 });
 
 // JavaScript to add or render new messages to the DOM
-function renderChatMessages() {
-  chatContainer.innerHTML = '';
+function rendersentMessages() {
+  sentContainer.innerHTML = '';
 
-  chatMessages.forEach((message) => {
+  sentMessages.forEach((message) => {
     const chatMessage = document.createElement('div');
-    chatMessage.className = 'inbox-card user';
+    chatMessage.className = 'sent-card user';
 
     const attachmentsHTML = message.files
       .map((file) => {
@@ -260,22 +280,22 @@ function renderChatMessages() {
       .join('');
 
     chatMessage.innerHTML = `
-         <div class="user-inbox">
-         <div class="user-inbox_header">
+         <div class="user-sent">
+         <div class="user-sent_header">
             <div>
             <img
             src="${message.image}"
             alt="Client Image" class="user-image" />
             </div>
             <div>
-               <h3 class="user-inbox_tab-name">${message.name}</h3>
-               <h4 class="user-inbox_tab-subject">Subject: ${message.subject}</h4>
+               <h3 class="user-sent_tab-name">${message.name}</h3>
+               <h4 class="user-sent_tab-subject">Subject: ${message.subject}</h4>
                   </div>
          </div>
 
-         <div class="user-inbox_tab">
+         <div class="user-sent_tab">
 
-            <p class="user-inbox_tab-text">${message.message}</p>
+            <p class="user-sent_tab-text">${message.message}</p>
          </div>
 
          <div class="files" style="display:flex" >
@@ -287,24 +307,24 @@ function renderChatMessages() {
 
 
 
-         <div class="user-inbox_info">
-         <p class="user-inbox_info-date ">${message.time}</p>
-            <p class="user-inbox_info-time">${message.date}</p>
+         <div class="user-sent_info">
+         <p class="user-sent_info-date ">${message.time}</p>
+            <p class="user-sent_info-time">${message.date}</p>
          </div>
 
-         <div class="user-inbox_actions">
+         <div class="user-sent_actions">
             <i class="fa-solid fa-ellipsis-vertical"></i>
          </div>
 
-         <div class="inbox-actions user">
-            <p class="inbox-actions_btns">Archive</p>
-            <p class="inbox-actions_btns">Report Spam</p>
-            <p class="inbox-actions_btns">Delete</p>
+         <div class="sent-actions user">
+            <p class="sent-actions_btns">Archive</p>
+            <p class="sent-actions_btns">Report Spam</p>
+            <p class="sent-actions_btns">Delete</p>
             </div>
          </div>
    `;
 
-    chatContainer.appendChild(chatMessage);
+    sentContainer.appendChild(chatMessage);
 
     scrollToBottom();
   });
@@ -389,6 +409,10 @@ function closeModal() {
   messageDisplay.style.display = 'none';
   messageDisplay.innerHTML = '';
 
+  main.classList.remove('blur');
+  sidebar.classList.remove('blur');
+  main.classList.remove('no-scroll');
+
   console.log('Closed Modal');
 }
 
@@ -401,3 +425,25 @@ function scrollToBottom() {
 function addChatMessage() {
   scrollToBottom();
 }
+
+// JS for removing modal when outside the modal is clicked
+
+const modals = document.querySelectorAll('.modal');
+
+document.addEventListener('click', function (event) {
+  modals.forEach((modal) => {
+    if (
+      modal.classList.contains('openModal') &&
+      !modal.contains(event.target) &&
+      event.target !== modal
+    ) {
+      event.preventDefault();
+      event.stopPropagation();
+      // modal.classList.remove('active');
+      modal.classList.remove('openModal');
+      main.classList.remove('blur');
+      sidebar.classList.remove('blur');
+      console.log('Modal closed');
+    }
+  });
+});

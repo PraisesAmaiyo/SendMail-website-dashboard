@@ -522,11 +522,7 @@ body {
     .sidebar {
       padding: 2rem 0; } }
   .sidebar-fixed {
-    position: fixed;
-    width: 23%; }
-    @media screen and (max-width: 1200px) {
-      .sidebar-fixed {
-        width: 20%; } }
+    position: fixed; }
   .sidebar-header {
     display: flex;
     justify-content: center;
@@ -1612,30 +1608,30 @@ body {
       width: max-content; }
       .main .message-type select:focus {
         box-shadow: 0 0 0 0.8rem rgba(7, 21, 92, 0.5); }
-  .main .chats {
+  .main .chats,
+  .main .sentMessages {
     height: calc(100vh - 212px);
     padding: 1rem;
     overflow-x: hidden;
-    overflow-y: scroll;
-    border-bottom: 0.3px solid rgba(18, 70, 138, 0.5); }
-    .main .chats .no-messages {
+    overflow-y: auto;
+    border-bottom: 0.3px solid rgba(18, 70, 138, 0.5);
+    width: 100%; }
+    .main .chats .no-messages,
+    .main .sentMessages .no-messages {
       text-align: center;
       font-size: 1.8rem;
       margin-top: 3rem; }
-  .main .chats,
-  .main .compose {
-    width: 85%; }
 
 .messageDisplay {
   width: 50%;
   height: 70%;
-  overflow-y: scroll;
+  overflow-y: auto;
   display: none; }
   .messageDisplay .inbox-card {
     width: 100%;
     height: 100%;
     margin-top: 5rem;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden; }
     .messageDisplay .inbox-card .user-inbox_tab-name {
       font-size: 2rem; }
@@ -1761,6 +1757,7 @@ body {
         margin-bottom: 1.5rem; }
 
 .compose {
+  width: 100%;
   margin-bottom: 5rem;
   display: flex;
   justify-content: center; }
@@ -1867,6 +1864,7 @@ body {
   cursor: pointer; }
 
 .messageDisplay .inbox-card::-webkit-scrollbar,
+.sentMessages::-webkit-scrollbar,
 .chats::-webkit-scrollbar,
 textarea::-webkit-scrollbar {
   margin-right: 2rem;
@@ -1874,6 +1872,7 @@ textarea::-webkit-scrollbar {
   background-color: #d4deed; }
 
 .messageDisplay .inbox-card::-webkit-scrollbar-thumb,
+.sentMessages::-webkit-scrollbar-thumb,
 .chats::-webkit-scrollbar-thumb,
 textarea::-webkit-scrollbar-thumb {
   background-color: #12468a;
@@ -1881,6 +1880,7 @@ textarea::-webkit-scrollbar-thumb {
   margin: 10px; }
 
 .messageDisplay .inbox-card::-webkit-scrollbar-track:hover,
+.sentMessages::-webkit-scrollbar-track:hover,
 .chats::-webkit-scrollbar-track:hover,
 textarea::-webkit-scrollbar-track:hover {
   background-color: #c0d0e9; }
