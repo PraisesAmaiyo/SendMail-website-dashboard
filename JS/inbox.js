@@ -173,21 +173,20 @@ function openModal(i, isSent) {
   //     messageDisplay.appendChild(newElement);
   //   }
 
-  let messageContent = '';
+  //   let messageContent = '';
 
-  if (isSent) {
-    messageContent = `
-       <div class="sent-card ">
-         ${sentCard[i] ? sentCard[i].innerHTML : ''}
-         <div class="close closeModal" id="">&times;</div>
-       </div>`;
-  } else {
-    messageContent = `
-       <div class="inbox-card ">
-         ${inboxCard[i] ? inboxCard[i].innerHTML : ''}
-         <div class="close closeModal" id="">&times;</div>
-       </div>`;
-  }
+  console.log(
+    'Opening modal for',
+    isSent ? 'sent' : 'inbox',
+    'message at index',
+    i
+  );
+
+  const messageContent = `
+    <div class="${isSent ? 'sent-card' : 'inbox-card'}">
+      ${isSent ? sentCard[i].innerHTML : inboxCard[i].innerHTML}
+      <div class="close closeModal" id="">&times;</div>
+    </div>`;
 
   newElement.style.height = '80%';
   newElement.innerHTML = messageContent;
@@ -224,33 +223,61 @@ function openModal(i, isSent) {
   });
 }
 
-inboxCard.forEach((card) => {
-  card.addEventListener('click', function (event) {
-    const target = event.target;
+// Assuming there's a common ancestor for both inbox and sent messages.
+const messagesContainer = document.querySelector('.main');
 
-    for (let i = 0; i < inboxCard.length; i++) {
-      if (inboxCard[i].contains(target)) {
-        openModal(i, false);
-      }
-    }
-  });
-});
-
-sentContainer.addEventListener('click', function (event) {
+// Event delegation for inbox messages
+messagesContainer.addEventListener('click', function (event) {
   const target = event.target;
-  console.log('Happened');
 
-  for (let i = 0; i < sentCard.length; i++) {
-    console.log('Happened1');
-    console.log(sentCard);
-    if (sentCard[i].contains(target)) {
-      console.log('Happened2');
-      openModal(i, true);
-      console.log('Happened3');
+  for (let i = 0; i < inboxCard.length; i++) {
+    if (inboxCard[i].contains(target)) {
+      openModal(i, false);
       return;
     }
   }
 });
+
+// Event delegation for sent messages
+messagesContainer.addEventListener('click', function (event) {
+  const target = event.target;
+  console.log('Clicked on:', target);
+
+  for (let i = 0; i < sentCard.length; i++) {
+    if (sentCard[i].contains(target)) {
+      openModal(i, true);
+      return; // Stop iterating once you find the matching element
+    }
+  }
+});
+
+// inboxCard.forEach((card) => {
+//   card.addEventListener('click', function (event) {
+//     const target = event.target;
+
+//     for (let i = 0; i < inboxCard.length; i++) {
+//       if (inboxCard[i].contains(target)) {
+//         openModal(i, false);
+//       }
+//     }
+//   });
+// });
+
+// sentContainer.addEventListener('click', function (event) {
+//   const target = event.target;
+//   console.log('Happened');
+
+//   for (let i = 0; i < sentCard.length; i++) {
+//     console.log('Happened1');
+//     console.log(sentCard);
+//     if (sentCard[i].contains(target)) {
+//       console.log('Happened2');
+//       openModal(i, true);
+//       console.log('Happened3');
+//       return;
+//     }
+//   }
+// });
 
 // JavaScript for Submit and Message addition
 const submit = document.getElementById('sendMessage');
