@@ -80,6 +80,7 @@
    overflow-y: auto;
    display: none;
 
+   .sent-card,
    .inbox-card {
       width: 100%;
       height: 100%;
@@ -87,14 +88,17 @@
       overflow-y: auto;
       overflow-x: hidden;
 
+      .user-sent_tab-name,
       .user-inbox_tab-name {
          font-size: 2rem;
       }
 
+      .user-sent_tab-subject,
       .user-inbox_tab-subject {
          font-size: 1.5rem;
       }
 
+      .user-sent_tab-text,
       .user-inbox_tab-text {
          font-size: 1.5rem;
          line-height: 1.6;
@@ -364,6 +368,7 @@
 
 }
 
+.messageDisplay .sent-card::-webkit-scrollbar,
 .messageDisplay .inbox-card::-webkit-scrollbar,
 .sentMessages::-webkit-scrollbar,
 .chats::-webkit-scrollbar,
@@ -373,6 +378,7 @@ textarea::-webkit-scrollbar {
    background-color: $color-secondary-light;
 }
 
+.messageDisplay .sent-card::-webkit-scrollbar-thumb,
 .messageDisplay .inbox-card::-webkit-scrollbar-thumb,
 .sentMessages::-webkit-scrollbar-thumb,
 .chats::-webkit-scrollbar-thumb,
@@ -382,6 +388,7 @@ textarea::-webkit-scrollbar-thumb {
    margin: 10px;
 }
 
+.messageDisplay .sent-card::-webkit-scrollbar-track:hover,
 .messageDisplay .inbox-card::-webkit-scrollbar-track:hover,
 .sentMessages::-webkit-scrollbar-track:hover,
 .chats::-webkit-scrollbar-track:hover,

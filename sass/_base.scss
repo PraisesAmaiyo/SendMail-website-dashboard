@@ -114,7 +114,8 @@ body {
    box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
    padding: 2rem 2rem;
    // margin: 2rem 0;
-   width: 60%;
+   // width: 60%;
+   width: 100%;
    // margin-right: auto;
 
    .close {
@@ -129,7 +130,7 @@ body {
    }
 }
 
-.inbox-card.user {
+.sent-card.user {
    background-image: linear-gradient(111.4deg, rgba($color-grey-dark-2, .75) 1%, rgba($color-grey-dark-2, .75) 58%), url(../img/image-1.jpg);
    background-size: cover;
    color: $color-grey-light-1;

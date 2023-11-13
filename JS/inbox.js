@@ -138,40 +138,116 @@ sentMessage.forEach((message) => {
 
 // display messages when clicked
 const inboxCard = document.querySelectorAll('.inbox-card');
+const sentCard = document.querySelectorAll('.sent-card');
 const messageDisplay = document.querySelector('.messageDisplay');
 const closeModalButton = document.querySelectorAll('.closeModal');
 
-function openModal(i) {
+function openModal(i, isSent) {
   messageDisplay.style.display = 'block';
-  const example = `
-      <div class="inbox-card ">
-      ${inboxCard[i].innerHTML}
-      <div class="close closeModal" id="">&times;</div>
-      </div>`;
+  messageDisplay.innerHTML = '';
   const newElement = document.createElement('div');
+
+  console.log('object');
+
+  //   if (inboxCard) {
+  //     const messageContent = `
+  //        <div class="inbox-card ">
+  //        ${inboxCard[i] ? inboxCard[i].innerHTML : ''}
+  //        <div class="close closeModal" id="">&times;</div>
+  //        </div>`;
+
+  //     newElement.style.height = '80%';
+  //     newElement.innerHTML = messageContent;
+  //     messageDisplay.appendChild(newElement);
+  //   }
+
+  //   if (sentCard) {
+  //     const messageContent = `
+  //        <div class="inbox-card ">
+  //        ${sentCard[i] ? sentCard[i].innerHTML : ''}
+  //        <div class="close closeModal" id="">&times;</div>
+  //        </div>`;
+
+  //     newElement.style.height = '80%';
+  //     newElement.innerHTML = messageContent;
+  //     messageDisplay.appendChild(newElement);
+  //   }
+
+  let messageContent = '';
+
+  if (isSent) {
+    messageContent = `
+       <div class="sent-card ">
+         ${sentCard[i] ? sentCard[i].innerHTML : ''}
+         <div class="close closeModal" id="">&times;</div>
+       </div>`;
+  } else {
+    messageContent = `
+       <div class="inbox-card ">
+         ${inboxCard[i] ? inboxCard[i].innerHTML : ''}
+         <div class="close closeModal" id="">&times;</div>
+       </div>`;
+  }
+
   newElement.style.height = '80%';
-  newElement.innerHTML = example;
+  newElement.innerHTML = messageContent;
   messageDisplay.appendChild(newElement);
 
   const userInboxTabText = messageDisplay.querySelector('.user-inbox_tab-text');
-  userInboxTabText.textContent = originalInboxText[i];
-  messageDisplay.classList.add('card', 'modal', 'openModal');
+  const userSentTabText = messageDisplay.querySelector('.user-sent_tab-text');
+
+  if (userInboxTabText && !isSent) {
+    userInboxTabText.textContent = originalInboxText[i];
+  }
+  if (userSentTabText && isSent) {
+    userSentTabText.textContent = originalSentText[i];
+  }
+
+  messageDisplay.classList.toggle('openModal');
+
+  if (messageDisplay.classList.contains('openModal')) {
+    main.classList.add('blur');
+    sidebar.classList.add('blur');
+    main.classList.add('no-scroll');
+  } else {
+    main.classList.remove('blur');
+    sidebar.classList.remove('blur');
+    main.classList.remove('no-scroll');
+  }
 
   const closeButton = newElement.querySelector('.close');
-  closeButton.addEventListener('click', function () {
-    messageDisplay.style.display = 'none';
-    messageDisplay.innerHTML = '';
-    console.log('Closed Modal');
-  });
   closeButton.style.display = 'block';
+
+  closeButton.addEventListener('click', function (event) {
+    event.stopPropagation();
+    closeModal();
+  });
 }
 
-document.body.addEventListener('click', function (event) {
-  const target = event.target;
+inboxCard.forEach((card) => {
+  card.addEventListener('click', function (event) {
+    const target = event.target;
 
-  for (let i = 0; i < inboxCard.length; i++) {
-    if (inboxCard[i].contains(target)) {
-      openModal(i);
+    for (let i = 0; i < inboxCard.length; i++) {
+      if (inboxCard[i].contains(target)) {
+        openModal(i, false);
+      }
+    }
+  });
+});
+
+sentContainer.addEventListener('click', function (event) {
+  const target = event.target;
+  console.log('Happened');
+
+  for (let i = 0; i < sentCard.length; i++) {
+    console.log('Happened1');
+    console.log(sentCard);
+    if (sentCard[i].contains(target)) {
+      console.log('Happened2');
+      openModal(i, true);
+      console.log('Happened3');
+      return;
     }
   }
 });
@@ -194,14 +270,15 @@ const sentMessages = [
 ];
 
 // Initialize the inbox tab when there are no messages
-if (sentMessages.length < 1) {
-  sentContainer.innerHTML = `
-   <p class ="no-messages">You have no Messages. Click on the Compose Button to send a message</p>
-   `;
-} else {
-  //   sentContainer.innerHTML = `${{ sentMessages }}`;
-  rendersentMessages();
-}
+
+// if (sentMessages.length < 1) {
+//   sentContainer.innerHTML = `
+//    <p class ="no-messages">You have no Messages. Click on the Compose Button to send a message</p>
+//    `;
+// } else {
+//   //   sentContainer.innerHTML = `${{ sentMessages }}`;
+//   rendersentMessages();
+// }
 
 submit.addEventListener('click', function submitMessage() {
   const name = document.getElementById('userName').innerText;
@@ -405,9 +482,10 @@ closeModalButton.forEach((closeButton) => {
 function closeModal() {
   imageModal.classList.remove('openModal');
   composeModal.classList.remove('openModal');
-  messageDisplay.classList.remove('card', 'modal', 'openModal');
+  messageDisplay.classList.remove('openModal');
   messageDisplay.style.display = 'none';
   messageDisplay.innerHTML = '';
+  messageSelect.value = 'inbox';
 
   main.classList.remove('blur');
   sidebar.classList.remove('blur');
@@ -425,25 +503,3 @@ function scrollToBottom() {
 function addChatMessage() {
   scrollToBottom();
 }
-
-// JS for removing modal when outside the modal is clicked
-
-const modals = document.querySelectorAll('.modal');
-
-document.addEventListener('click', function (event) {
-  modals.forEach((modal) => {
-    if (
-      modal.classList.contains('openModal') &&
-      !modal.contains(event.target) &&
-      event.target !== modal
-    ) {
-      event.preventDefault();
-      event.stopPropagation();
-      // modal.classList.remove('active');
-      modal.classList.remove('openModal');
-      main.classList.remove('blur');
-      sidebar.classList.remove('blur');
-      console.log('Modal closed');
-    }
-  });
-});
