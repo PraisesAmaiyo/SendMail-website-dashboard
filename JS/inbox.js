@@ -223,7 +223,6 @@ function openModal(i, isSent) {
   });
 }
 
-// Assuming there's a common ancestor for both inbox and sent messages.
 const messagesContainer = document.querySelector('.main');
 
 // Event delegation for inbox messages
@@ -236,17 +235,11 @@ messagesContainer.addEventListener('click', function (event) {
       return;
     }
   }
-});
-
-// Event delegation for sent messages
-messagesContainer.addEventListener('click', function (event) {
-  const target = event.target;
-  console.log('Clicked on:', target);
 
   for (let i = 0; i < sentCard.length; i++) {
     if (sentCard[i].contains(target)) {
       openModal(i, true);
-      return; // Stop iterating once you find the matching element
+      return;
     }
   }
 });
