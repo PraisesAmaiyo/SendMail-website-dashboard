@@ -136,6 +136,16 @@ sentMessage.forEach((message) => {
   message.textContent = snippet;
 });
 
+// display images when clicked
+const imageModal = document.getElementById('imageModal');
+const enlargedImg = document.getElementById('enlargedImg');
+
+function openImageModal(src) {
+  enlargedImg.src = src;
+  imageModal.classList.add('openModal');
+  console.log(imageModal, enlargedImg);
+}
+
 // display messages when clicked
 const inboxCard = document.querySelectorAll('.inbox-card');
 const sentCard = document.querySelectorAll('.sent-card');
@@ -147,40 +157,7 @@ function openModal(i, isSent) {
   messageDisplay.innerHTML = '';
   const newElement = document.createElement('div');
 
-  console.log('object');
-
-  //   if (inboxCard) {
-  //     const messageContent = `
-  //        <div class="inbox-card ">
-  //        ${inboxCard[i] ? inboxCard[i].innerHTML : ''}
-  //        <div class="close closeModal" id="">&times;</div>
-  //        </div>`;
-
-  //     newElement.style.height = '80%';
-  //     newElement.innerHTML = messageContent;
-  //     messageDisplay.appendChild(newElement);
-  //   }
-
-  //   if (sentCard) {
-  //     const messageContent = `
-  //        <div class="inbox-card ">
-  //        ${sentCard[i] ? sentCard[i].innerHTML : ''}
-  //        <div class="close closeModal" id="">&times;</div>
-  //        </div>`;
-
-  //     newElement.style.height = '80%';
-  //     newElement.innerHTML = messageContent;
-  //     messageDisplay.appendChild(newElement);
-  //   }
-
-  //   let messageContent = '';
-
-  console.log(
-    'Opening modal for',
-    isSent ? 'sent' : 'inbox',
-    'message at index',
-    i
-  );
+  const messageData = isSent ? sentMessages[i] : originalSentText[i];
 
   const messageContent = `
     <div class="${isSent ? 'sent-card' : 'inbox-card'}">
@@ -223,60 +200,63 @@ function openModal(i, isSent) {
   });
 }
 
-// Assuming there's a common ancestor for both inbox and sent messages.
 const messagesContainer = document.querySelector('.main');
 
-// Event delegation for inbox messages
+// Event delegation for both inbox and sent messages
 messagesContainer.addEventListener('click', function (event) {
   const target = event.target;
 
-  for (let i = 0; i < inboxCard.length; i++) {
-    if (inboxCard[i].contains(target)) {
-      openModal(i, false);
-      return;
-    }
+  // Check if the clicked element is inside an inbox or sent message
+  let inboxMessageElement = target.closest('.inbox-card');
+  let sentMessageElement = target.closest('.sent-card');
+
+  if (inboxMessageElement) {
+    let index = Array.from(inboxCard).indexOf(inboxMessageElement);
+    console.log('Clicked on inbox message via delegation');
+    openModal(index, false);
+  } else if (sentMessageElement) {
+    let index = Array.from(sentContainer.children).indexOf(sentMessageElement);
+    console.log('Clicked on sent message via delegation');
+    openModal(index, true);
+  }
+
+  // Check if the clicked element is an image
+  if (target.classList.contains('attachmentFile')) {
+    openImageModal(target.src);
   }
 });
+// Enlarge image function
 
 // Event delegation for sent messages
-messagesContainer.addEventListener('click', function (event) {
+// sentContainer.addEventListener('click', function (event) {
+//   const target = event.target;
+
+//   // Check if the clicked element is inside a sent message
+//   let messageElement = target.closest('.sent-card');
+//   if (messageElement) {
+//     let index = Array.from(sentContainer.children).indexOf(messageElement);
+//     console.log('Clicked on sent message via delegationXXXXXX');
+//     openModal(index, true);
+//   }
+// });
+
+// Event delegation for sent messages
+sentContainer.addEventListener('click', function (event) {
   const target = event.target;
 
-  for (let i = 0; i < sentCard.length; i++) {
-    if (sentCard[i].contains(target)) {
-      openModal(i, true);
-      return;
+  // Check if the clicked element is inside a sent message
+  let messageElement = target.closest('.sent-card');
+  if (messageElement) {
+    // Check if the clicked element is an image inside the sent message
+    if (target.classList.contains('attachmentFile')) {
+      openImageModal(target.src);
+    } else {
+      let index = Array.from(sentContainer.children).indexOf(messageElement);
+      console.log('Clicked on sent message via delegation');
+      openModal(index, true);
     }
   }
 });
-
-// inboxCard.forEach((card) => {
-//   card.addEventListener('click', function (event) {
-//     const target = event.target;
-
-//     for (let i = 0; i < inboxCard.length; i++) {
-//       if (inboxCard[i].contains(target)) {
-//         openModal(i, false);
-//       }
-//     }
-//   });
-// });
-
-// sentContainer.addEventListener('click', function (event) {
-//   const target = event.target;
-//   console.log('Happened');
-
-//   for (let i = 0; i < sentCard.length; i++) {
-//     console.log('Happened1');
-//     console.log(sentCard);
-//     if (sentCard[i].contains(target)) {
-//       console.log('Happened2');
-//       openModal(i, true);
-//       console.log('Happened3');
-//       return;
-//     }
-//   }
-// });
 
 // JavaScript for Submit and Message addition
 const submit = document.getElementById('sendMessage');
@@ -294,17 +274,6 @@ const sentMessages = [
   //     id: Math.random(),
   //   },
 ];
-
-// Initialize the inbox tab when there are no messages
-
-// if (sentMessages.length < 1) {
-//   sentContainer.innerHTML = `
-//    <p class ="no-messages">You have no Messages. Click on the Compose Button to send a message</p>
-//    `;
-// } else {
-//   //   sentContainer.innerHTML = `${{ sentMessages }}`;
-//   rendersentMessages();
-// }
 
 submit.addEventListener('click', function submitMessage() {
   const name = document.getElementById('userName').innerText;
@@ -352,7 +321,7 @@ submit.addEventListener('click', function submitMessage() {
 function rendersentMessages() {
   sentContainer.innerHTML = '';
 
-  sentMessages.forEach((message) => {
+  sentMessages.forEach((message, index) => {
     const chatMessage = document.createElement('div');
     chatMessage.className = 'sent-card user';
 
@@ -401,14 +370,9 @@ function rendersentMessages() {
             <p class="user-sent_tab-text">${message.message}</p>
          </div>
 
-         <div class="files" style="display:flex" >
-          
-            ${attachmentsHTML}
-              
-         
+         <div class="files" style="display:flex" >          
+            ${attachmentsHTML}         
          </div>
-
-
 
          <div class="user-sent_info">
          <p class="user-sent_info-date ">${message.time}</p>
@@ -429,8 +393,30 @@ function rendersentMessages() {
 
     sentContainer.appendChild(chatMessage);
 
+    chatMessage.addEventListener('click', function () {
+      openModal(index, true);
+    });
+
     scrollToBottom();
   });
+
+  //   //   Enlarge image
+  //   const imageModal = document.getElementById('imageModal');
+  //   const images = document.querySelectorAll('.attachmentFile');
+
+  //   function openModal(src) {
+  //     const img = document.getElementById('enlargedImg');
+  //     imageModal.classList.add('openModal');
+  //     img.src = src;
+
+  //     console.log(imageModal, img);
+  //   }
+
+  //   images.forEach((image) => {
+  //     image.addEventListener('click', function () {
+  //       openModal(this.src);
+  //     });
+  //   });
 
   //////////////////////
 
@@ -475,29 +461,9 @@ function rendersentMessages() {
       }
     });
   });
-
-  // Enlarge image
-  const imageModal = document.getElementById('imageModal');
-  const images = document.querySelectorAll('.attachmentFile');
-
-  function openModal(src) {
-    const img = document.getElementById('enlargedImg');
-    imageModal.classList.add('openModal');
-    img.src = src;
-
-    console.log(imageModal, img);
-  }
-
-  images.forEach((image) => {
-    image.addEventListener('click', function () {
-      openModal(this.src);
-    });
-  });
 }
 
 // Close opened Modal for compose and enlarged image
-
-const imageModal = document.getElementById('imageModal');
 
 closeModalButton.forEach((closeButton) => {
   closeButton.addEventListener('click', function (event) {
