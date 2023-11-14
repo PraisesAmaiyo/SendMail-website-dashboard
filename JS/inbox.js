@@ -148,22 +148,20 @@ function openImageModal(src) {
 
 // display messages when clicked
 const inboxCard = document.querySelectorAll('.inbox-card');
-const sentCard = document.querySelectorAll('.sent-card');
 const messageDisplay = document.querySelector('.messageDisplay');
 const closeModalButton = document.querySelectorAll('.closeModal');
 
 function openModal(i, isSent) {
+  const sentCard = document.querySelectorAll('.sent-card');
   messageDisplay.style.display = 'block';
   messageDisplay.innerHTML = '';
   const newElement = document.createElement('div');
 
-  const messageData = isSent ? sentMessages[i] : originalSentText[i];
-
   const messageContent = `
-    <div class="${isSent ? 'sent-card' : 'inbox-card'}">
-      ${isSent ? sentCard[i].innerHTML : inboxCard[i].innerHTML}
-      <div class="close closeModal" id="">&times;</div>
-    </div>`;
+       <div class="${isSent ? 'sent-card' : 'inbox-card'}">
+         ${isSent ? sentCard[i].innerHTML : inboxCard[i].innerHTML}
+         <div class="close closeModal" id="">&times;</div>
+       </div>`;
 
   newElement.style.height = '80%';
   newElement.innerHTML = messageContent;
@@ -171,6 +169,8 @@ function openModal(i, isSent) {
 
   const userInboxTabText = messageDisplay.querySelector('.user-inbox_tab-text');
   const userSentTabText = messageDisplay.querySelector('.user-sent_tab-text');
+
+  console.log(userSentTabText);
 
   if (userInboxTabText && !isSent) {
     userInboxTabText.textContent = originalInboxText[i];
@@ -228,17 +228,17 @@ messagesContainer.addEventListener('click', function (event) {
 // Enlarge image function
 
 // Event delegation for sent messages
-// sentContainer.addEventListener('click', function (event) {
-//   const target = event.target;
+messagesContainer.addEventListener('click', function (event) {
+  const target = event.target;
 
-//   // Check if the clicked element is inside a sent message
-//   let messageElement = target.closest('.sent-card');
-//   if (messageElement) {
-//     let index = Array.from(sentContainer.children).indexOf(messageElement);
-//     console.log('Clicked on sent message via delegationXXXXXX');
-//     openModal(index, true);
-//   }
-// });
+  // Check if the clicked element is inside a sent message
+  let messageElement = target.closest('.sent-card');
+  if (messageElement) {
+    let index = Array.from(sentContainer.children).indexOf(messageElement);
+    console.log('Clicked on sent message via delegationXXXXXX');
+    openModal(index, true);
+  }
+});
 
 // Event delegation for sent messages
 sentContainer.addEventListener('click', function (event) {
@@ -247,33 +247,63 @@ sentContainer.addEventListener('click', function (event) {
   // Check if the clicked element is inside a sent message
   let messageElement = target.closest('.sent-card');
   if (messageElement) {
-    // Check if the clicked element is an image inside the sent message
-    if (target.classList.contains('attachmentFile')) {
-      openImageModal(target.src);
-    } else {
-      let index = Array.from(sentContainer.children).indexOf(messageElement);
-      console.log('Clicked on sent message via delegation');
-      openModal(index, true);
-    }
+    // Extract the message ID from the clicked element's dataset attribute
+    const messageId = messageElement.dataset.messageId;
+
+    openModal(null, true, messageId);
   }
 });
+
+// sentContainer.addEventListener('click', function (event) {
+//   const target = event.target;
+
+//   // Check if the clicked element is inside a sent message
+//   let messageElement = target.closest('.sent-card');
+//   if (messageElement) {
+//     // Check if the clicked element is an image inside the sent message
+//     if (target.classList.contains('attachmentFile')) {
+//       openImageModal(target.src);
+//     } else {
+//       let index = Array.from(sentContainer.children).indexOf(messageElement);
+//       console.log('Clicked on sent message via delegation');
+//       openModal(index, true);
+//     }
+//   }
+// });
 
 // JavaScript for Submit and Message addition
 const submit = document.getElementById('sendMessage');
 
-const sentMessages = [
-  //   {
-  //     name: 'Sarah Kins',
-  //     subject: 'Domain and alias addition',
-  //     message:
-  //       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molesti voluptatem repellendus eaque sunt harum  odio adipisci magni architecto corrupti, veniam consequuntur iusto dicta accusantium aut perspiciatis illo autem at.',
-  //     image: 'https://randomuser.me/api/portraits/women/30.jpg',
-  //     date: 'October 23rd',
-  //     time: '03:22 pm',
-  //     files: [],
-  //     id: Math.random(),
-  //   },
+let sentMessages = [
+  {
+    name: 'Michael Brown',
+    subject: ' The Power of Gratitude: Transforming Lives',
+    message: `     Hey there,
+      I hope this email finds you well. I wanted to share some groundbreaking news in the world of
+      technology. The advancements we're witnessing are truly remarkable, and it's shaping the way we
+      live and work. From artificial intelligence to quantum computing, the possibilities seem endless.
+      Sit back, relax, and let's delve into the fascinating realm of technological wonders!
+      Pretium viverra suspendisse potenti nullam ac tortor vitae. Vitae proin
+      sagittis nisl rhoncus mattis rhoncus urna neque viverra. Egestas dui id ornare arcu odio ut sem.
+      Pharetra sit amet aliquam id diam maecenas ultricies mi eget. In ante metus dictum at tempor
+      commodo ullamcorper a. Et sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque.
+      Nascetur ridiculus mus mauris vitae. Augue mauris augue neque gravida. Consequat id porta nibh
+      venenatis cras sed. Cursus mattis molestie a iaculis. Luctus venenatis lectus magna fringilla urna.
+      Faucibus vitae aliquet nec ullamcorper sit amet risus. Vehicula ipsum a arcu cursus vitae congue
+      mauris. Sagittis nisl rhoncus mattis rhoncus urna neque viverra justo nec. Eget velit aliquet
+      sagittis id consectetur purus ut faucibus pulvinar. Neque volutpat ac tincidunt vitae semper quis
+      lectus nulla. Vel facilisis volutpat est velit. Diam volutpat commodo sed egestas egestas fringilla
+      phasellus. Pharetra vel turpis nunc eget lorem. At tellus at urna condimentum mattis pellentesque.`,
+    image: 'https://randomuser.me/api/portraits/women/30.jpg',
+    date: 'November 23rd',
+    time: '03:22 pm',
+    files: [],
+    id: Math.random(),
+    isDummy: true,
+    id: 'unique-dummy-id-1',
+  },
 ];
+// let sentMessages = [];
 
 submit.addEventListener('click', function submitMessage() {
   const name = document.getElementById('userName').innerText;
@@ -293,10 +323,13 @@ submit.addEventListener('click', function submitMessage() {
     id: Math.random(),
     time: updateDateTime().slice(19, 28),
     date: updateDateTime().slice(5, 19),
+    isDummy: true,
   };
 
+  //   sentMessages = [];
   sentMessages.push(inboxValues);
   addChatMessage(sentMessages);
+  console.log(sentMessages);
 
   subject.value = '';
   message.value = '';
@@ -317,13 +350,15 @@ submit.addEventListener('click', function submitMessage() {
   composeModal.classList.remove('openModal');
 });
 
+rendersentMessages();
+
 // JavaScript to add or render new messages to the DOM
 function rendersentMessages() {
   sentContainer.innerHTML = '';
 
   sentMessages.forEach((message, index) => {
     const chatMessage = document.createElement('div');
-    chatMessage.className = 'sent-card user';
+    chatMessage.className = `sent-card user `;
 
     const attachmentsHTML = message.files
       .map((file) => {
@@ -391,6 +426,7 @@ function rendersentMessages() {
          </div>
    `;
 
+    console.log(message.message);
     sentContainer.appendChild(chatMessage);
 
     chatMessage.addEventListener('click', function () {
