@@ -130,10 +130,8 @@ function handleFileSelect(event) {
 
 // Function to extract the first 20 words from a text
 const inboxMessage = document.querySelectorAll('.user-inbox_tab-text');
-const sentMessage = document.querySelectorAll('.user-sent_tab-text');
 
 const originalInboxText = [];
-const originalSentText = [];
 
 function getFirst20Words(text, originalTextArray) {
   const words = text.split(' ');
@@ -145,12 +143,6 @@ function getFirst20Words(text, originalTextArray) {
 inboxMessage.forEach((message) => {
   const text = message.textContent;
   const snippet = getFirst20Words(text, originalInboxText);
-  message.textContent = snippet;
-});
-
-sentMessage.forEach((message) => {
-  const text = message.textContent;
-  const snippet = getFirst20Words(text, originalSentText);
   message.textContent = snippet;
 });
 
@@ -169,16 +161,11 @@ const messageDisplay = document.querySelector('.messageDisplay');
 const closeModalButton = document.querySelectorAll('.closeModal');
 
 function openModal(i, isSent) {
-  const sentCard = document.querySelectorAll('.sent-card');
   messageDisplay.style.display = 'block';
   messageDisplay.innerHTML = '';
   const messageCard = document.createElement('div');
 
-  console.log('kkk');
-
   const messageContainer = isSent ? sentMessages : inboxMessage;
-  console.log(sentMessages);
-  console.log(inboxMessage);
   const message = messageContainer[i];
 
   if (message) {
@@ -243,14 +230,9 @@ function openModal(i, isSent) {
     const userInboxTabText = messageDisplay.querySelector(
       '.user-inbox_tab-text'
     );
-    //  const userSentTabText = messageDisplay.querySelector('.user-sent_tab-text');
-    const userSentTabText = message;
 
     if (userInboxTabText && !isSent) {
       userInboxTabText.textContent = originalInboxText[i];
-    }
-    if (userSentTabText && isSent) {
-      userSentTabText.textContent = originalSentText[i];
     }
 
     messageDisplay.classList.toggle('openModal');
@@ -373,6 +355,9 @@ let sentMessages = [
   {
     name: 'Michael Brown',
     subject: ' The Power of Gratitude: Transforming Lives',
+    slicedMessage: `Hey there,
+    I hope this email finds you well. I wanted to share some groundbreaking news in the world of
+    technology. The ...`,
     message: `     Hey there,
       I hope this email finds you well. I wanted to share some groundbreaking news in the world of
       technology. The advancements we're witnessing are truly remarkable, and it's shaping the way we
@@ -401,18 +386,23 @@ let sentMessages = [
 
 submit.addEventListener('click', function submitMessage() {
   const name = document.getElementById('userName').innerText;
-  //   const image = document.getElementById('userImage').src;
   const subject = document.getElementById('subject');
   const message = document.getElementById('inputField');
 
   const subjectValue = subject.value;
   const messageValue = message.value;
 
+  if (messageValue < 20) {
+    console.log('/eeeeeeeeee');
+  }
+  const splitMessage = messageValue.split(' ');
+  const slicedMessage = splitMessage.slice(0, 20).join(' ') + '...';
+
   let inboxValues = {
     name,
     subject: subjectValue,
+    slicedMessage,
     message: messageValue,
-    //  image,
     files: selectedFiles || [],
     id: Math.random(),
     time: updateDateTime().slice(19, 28),
@@ -508,7 +498,7 @@ function rendersentMessages() {
 
          <div class="user-sent_tab">
 
-            <p class="user-sent_tab-text">${message.message}</p>
+            <p class="user-sent_tab-text">${message.slicedMessage}</p>
          </div>
 
          <div class="files" style="display:flex">
@@ -600,6 +590,9 @@ function closeModal() {
   messageDisplay.classList.remove('openModal');
   messageDisplay.style.display = 'none';
   messageDisplay.innerHTML = '';
+
+  const message = document.getElementById('inputField');
+  message.value = '';
   //   messageSelect.value = 'inbox';
 
   main.classList.remove('blur');
