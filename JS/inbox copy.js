@@ -137,10 +137,29 @@ const originalSentText = [];
 
 function getFirst20Words(text, originalTextArray) {
   const words = text.split(' ');
-  const slicedWords = words.slice(0, 40).join(' ') + '...';
+  const slicedWords = words.slice(0, 20).join(' ') + '...';
   originalTextArray.push(text);
+  //   console.log(slicedWords);
+  //   console.log(text);
   return slicedWords;
 }
+
+function applyFirst20WordsToMessage(message, originalTextArray) {
+  const text = message.textContent;
+  const snippet = getFirst20Words(text, originalTextArray);
+  message.textContent = snippet;
+}
+
+// Call this function whenever a new message is added dynamically
+function applyFirst20WordsToDynamicMessages(messages, originalTextArray) {
+  messages.forEach((message) => {
+    applyFirst20WordsToMessage(message, originalTextArray);
+  });
+}
+
+// Initial application to messages in the DOM
+applyFirst20WordsToDynamicMessages(inboxMessage, originalInboxText);
+applyFirst20WordsToDynamicMessages(sentMessage, originalSentText);
 
 inboxMessage.forEach((message) => {
   const text = message.textContent;
@@ -150,7 +169,17 @@ inboxMessage.forEach((message) => {
 
 sentMessage.forEach((message) => {
   const text = message.textContent;
+  console.log('Original Text:', text);
   const snippet = getFirst20Words(text, originalSentText);
+  console.log('Modified Text:', snippet);
+  message.textContent = snippet;
+});
+
+sentMessage.forEach((message) => {
+  const text = message.textContent;
+  console.log('Original Text:', text);
+  const snippet = getFirst20Words(text, originalSentText);
+  console.log('Modified Text:', snippet);
   message.textContent = snippet;
 });
 
@@ -174,11 +203,7 @@ function openModal(i, isSent) {
   messageDisplay.innerHTML = '';
   const messageCard = document.createElement('div');
 
-  console.log('kkk');
-
   const messageContainer = isSent ? sentMessages : inboxMessage;
-  console.log(sentMessages);
-  console.log(inboxMessage);
   const message = messageContainer[i];
 
   if (message) {
@@ -397,6 +422,7 @@ let sentMessages = [
     id: 'unique-dummy-id-1',
   },
 ];
+
 // let sentMessages = [];
 
 submit.addEventListener('click', function submitMessage() {
@@ -533,6 +559,7 @@ function rendersentMessages() {
    `;
 
     sentContainer.appendChild(chatMessage);
+    applyFirst20WordsToMessage(chatMessage, originalSentText);
 
     chatMessage.addEventListener('click', function () {
       openModal(index, true);
