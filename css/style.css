@@ -1866,8 +1866,8 @@ body {
 
 .delete-button {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0rem;
+  right: 0.5rem;
   background: none;
   border: none;
   color: #fff;

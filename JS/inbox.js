@@ -74,10 +74,28 @@ function handleFileSelect(event) {
         fileX.style.display = 'flex';
         fileX.appendChild(img);
       } else {
-        const docIcon = document.createElement('i');
-        docIcon.className = 'fa-solid fa-file-lines doc-icon';
-        //   docIcon.style.fontSize = '8rem';
-        fileX.appendChild(docIcon);
+        const fileIconContainer = document.createElement('div');
+        fileIconContainer.style.display = 'flex';
+
+        if (file.type === 'application/pdf') {
+          const pdfIcon = document.createElement('i');
+          pdfIcon.className = 'fa-solid fa-file-pdf doc-icon';
+          fileIconContainer.appendChild(pdfIcon);
+        } else if (
+          file.type === 'application/msword' ||
+          file.type ===
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        ) {
+          const wordIcon = document.createElement('i');
+          wordIcon.className = 'fa-solid fa-file-word doc-icon';
+          fileIconContainer.appendChild(wordIcon);
+        } else {
+          const genericIcon = document.createElement('i');
+          genericIcon.className = 'fa-regular fa-file doc-icon';
+          fileIconContainer.appendChild(genericIcon);
+        }
+
+        fileX.appendChild(fileIconContainer);
       }
       // selectedFiles.push(fileCardContainer);
       selectedFiles.push(file);
@@ -577,7 +595,7 @@ function closeModal() {
   messageDisplay.classList.remove('openModal');
   messageDisplay.style.display = 'none';
   messageDisplay.innerHTML = '';
-  messageSelect.value = 'inbox';
+  //   messageSelect.value = 'inbox';
 
   main.classList.remove('blur');
   sidebar.classList.remove('blur');
