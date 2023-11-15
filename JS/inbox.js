@@ -143,7 +143,6 @@ const enlargedImg = document.getElementById('enlargedImg');
 function openImageModal(src) {
   enlargedImg.src = src;
   imageModal.classList.add('openModal');
-  console.log(imageModal, enlargedImg);
 }
 
 // display messages when clicked
@@ -155,49 +154,141 @@ function openModal(i, isSent) {
   const sentCard = document.querySelectorAll('.sent-card');
   messageDisplay.style.display = 'block';
   messageDisplay.innerHTML = '';
-  const newElement = document.createElement('div');
+  const messageCard = document.createElement('div');
 
-  const messageContent = `
-       <div class="${isSent ? 'sent-card' : 'inbox-card'}">
-         ${isSent ? sentCard[i].innerHTML : inboxCard[i].innerHTML}
-         <div class="close closeModal" id="">&times;</div>
-       </div>`;
+  console.log('kkk');
 
-  newElement.style.height = '80%';
-  newElement.innerHTML = messageContent;
-  messageDisplay.appendChild(newElement);
+  const messageContainer = isSent ? sentMessages : inboxMessage;
+  const message = messageContainer[i];
 
-  const userInboxTabText = messageDisplay.querySelector('.user-inbox_tab-text');
-  const userSentTabText = messageDisplay.querySelector('.user-sent_tab-text');
+  if (message) {
+    const attachmentsHTML = message.files
+      ? message.files
+          .map((file) => {
+            if (file.type.startsWith('image')) {
+              return `
+        <div class="file-card_display">
+          <div style="display: flex;">
+            <img src="${URL.createObjectURL(
+              file
+            )}" alt="Attachment" class="attachmentFile" />
+          </div>
+        </div>
+      `;
+            } else if (file.type === 'application/pdf') {
+              return `
+          <div class="file-card_display">
+             <div style="display: flex;">
+                <i class="fa-solid fa-file-pdf doc-icon"></i>
+             </div>
+          </div>`;
+            } else if (
+              file.type === 'application/msword' ||
+              file.type ===
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            ) {
+              return `
+          <div class="file-card_display">
+             <div style="display: flex;">
+                <i class="fa-solid fa-file-word doc-icon"></i>
+                </div>
+          </div>`;
+            } else {
+              // Add more conditions for other file types if needed
+              return `
+          <div class="file-card_display">
+             <div style="display: flex;">
+                <i class="fa-regular fa-file doc-icon"></i>
+             </div>
+          </div>`;
+            }
+          })
+          .join('')
+      : '';
 
-  console.log(userSentTabText);
+    const messageContent = `
+      <div class="${isSent ? 'sent-card' : 'inbox-card'}">
+        ${
+          isSent
+            ? generateMessageHTML(message, attachmentsHTML)
+            : inboxCard[i].innerHTML
+        }
+        <div class="close closeModal" id="">&times;</div>
+      </div>`;
 
-  if (userInboxTabText && !isSent) {
-    userInboxTabText.textContent = originalInboxText[i];
+    messageCard.style.height = '80%';
+    messageCard.innerHTML = messageContent;
+    messageDisplay.appendChild(messageCard);
+
+    //   const userInboxTabText = messageDisplay.querySelector('.user-inbox_tab-text');
+    //   const userSentTabText = messageDisplay.querySelector('.user-sent_tab-text');
+
+    //   if (userInboxTabText && !isSent) {
+    //     userInboxTabText.textContent = originalInboxText[i];
+    //   }
+    //   if (userSentTabText && isSent) {
+    //     userSentTabText.textContent = originalSentText[i];
+    //   }
+
+    messageDisplay.classList.toggle('openModal');
+
+    if (messageDisplay.classList.contains('openModal')) {
+      main.classList.add('blur');
+      sidebar.classList.add('blur');
+      main.classList.add('no-scroll');
+    } else {
+      main.classList.remove('blur');
+      sidebar.classList.remove('blur');
+      main.classList.remove('no-scroll');
+    }
+
+    const closeButton = messageCard.querySelector('.close');
+    closeButton.style.display = 'block';
+
+    closeButton.addEventListener('click', function (event) {
+      event.stopPropagation();
+      closeModal();
+    });
   }
-  if (userSentTabText && isSent) {
-    userSentTabText.textContent = originalSentText[i];
-  }
+}
 
-  messageDisplay.classList.toggle('openModal');
+function generateMessageHTML(message, attachmentsHTML) {
+  // Create the HTML structure for displaying the sent message
+  return `
+       <div class="user-sent">
+           <div class="user-sent_header">
+               <div>
+                   <h3 class="user-sent_tab-name">${message.name}</h3>
+                   <h4 class="user-sent_tab-subject">Subject: ${
+                     message.subject
+                   }</h4>
+               </div>
+           </div>
 
-  if (messageDisplay.classList.contains('openModal')) {
-    main.classList.add('blur');
-    sidebar.classList.add('blur');
-    main.classList.add('no-scroll');
-  } else {
-    main.classList.remove('blur');
-    sidebar.classList.remove('blur');
-    main.classList.remove('no-scroll');
-  }
+           <div class="user-sent_tab">
+           <p class="user-sent_tab-text">${message.message}</p>
+           </div>
 
-  const closeButton = newElement.querySelector('.close');
-  closeButton.style.display = 'block';
+           <div class="files" style="display:flex">
+           ${attachmentsHTML ? attachmentsHTML : ''}
+           </div>
 
-  closeButton.addEventListener('click', function (event) {
-    event.stopPropagation();
-    closeModal();
-  });
+           <div class="user-sent_info">
+               <p class="user-sent_info-date">${message.time}</p>
+               <p class="user-sent_info-time">${message.date}</p>
+           </div>
+
+           <div class="user-sent_actions">
+               <i class="fa-solid fa-ellipsis-vertical"></i>
+           </div>
+
+           <div class="sent-actions user">
+               <p class="sent-actions_btns">Archive</p>
+               <p class="sent-actions_btns">Report Spam</p>
+               <p class="sent-actions_btns">Delete</p>
+           </div>
+       </div>
+   `;
 }
 
 const messagesContainer = document.querySelector('.main');
@@ -212,11 +303,11 @@ messagesContainer.addEventListener('click', function (event) {
 
   if (inboxMessageElement) {
     let index = Array.from(inboxCard).indexOf(inboxMessageElement);
-    console.log('Clicked on inbox message via delegation');
+
     openModal(index, false);
   } else if (sentMessageElement) {
     let index = Array.from(sentContainer.children).indexOf(sentMessageElement);
-    console.log('Clicked on sent message via delegation');
+
     openModal(index, true);
   }
 
@@ -235,7 +326,6 @@ messagesContainer.addEventListener('click', function (event) {
   let messageElement = target.closest('.sent-card');
   if (messageElement) {
     let index = Array.from(sentContainer.children).indexOf(messageElement);
-    console.log('Clicked on sent message via delegationXXXXXX');
     openModal(index, true);
   }
 });
@@ -254,24 +344,6 @@ sentContainer.addEventListener('click', function (event) {
   }
 });
 
-// sentContainer.addEventListener('click', function (event) {
-//   const target = event.target;
-
-//   // Check if the clicked element is inside a sent message
-//   let messageElement = target.closest('.sent-card');
-//   if (messageElement) {
-//     // Check if the clicked element is an image inside the sent message
-//     if (target.classList.contains('attachmentFile')) {
-//       openImageModal(target.src);
-//     } else {
-//       let index = Array.from(sentContainer.children).indexOf(messageElement);
-//       console.log('Clicked on sent message via delegation');
-//       openModal(index, true);
-//     }
-//   }
-// });
-
-// JavaScript for Submit and Message addition
 const submit = document.getElementById('sendMessage');
 
 let sentMessages = [
@@ -294,7 +366,6 @@ let sentMessages = [
       sagittis id consectetur purus ut faucibus pulvinar. Neque volutpat ac tincidunt vitae semper quis
       lectus nulla. Vel facilisis volutpat est velit. Diam volutpat commodo sed egestas egestas fringilla
       phasellus. Pharetra vel turpis nunc eget lorem. At tellus at urna condimentum mattis pellentesque.`,
-    image: 'https://randomuser.me/api/portraits/women/30.jpg',
     date: 'November 23rd',
     time: '03:22 pm',
     files: [],
@@ -307,7 +378,7 @@ let sentMessages = [
 
 submit.addEventListener('click', function submitMessage() {
   const name = document.getElementById('userName').innerText;
-  const image = document.getElementById('userImage').src;
+  //   const image = document.getElementById('userImage').src;
   const subject = document.getElementById('subject');
   const message = document.getElementById('inputField');
 
@@ -318,7 +389,7 @@ submit.addEventListener('click', function submitMessage() {
     name,
     subject: subjectValue,
     message: messageValue,
-    image,
+    //  image,
     files: selectedFiles || [],
     id: Math.random(),
     time: updateDateTime().slice(19, 28),
@@ -329,7 +400,6 @@ submit.addEventListener('click', function submitMessage() {
   //   sentMessages = [];
   sentMessages.push(inboxValues);
   addChatMessage(sentMessages);
-  console.log(sentMessages);
 
   subject.value = '';
   message.value = '';
@@ -366,22 +436,38 @@ function rendersentMessages() {
           return `
           <div class="file-card_display">
             <div style="display: flex;">
-               <img src="${URL.createObjectURL(
-                 file
-               )}" alt="Attachment" class="attachmentFile" />        
+              <img src="${URL.createObjectURL(
+                file
+              )}" alt="Attachment" class="attachmentFile" />        
             </div>
-         </div>
-         `;
-        } else {
-          return `
-          <div class="file-card_display">
-          <div style="display: flex;">
-          <a href="${URL.createObjectURL(file)}" download>
-            <div class="fa-solid fa-file-lines doc-icon"></div>
-             </a>
           </div>
-        </div>
-         `;
+        `;
+        } else if (file.type === 'application/pdf') {
+          return `          
+            <div class="file-card_display">
+               <div style="display: flex;">
+                  <i class="fa-solid fa-file-pdf doc-icon"></i>
+               </div>
+            </div>`;
+        } else if (
+          file.type === 'application/msword' ||
+          file.type ===
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        ) {
+          return `
+            <div class="file-card_display">
+               <div style="display: flex;">
+                  <i class="fa-solid fa-file-word doc-icon"></i>
+                  </div>
+            </div>`;
+        } else {
+          // Add more conditions for other file types if needed
+          return `          
+            <div class="file-card_display">
+               <div style="display: flex;">
+                  <i class="fa-regular fa-file doc-icon"></i>    
+               </div>
+            </div>`;
         }
       })
       .join('');
@@ -390,13 +476,10 @@ function rendersentMessages() {
          <div class="user-sent">
          <div class="user-sent_header">
             <div>
-            <img
-            src="${message.image}"
-            alt="Client Image" class="user-image" />
-            </div>
-            <div>
                <h3 class="user-sent_tab-name">${message.name}</h3>
-               <h4 class="user-sent_tab-subject">Subject: ${message.subject}</h4>
+               <h4 class="user-sent_tab-subject">Subject: ${
+                 message.subject
+               }</h4>
                   </div>
          </div>
 
@@ -405,8 +488,8 @@ function rendersentMessages() {
             <p class="user-sent_tab-text">${message.message}</p>
          </div>
 
-         <div class="files" style="display:flex" >          
-            ${attachmentsHTML}         
+         <div class="files" style="display:flex">
+             ${attachmentsHTML ? attachmentsHTML : ''}
          </div>
 
          <div class="user-sent_info">
@@ -426,7 +509,6 @@ function rendersentMessages() {
          </div>
    `;
 
-    console.log(message.message);
     sentContainer.appendChild(chatMessage);
 
     chatMessage.addEventListener('click', function () {
@@ -435,24 +517,6 @@ function rendersentMessages() {
 
     scrollToBottom();
   });
-
-  //   //   Enlarge image
-  //   const imageModal = document.getElementById('imageModal');
-  //   const images = document.querySelectorAll('.attachmentFile');
-
-  //   function openModal(src) {
-  //     const img = document.getElementById('enlargedImg');
-  //     imageModal.classList.add('openModal');
-  //     img.src = src;
-
-  //     console.log(imageModal, img);
-  //   }
-
-  //   images.forEach((image) => {
-  //     image.addEventListener('click', function () {
-  //       openModal(this.src);
-  //     });
-  //   });
 
   //////////////////////
 
@@ -518,8 +582,6 @@ function closeModal() {
   main.classList.remove('blur');
   sidebar.classList.remove('blur');
   main.classList.remove('no-scroll');
-
-  console.log('Closed Modal');
 }
 
 // Function to scroll the chat container to the bottom i.e to alwasy display a new chat
