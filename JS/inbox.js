@@ -176,9 +176,10 @@ function openModal(i, isSent) {
               return `
         <div class="file-card_display">
           <div style="display: flex;">
-            <img src="${URL.createObjectURL(
-              file
-            )}" alt="Attachment" class="attachmentFile" />
+            <img src="${
+              URL.createObjectURL(file)
+              //   file.path
+            }" alt="Attachment" class="attachmentFile" />
           </div>
         </div>
       `;
@@ -376,7 +377,13 @@ let sentMessages = [
       phasellus. Pharetra vel turpis nunc eget lorem. At tellus at urna condimentum mattis pellentesque.`,
     date: 'November 23rd',
     time: '03:22 pm',
-    files: [],
+    files: [
+      // {
+      //   type: 'image/png',
+      //   name: 'dcImage.png',
+      //   path: 'https://scontent.fabb1-2.fna.fbcdn.net/v/t39.30808-6/400765364_736353168521805_7853714947437572353_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGpHcMLuv8m6iKqNTYYqmupmbN8sbG5LwCZs3yxsbkvAEaRA34CdbY1deRBvSeJMHZU1JM28oCk_R_TkXhoYdux&_nc_ohc=E_t2SJk22CIAX9zDRHU&_nc_zt=23&_nc_ht=scontent.fabb1-2.fna&oh=00_AfDFJ-ls0TLlu8fSlEp--nmWcoHMvstgn_74KMzAJtguJA&oe=65596725',
+      // },
+    ],
     id: Math.random(),
     isDummy: true,
     id: 'unique-dummy-id-1',
@@ -413,6 +420,7 @@ submit.addEventListener('click', function submitMessage() {
   //   sentMessages = [];
   sentMessages.push(inboxValues);
   addChatMessage(sentMessages);
+  console.log(sentMessages);
 
   subject.value = '';
   message.value = '';
@@ -449,9 +457,10 @@ function rendersentMessages() {
           return `
           <div class="file-card_display">
             <div style="display: flex;">
-              <img src="${URL.createObjectURL(
-                file
-              )}" alt="Attachment" class="attachmentFile" />        
+              <img src="${
+                URL.createObjectURL(file)
+                //  file.path
+              }" alt="Attachment" class="attachmentFile" />        
             </div>
           </div>
         `;
