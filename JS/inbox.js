@@ -153,12 +153,12 @@ const enlargedImg = document.getElementById('enlargedImg');
 function openImageModal(src) {
   enlargedImg.src = src;
   imageModal.classList.add('openModal');
+  console.log('IMAGE');
 }
 
 // display messages when clicked
 const inboxCard = document.querySelectorAll('.inbox-card');
 const messageDisplay = document.querySelector('.messageDisplay');
-const closeModalButton = document.querySelectorAll('.closeModal');
 
 function openModal(i, isSent) {
   messageDisplay.style.display = 'block';
@@ -187,7 +187,9 @@ function openModal(i, isSent) {
               return `
           <div class="file-card_display">
              <div style="display: flex;">
+               <a href="${URL.createObjectURL(file)}" download>
                 <i class="fa-solid fa-file-pdf doc-icon"></i>
+               <a>
              </div>
           </div>`;
             } else if (
@@ -198,16 +200,20 @@ function openModal(i, isSent) {
               return `
           <div class="file-card_display">
              <div style="display: flex;">
+               <a href="${URL.createObjectURL(file)}" download>
                 <i class="fa-solid fa-file-word doc-icon"></i>
-                </div>
+               <a>
+            </div>
           </div>`;
             } else {
               // Add more conditions for other file types if needed
               return `
           <div class="file-card_display">
-             <div style="display: flex;">
-                <i class="fa-regular fa-file doc-icon"></i>
-             </div>
+            <div style="display: flex;">
+               <a href="${URL.createObjectURL(file)}" download>
+                  <i class="fa-regular fa-file doc-icon"></i>
+               <a>
+            </div>
           </div>`;
             }
           })
@@ -247,6 +253,20 @@ function openModal(i, isSent) {
       sidebar.classList.remove('blur');
       main.classList.remove('no-scroll');
     }
+
+    messageDisplay.addEventListener('click', function (event) {
+      const target = event.target;
+
+      // Check if the clicked element is inside a sent message
+      let attachmentElement = target.closest('.sent-card');
+      if (attachmentElement) {
+        // Check if the clicked element is an image
+        if (target.classList.contains('attachmentFile')) {
+          openImageModal(target.src);
+          console.log('clicked');
+        }
+      }
+    });
 
     const closeButton = messageCard.querySelector('.close');
     closeButton.style.display = 'block';
@@ -468,7 +488,9 @@ function rendersentMessages() {
           return `          
             <div class="file-card_display">
                <div style="display: flex;">
-                  <i class="fa-solid fa-file-pdf doc-icon"></i>
+                  <a href="${URL.createObjectURL(file)}" download>
+                     <i class="fa-solid fa-file-pdf doc-icon"></i>
+                  <a>
                </div>
             </div>`;
         } else if (
@@ -479,15 +501,19 @@ function rendersentMessages() {
           return `
             <div class="file-card_display">
                <div style="display: flex;">
-                  <i class="fa-solid fa-file-word doc-icon"></i>
-                  </div>
+                  <a href="${URL.createObjectURL(file)}" download>
+                     <i class="fa-solid fa-file-word doc-icon"></i>
+                  <a>
+               </div>
             </div>`;
         } else {
           // Add more conditions for other file types if needed
           return `          
             <div class="file-card_display">
                <div style="display: flex;">
-                  <i class="fa-regular fa-file doc-icon"></i>    
+                  <a href="${URL.createObjectURL(file)}" download>
+                     <i class="fa-regular fa-file doc-icon"></i>  
+                  <a>  
                </div>
             </div>`;
         }
@@ -511,7 +537,14 @@ function rendersentMessages() {
          </div>
 
          <div class="files" style="display:flex">
-             ${attachmentsHTML ? attachmentsHTML : ''}
+             ${
+               attachmentsHTML
+                 ? `<div style="margin-top: 1rem; display: flex; align-items: center;">
+                 <i style="font-size: 1.5rem;" class="fa-solid fa-file-circle-check"></i>
+                 <p style="font-size: 1rem; margin-left: 1rem;">CONTAINS FILES</p>
+              </div>`
+                 : ''
+             }
          </div>
 
          <div class="user-sent_info">
@@ -586,15 +619,22 @@ function rendersentMessages() {
 }
 
 // Close opened Modal for compose and enlarged image
+const closeModalButton = document.querySelectorAll('.closeModal');
+const closeImageModalBtn = document.querySelectorAll('.closeImageModal');
 
 closeModalButton.forEach((closeButton) => {
-  closeButton.addEventListener('click', function (event) {
+  closeButton.addEventListener('click', function () {
     closeModal();
   });
 });
 
+closeImageModalBtn.forEach((closeImageButton) => {
+  closeImageButton.addEventListener('click', function () {
+    closeImageModal();
+  });
+});
+
 function closeModal() {
-  imageModal.classList.remove('openModal');
   composeModal.classList.remove('openModal');
   messageDisplay.classList.remove('openModal');
   messageDisplay.style.display = 'none';
@@ -602,11 +642,14 @@ function closeModal() {
 
   const message = document.getElementById('inputField');
   message.value = '';
-  //   messageSelect.value = 'inbox';
 
   main.classList.remove('blur');
   sidebar.classList.remove('blur');
   main.classList.remove('no-scroll');
+}
+
+function closeImageModal() {
+  imageModal.classList.remove('openModal');
 }
 
 // Function to scroll the chat container to the bottom i.e to alwasy display a new chat
