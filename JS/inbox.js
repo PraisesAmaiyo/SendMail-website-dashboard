@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
 // JavaScript to toggle the display for INBOX, SENT, SPAM AND TRASH
 const chatContainer = document.querySelector('.chats');
 const sentContainer = document.querySelector('.sentMessages');
+const trashContainer = document.querySelector('.trashMessages');
+const spamContainer = document.querySelector('.spamMessages');
 
 const main = document.querySelector('.main');
 const sidebar = document.querySelector('.sidebar');
@@ -16,9 +18,23 @@ messageSelect.addEventListener('change', function selectedFiles() {
   if (messageSelect.value === 'inbox') {
     chatContainer.style.display = 'block';
     sentContainer.style.display = 'none';
+    spamContainer.style.display = 'none';
+    trashContainer.style.display = 'none';
   } else if (messageSelect.value === 'sent') {
-    chatContainer.style.display = 'none';
     sentContainer.style.display = 'block';
+    chatContainer.style.display = 'none';
+    spamContainer.style.display = 'none';
+    trashContainer.style.display = 'none';
+  } else if (messageSelect.value === 'trash') {
+    trashContainer.style.display = 'block';
+    chatContainer.style.display = 'none';
+    sentContainer.style.display = 'none';
+    chatContainer.style.display = 'none';
+  } else if (messageSelect.value === 'spam') {
+    spamContainer.style.display = 'block';
+    sentContainer.style.display = 'none';
+    chatContainer.style.display = 'none';
+    trashContainer.style.display = 'none';
   }
 });
 
@@ -130,19 +146,43 @@ function handleFileSelect(event) {
 
 // Function to extract the first 20 words from a text
 const inboxMessage = document.querySelectorAll('.user-inbox_tab-text');
+const trashMessage = document.querySelectorAll('.user-trash_tab-text');
+const spamMessage = document.querySelectorAll('.user-spam_tab-text');
+
+console.log(spamMessage);
 
 const originalInboxText = [];
+const originalTrashText = [];
+const originalSpamText = [];
 
-function getFirst20Words(text, originalTextArray) {
+function getFirst40Words(text, originalTextArray) {
   const words = text.split(' ');
-  const slicedWords = words.slice(0, 40).join(' ') + '...';
-  originalTextArray.push(text);
-  return slicedWords;
+  const slicedWords = words.slice(0, 40).join(' ');
+
+  if (words.length > 40) {
+    originalTextArray.push(text);
+    return slicedWords + '...';
+  } else {
+    originalTextArray.push(text);
+    return text;
+  }
 }
 
 inboxMessage.forEach((message) => {
   const text = message.textContent;
-  const snippet = getFirst20Words(text, originalInboxText);
+  const snippet = getFirst40Words(text, originalInboxText);
+  message.textContent = snippet;
+});
+
+trashMessage.forEach((message) => {
+  const text = message.textContent;
+  const snippet = getFirst40Words(text, originalTrashText);
+  message.textContent = snippet;
+});
+
+spamMessage.forEach((message) => {
+  const text = message.textContent;
+  const snippet = getFirst40Words(text, originalSpamText);
   message.textContent = snippet;
 });
 
@@ -419,11 +459,17 @@ submit.addEventListener('click', function submitMessage() {
   const subjectValue = subject.value;
   const messageValue = message.value;
 
-  if (messageValue < 20) {
+  let splitMessage = '';
+  let slicedMessage = '';
+
+  if (messageValue.split(' ').length < 40) {
     console.log('/eeeeeeeeee');
+    splitMessage = messageValue.split(' ');
+    slicedMessage = splitMessage.join(' ');
+  } else {
+    splitMessage = messageValue.split(' ');
+    slicedMessage = splitMessage.slice(0, 40).join(' ') + '...';
   }
-  const splitMessage = messageValue.split(' ');
-  const slicedMessage = splitMessage.slice(0, 20).join(' ') + '...';
 
   let inboxValues = {
     name,
@@ -438,9 +484,8 @@ submit.addEventListener('click', function submitMessage() {
   };
 
   //   sentMessages = [];
-  sentMessages.push(inboxValues);
+  sentMessages.unshift(inboxValues);
   addChatMessage(sentMessages);
-  console.log(sentMessages);
 
   subject.value = '';
   message.value = '';

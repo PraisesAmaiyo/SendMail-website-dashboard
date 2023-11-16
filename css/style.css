@@ -47,6 +47,8 @@ body {
   border-radius: 10px 35px 5px 35px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
 
+.trash-card,
+.spam-card,
 .sent-card,
 .inbox-card {
   background-image: linear-gradient(111.4deg, rgba(43, 92, 157, 0.75) 1%, rgba(18, 70, 138, 0.75) 58%), url(../img/image-1.jpg);
@@ -1609,7 +1611,9 @@ body {
       .main .message-type select:focus {
         box-shadow: 0 0 0 0.8rem rgba(7, 21, 92, 0.5); }
   .main .chats,
-  .main .sentMessages {
+  .main .sentMessages,
+  .main .trashMessages,
+  .main .spamMessages {
     height: calc(100vh - 212px);
     padding: 1rem;
     overflow-x: hidden;
@@ -1617,7 +1621,9 @@ body {
     border-bottom: 0.3px solid rgba(18, 70, 138, 0.5);
     width: 100%; }
     .main .chats .no-messages,
-    .main .sentMessages .no-messages {
+    .main .sentMessages .no-messages,
+    .main .trashMessages .no-messages,
+    .main .spamMessages .no-messages {
       text-align: center;
       font-size: 1.8rem;
       margin-top: 3rem; }
@@ -1627,6 +1633,8 @@ body {
   height: 70%;
   overflow-y: auto;
   display: none; }
+  .messageDisplay .trash-card,
+  .messageDisplay .spam-card,
   .messageDisplay .sent-card,
   .messageDisplay .inbox-card {
     width: 100%;
@@ -1634,42 +1642,112 @@ body {
     margin-top: 5rem;
     overflow-y: auto;
     overflow-x: hidden; }
+    .messageDisplay .trash-card .user-trash_tab-name,
+    .messageDisplay .trash-card .user-spam_tab-name,
+    .messageDisplay .trash-card .user-sent_tab-name,
+    .messageDisplay .trash-card .user-inbox_tab-name,
+    .messageDisplay .spam-card .user-trash_tab-name,
+    .messageDisplay .spam-card .user-spam_tab-name,
+    .messageDisplay .spam-card .user-sent_tab-name,
+    .messageDisplay .spam-card .user-inbox_tab-name,
+    .messageDisplay .sent-card .user-trash_tab-name,
+    .messageDisplay .sent-card .user-spam_tab-name,
     .messageDisplay .sent-card .user-sent_tab-name,
     .messageDisplay .sent-card .user-inbox_tab-name,
+    .messageDisplay .inbox-card .user-trash_tab-name,
+    .messageDisplay .inbox-card .user-spam_tab-name,
     .messageDisplay .inbox-card .user-sent_tab-name,
     .messageDisplay .inbox-card .user-inbox_tab-name {
       font-size: 2rem; }
+    .messageDisplay .trash-card .user-trash_tab-subject,
+    .messageDisplay .trash-card .user-spam_tab-subject,
+    .messageDisplay .trash-card .user-sent_tab-subject,
+    .messageDisplay .trash-card .user-inbox_tab-subject,
+    .messageDisplay .spam-card .user-trash_tab-subject,
+    .messageDisplay .spam-card .user-spam_tab-subject,
+    .messageDisplay .spam-card .user-sent_tab-subject,
+    .messageDisplay .spam-card .user-inbox_tab-subject,
+    .messageDisplay .sent-card .user-trash_tab-subject,
+    .messageDisplay .sent-card .user-spam_tab-subject,
     .messageDisplay .sent-card .user-sent_tab-subject,
     .messageDisplay .sent-card .user-inbox_tab-subject,
+    .messageDisplay .inbox-card .user-trash_tab-subject,
+    .messageDisplay .inbox-card .user-spam_tab-subject,
     .messageDisplay .inbox-card .user-sent_tab-subject,
     .messageDisplay .inbox-card .user-inbox_tab-subject {
       font-size: 1.5rem; }
+    .messageDisplay .trash-card .user-trash_tab-text,
+    .messageDisplay .trash-card .user-spam_tab-text,
+    .messageDisplay .trash-card .user-sent_tab-text,
+    .messageDisplay .trash-card .user-inbox_tab-text,
+    .messageDisplay .spam-card .user-trash_tab-text,
+    .messageDisplay .spam-card .user-spam_tab-text,
+    .messageDisplay .spam-card .user-sent_tab-text,
+    .messageDisplay .spam-card .user-inbox_tab-text,
+    .messageDisplay .sent-card .user-trash_tab-text,
+    .messageDisplay .sent-card .user-spam_tab-text,
     .messageDisplay .sent-card .user-sent_tab-text,
     .messageDisplay .sent-card .user-inbox_tab-text,
+    .messageDisplay .inbox-card .user-trash_tab-text,
+    .messageDisplay .inbox-card .user-spam_tab-text,
     .messageDisplay .inbox-card .user-sent_tab-text,
     .messageDisplay .inbox-card .user-inbox_tab-text {
       font-size: 1.5rem;
       line-height: 1.6; }
 
-.sentMessages {
+.sentMessages,
+.trashMessages,
+.spamMessages {
   display: none; }
 
+.trash-card:last-child,
+.spam-card:last-child,
 .sent-card:last-child,
 .inbox-card:last-child {
   margin-bottom: 5rem; }
 
-.sent-card .user-sent, .sent-card .user-inbox,
+.trash-card .user-trash, .trash-card .user-spam, .trash-card .user-sent, .trash-card .user-inbox,
+.spam-card .user-trash,
+.spam-card .user-spam,
+.spam-card .user-sent,
+.spam-card .user-inbox,
+.sent-card .user-trash,
+.sent-card .user-spam,
+.sent-card .user-sent,
+.sent-card .user-inbox,
+.inbox-card .user-trash,
+.inbox-card .user-spam,
 .inbox-card .user-sent,
 .inbox-card .user-inbox {
   align-items: center;
   position: relative; }
-  .sent-card .user-sent_header, .sent-card .user-inbox_header,
+  .trash-card .user-trash_header, .trash-card .user-spam_header, .trash-card .user-sent_header, .trash-card .user-inbox_header,
+  .spam-card .user-trash_header,
+  .spam-card .user-spam_header,
+  .spam-card .user-sent_header,
+  .spam-card .user-inbox_header,
+  .sent-card .user-trash_header,
+  .sent-card .user-spam_header,
+  .sent-card .user-sent_header,
+  .sent-card .user-inbox_header,
+  .inbox-card .user-trash_header,
+  .inbox-card .user-spam_header,
   .inbox-card .user-sent_header,
   .inbox-card .user-inbox_header {
     display: flex;
     align-items: center;
     gap: 2rem; }
-  .sent-card .user-sent .user-image, .sent-card .user-inbox .user-image,
+  .trash-card .user-trash .user-image, .trash-card .user-spam .user-image, .trash-card .user-sent .user-image, .trash-card .user-inbox .user-image,
+  .spam-card .user-trash .user-image,
+  .spam-card .user-spam .user-image,
+  .spam-card .user-sent .user-image,
+  .spam-card .user-inbox .user-image,
+  .sent-card .user-trash .user-image,
+  .sent-card .user-spam .user-image,
+  .sent-card .user-sent .user-image,
+  .sent-card .user-inbox .user-image,
+  .inbox-card .user-trash .user-image,
+  .inbox-card .user-spam .user-image,
   .inbox-card .user-sent .user-image,
   .inbox-card .user-inbox .user-image {
     margin-top: 1rem;
@@ -1677,30 +1755,80 @@ body {
     height: 5rem;
     border-radius: 100%;
     object-fit: cover; }
-  .sent-card .user-sent_tab, .sent-card .user-inbox_tab,
+  .trash-card .user-trash_tab, .trash-card .user-spam_tab, .trash-card .user-sent_tab, .trash-card .user-inbox_tab,
+  .spam-card .user-trash_tab,
+  .spam-card .user-spam_tab,
+  .spam-card .user-sent_tab,
+  .spam-card .user-inbox_tab,
+  .sent-card .user-trash_tab,
+  .sent-card .user-spam_tab,
+  .sent-card .user-sent_tab,
+  .sent-card .user-inbox_tab,
+  .inbox-card .user-trash_tab,
+  .inbox-card .user-spam_tab,
   .inbox-card .user-sent_tab,
   .inbox-card .user-inbox_tab {
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
     gap: .3rem; }
-    .sent-card .user-sent_tab-name, .sent-card .user-inbox_tab-name,
+    .trash-card .user-trash_tab-name, .trash-card .user-spam_tab-name, .trash-card .user-sent_tab-name, .trash-card .user-inbox_tab-name,
+    .spam-card .user-trash_tab-name,
+    .spam-card .user-spam_tab-name,
+    .spam-card .user-sent_tab-name,
+    .spam-card .user-inbox_tab-name,
+    .sent-card .user-trash_tab-name,
+    .sent-card .user-spam_tab-name,
+    .sent-card .user-sent_tab-name,
+    .sent-card .user-inbox_tab-name,
+    .inbox-card .user-trash_tab-name,
+    .inbox-card .user-spam_tab-name,
     .inbox-card .user-sent_tab-name,
     .inbox-card .user-inbox_tab-name {
       font-size: 1.3rem;
       font-weight: 600;
       margin-top: 1rem; }
-    .sent-card .user-sent_tab-subject, .sent-card .user-inbox_tab-subject,
+    .trash-card .user-trash_tab-subject, .trash-card .user-spam_tab-subject, .trash-card .user-sent_tab-subject, .trash-card .user-inbox_tab-subject,
+    .spam-card .user-trash_tab-subject,
+    .spam-card .user-spam_tab-subject,
+    .spam-card .user-sent_tab-subject,
+    .spam-card .user-inbox_tab-subject,
+    .sent-card .user-trash_tab-subject,
+    .sent-card .user-spam_tab-subject,
+    .sent-card .user-sent_tab-subject,
+    .sent-card .user-inbox_tab-subject,
+    .inbox-card .user-trash_tab-subject,
+    .inbox-card .user-spam_tab-subject,
     .inbox-card .user-sent_tab-subject,
     .inbox-card .user-inbox_tab-subject {
       font-size: 1.3rem;
       font-weight: 400; }
-    .sent-card .user-sent_tab-text, .sent-card .user-inbox_tab-text,
+    .trash-card .user-trash_tab-text, .trash-card .user-spam_tab-text, .trash-card .user-sent_tab-text, .trash-card .user-inbox_tab-text,
+    .spam-card .user-trash_tab-text,
+    .spam-card .user-spam_tab-text,
+    .spam-card .user-sent_tab-text,
+    .spam-card .user-inbox_tab-text,
+    .sent-card .user-trash_tab-text,
+    .sent-card .user-spam_tab-text,
+    .sent-card .user-sent_tab-text,
+    .sent-card .user-inbox_tab-text,
+    .inbox-card .user-trash_tab-text,
+    .inbox-card .user-spam_tab-text,
     .inbox-card .user-sent_tab-text,
     .inbox-card .user-inbox_tab-text {
       font-size: 1.1rem;
       font-weight: 300; }
-  .sent-card .user-sent_info, .sent-card .user-inbox_info,
+  .trash-card .user-trash_info, .trash-card .user-spam_info, .trash-card .user-sent_info, .trash-card .user-inbox_info,
+  .spam-card .user-trash_info,
+  .spam-card .user-spam_info,
+  .spam-card .user-sent_info,
+  .spam-card .user-inbox_info,
+  .sent-card .user-trash_info,
+  .sent-card .user-spam_info,
+  .sent-card .user-sent_info,
+  .sent-card .user-inbox_info,
+  .inbox-card .user-trash_info,
+  .inbox-card .user-spam_info,
   .inbox-card .user-sent_info,
   .inbox-card .user-inbox_info {
     position: absolute;
@@ -1709,7 +1837,17 @@ body {
     width: max-content;
     text-align: right;
     font-size: 1rem; }
-  .sent-card .user-sent_actions, .sent-card .user-inbox_actions,
+  .trash-card .user-trash_actions, .trash-card .user-spam_actions, .trash-card .user-sent_actions, .trash-card .user-inbox_actions,
+  .spam-card .user-trash_actions,
+  .spam-card .user-spam_actions,
+  .spam-card .user-sent_actions,
+  .spam-card .user-inbox_actions,
+  .sent-card .user-trash_actions,
+  .sent-card .user-spam_actions,
+  .sent-card .user-sent_actions,
+  .sent-card .user-inbox_actions,
+  .inbox-card .user-trash_actions,
+  .inbox-card .user-spam_actions,
   .inbox-card .user-sent_actions,
   .inbox-card .user-inbox_actions {
     position: absolute;
@@ -1720,19 +1858,127 @@ body {
     font-size: 2.5rem;
     color: #2b5c9d;
     padding: 2rem; }
+  .trash-card .user-trash .sent-actions.user,
+  .trash-card .user-trash .trash-actions.user,
+  .trash-card .user-trash .spam-actions.user,
+  .trash-card .user-trash .inbox-actions.user, .trash-card .user-spam .sent-actions.user,
+  .trash-card .user-spam .trash-actions.user,
+  .trash-card .user-spam .spam-actions.user,
+  .trash-card .user-spam .inbox-actions.user, .trash-card .user-sent .sent-actions.user,
+  .trash-card .user-sent .trash-actions.user,
+  .trash-card .user-sent .spam-actions.user,
+  .trash-card .user-sent .inbox-actions.user, .trash-card .user-inbox .sent-actions.user,
+  .trash-card .user-inbox .trash-actions.user,
+  .trash-card .user-inbox .spam-actions.user,
+  .trash-card .user-inbox .inbox-actions.user,
+  .spam-card .user-trash .sent-actions.user,
+  .spam-card .user-trash .trash-actions.user,
+  .spam-card .user-trash .spam-actions.user,
+  .spam-card .user-trash .inbox-actions.user,
+  .spam-card .user-spam .sent-actions.user,
+  .spam-card .user-spam .trash-actions.user,
+  .spam-card .user-spam .spam-actions.user,
+  .spam-card .user-spam .inbox-actions.user,
+  .spam-card .user-sent .sent-actions.user,
+  .spam-card .user-sent .trash-actions.user,
+  .spam-card .user-sent .spam-actions.user,
+  .spam-card .user-sent .inbox-actions.user,
+  .spam-card .user-inbox .sent-actions.user,
+  .spam-card .user-inbox .trash-actions.user,
+  .spam-card .user-inbox .spam-actions.user,
+  .spam-card .user-inbox .inbox-actions.user,
+  .sent-card .user-trash .sent-actions.user,
+  .sent-card .user-trash .trash-actions.user,
+  .sent-card .user-trash .spam-actions.user,
+  .sent-card .user-trash .inbox-actions.user,
+  .sent-card .user-spam .sent-actions.user,
+  .sent-card .user-spam .trash-actions.user,
+  .sent-card .user-spam .spam-actions.user,
+  .sent-card .user-spam .inbox-actions.user,
   .sent-card .user-sent .sent-actions.user,
-  .sent-card .user-sent .inbox-actions.user, .sent-card .user-inbox .sent-actions.user,
+  .sent-card .user-sent .trash-actions.user,
+  .sent-card .user-sent .spam-actions.user,
+  .sent-card .user-sent .inbox-actions.user,
+  .sent-card .user-inbox .sent-actions.user,
+  .sent-card .user-inbox .trash-actions.user,
+  .sent-card .user-inbox .spam-actions.user,
   .sent-card .user-inbox .inbox-actions.user,
+  .inbox-card .user-trash .sent-actions.user,
+  .inbox-card .user-trash .trash-actions.user,
+  .inbox-card .user-trash .spam-actions.user,
+  .inbox-card .user-trash .inbox-actions.user,
+  .inbox-card .user-spam .sent-actions.user,
+  .inbox-card .user-spam .trash-actions.user,
+  .inbox-card .user-spam .spam-actions.user,
+  .inbox-card .user-spam .inbox-actions.user,
   .inbox-card .user-sent .sent-actions.user,
+  .inbox-card .user-sent .trash-actions.user,
+  .inbox-card .user-sent .spam-actions.user,
   .inbox-card .user-sent .inbox-actions.user,
   .inbox-card .user-inbox .sent-actions.user,
+  .inbox-card .user-inbox .trash-actions.user,
+  .inbox-card .user-inbox .spam-actions.user,
   .inbox-card .user-inbox .inbox-actions.user {
     background-color: rgba(32, 44, 108, 0.5); }
+  .trash-card .user-trash .trash-actions,
+  .trash-card .user-trash .spam-actions,
+  .trash-card .user-trash .sent-actions,
+  .trash-card .user-trash .inbox-actions, .trash-card .user-spam .trash-actions,
+  .trash-card .user-spam .spam-actions,
+  .trash-card .user-spam .sent-actions,
+  .trash-card .user-spam .inbox-actions, .trash-card .user-sent .trash-actions,
+  .trash-card .user-sent .spam-actions,
+  .trash-card .user-sent .sent-actions,
+  .trash-card .user-sent .inbox-actions, .trash-card .user-inbox .trash-actions,
+  .trash-card .user-inbox .spam-actions,
+  .trash-card .user-inbox .sent-actions,
+  .trash-card .user-inbox .inbox-actions,
+  .spam-card .user-trash .trash-actions,
+  .spam-card .user-trash .spam-actions,
+  .spam-card .user-trash .sent-actions,
+  .spam-card .user-trash .inbox-actions,
+  .spam-card .user-spam .trash-actions,
+  .spam-card .user-spam .spam-actions,
+  .spam-card .user-spam .sent-actions,
+  .spam-card .user-spam .inbox-actions,
+  .spam-card .user-sent .trash-actions,
+  .spam-card .user-sent .spam-actions,
+  .spam-card .user-sent .sent-actions,
+  .spam-card .user-sent .inbox-actions,
+  .spam-card .user-inbox .trash-actions,
+  .spam-card .user-inbox .spam-actions,
+  .spam-card .user-inbox .sent-actions,
+  .spam-card .user-inbox .inbox-actions,
+  .sent-card .user-trash .trash-actions,
+  .sent-card .user-trash .spam-actions,
+  .sent-card .user-trash .sent-actions,
+  .sent-card .user-trash .inbox-actions,
+  .sent-card .user-spam .trash-actions,
+  .sent-card .user-spam .spam-actions,
+  .sent-card .user-spam .sent-actions,
+  .sent-card .user-spam .inbox-actions,
+  .sent-card .user-sent .trash-actions,
+  .sent-card .user-sent .spam-actions,
   .sent-card .user-sent .sent-actions,
-  .sent-card .user-sent .inbox-actions, .sent-card .user-inbox .sent-actions,
+  .sent-card .user-sent .inbox-actions,
+  .sent-card .user-inbox .trash-actions,
+  .sent-card .user-inbox .spam-actions,
+  .sent-card .user-inbox .sent-actions,
   .sent-card .user-inbox .inbox-actions,
+  .inbox-card .user-trash .trash-actions,
+  .inbox-card .user-trash .spam-actions,
+  .inbox-card .user-trash .sent-actions,
+  .inbox-card .user-trash .inbox-actions,
+  .inbox-card .user-spam .trash-actions,
+  .inbox-card .user-spam .spam-actions,
+  .inbox-card .user-spam .sent-actions,
+  .inbox-card .user-spam .inbox-actions,
+  .inbox-card .user-sent .trash-actions,
+  .inbox-card .user-sent .spam-actions,
   .inbox-card .user-sent .sent-actions,
   .inbox-card .user-sent .inbox-actions,
+  .inbox-card .user-inbox .trash-actions,
+  .inbox-card .user-inbox .spam-actions,
   .inbox-card .user-inbox .sent-actions,
   .inbox-card .user-inbox .inbox-actions {
     background-color: rgba(18, 70, 138, 0.5);
@@ -1748,20 +1994,128 @@ body {
     z-index: 100;
     text-align: center;
     display: none; }
+    .trash-card .user-trash .trash-actions_btns,
+    .trash-card .user-trash .spam-actions_btns,
+    .trash-card .user-trash .sent-actions_btns,
+    .trash-card .user-trash .inbox-actions_btns, .trash-card .user-spam .trash-actions_btns,
+    .trash-card .user-spam .spam-actions_btns,
+    .trash-card .user-spam .sent-actions_btns,
+    .trash-card .user-spam .inbox-actions_btns, .trash-card .user-sent .trash-actions_btns,
+    .trash-card .user-sent .spam-actions_btns,
+    .trash-card .user-sent .sent-actions_btns,
+    .trash-card .user-sent .inbox-actions_btns, .trash-card .user-inbox .trash-actions_btns,
+    .trash-card .user-inbox .spam-actions_btns,
+    .trash-card .user-inbox .sent-actions_btns,
+    .trash-card .user-inbox .inbox-actions_btns,
+    .spam-card .user-trash .trash-actions_btns,
+    .spam-card .user-trash .spam-actions_btns,
+    .spam-card .user-trash .sent-actions_btns,
+    .spam-card .user-trash .inbox-actions_btns,
+    .spam-card .user-spam .trash-actions_btns,
+    .spam-card .user-spam .spam-actions_btns,
+    .spam-card .user-spam .sent-actions_btns,
+    .spam-card .user-spam .inbox-actions_btns,
+    .spam-card .user-sent .trash-actions_btns,
+    .spam-card .user-sent .spam-actions_btns,
+    .spam-card .user-sent .sent-actions_btns,
+    .spam-card .user-sent .inbox-actions_btns,
+    .spam-card .user-inbox .trash-actions_btns,
+    .spam-card .user-inbox .spam-actions_btns,
+    .spam-card .user-inbox .sent-actions_btns,
+    .spam-card .user-inbox .inbox-actions_btns,
+    .sent-card .user-trash .trash-actions_btns,
+    .sent-card .user-trash .spam-actions_btns,
+    .sent-card .user-trash .sent-actions_btns,
+    .sent-card .user-trash .inbox-actions_btns,
+    .sent-card .user-spam .trash-actions_btns,
+    .sent-card .user-spam .spam-actions_btns,
+    .sent-card .user-spam .sent-actions_btns,
+    .sent-card .user-spam .inbox-actions_btns,
+    .sent-card .user-sent .trash-actions_btns,
+    .sent-card .user-sent .spam-actions_btns,
     .sent-card .user-sent .sent-actions_btns,
-    .sent-card .user-sent .inbox-actions_btns, .sent-card .user-inbox .sent-actions_btns,
+    .sent-card .user-sent .inbox-actions_btns,
+    .sent-card .user-inbox .trash-actions_btns,
+    .sent-card .user-inbox .spam-actions_btns,
+    .sent-card .user-inbox .sent-actions_btns,
     .sent-card .user-inbox .inbox-actions_btns,
+    .inbox-card .user-trash .trash-actions_btns,
+    .inbox-card .user-trash .spam-actions_btns,
+    .inbox-card .user-trash .sent-actions_btns,
+    .inbox-card .user-trash .inbox-actions_btns,
+    .inbox-card .user-spam .trash-actions_btns,
+    .inbox-card .user-spam .spam-actions_btns,
+    .inbox-card .user-spam .sent-actions_btns,
+    .inbox-card .user-spam .inbox-actions_btns,
+    .inbox-card .user-sent .trash-actions_btns,
+    .inbox-card .user-sent .spam-actions_btns,
     .inbox-card .user-sent .sent-actions_btns,
     .inbox-card .user-sent .inbox-actions_btns,
+    .inbox-card .user-inbox .trash-actions_btns,
+    .inbox-card .user-inbox .spam-actions_btns,
     .inbox-card .user-inbox .sent-actions_btns,
     .inbox-card .user-inbox .inbox-actions_btns {
       font-size: 1.2rem;
       font-weight: 500; }
+      .trash-card .user-trash .trash-actions_btns:not(:last-child),
+      .trash-card .user-trash .spam-actions_btns:not(:last-child),
+      .trash-card .user-trash .sent-actions_btns:not(:last-child),
+      .trash-card .user-trash .inbox-actions_btns:not(:last-child), .trash-card .user-spam .trash-actions_btns:not(:last-child),
+      .trash-card .user-spam .spam-actions_btns:not(:last-child),
+      .trash-card .user-spam .sent-actions_btns:not(:last-child),
+      .trash-card .user-spam .inbox-actions_btns:not(:last-child), .trash-card .user-sent .trash-actions_btns:not(:last-child),
+      .trash-card .user-sent .spam-actions_btns:not(:last-child),
+      .trash-card .user-sent .sent-actions_btns:not(:last-child),
+      .trash-card .user-sent .inbox-actions_btns:not(:last-child), .trash-card .user-inbox .trash-actions_btns:not(:last-child),
+      .trash-card .user-inbox .spam-actions_btns:not(:last-child),
+      .trash-card .user-inbox .sent-actions_btns:not(:last-child),
+      .trash-card .user-inbox .inbox-actions_btns:not(:last-child),
+      .spam-card .user-trash .trash-actions_btns:not(:last-child),
+      .spam-card .user-trash .spam-actions_btns:not(:last-child),
+      .spam-card .user-trash .sent-actions_btns:not(:last-child),
+      .spam-card .user-trash .inbox-actions_btns:not(:last-child),
+      .spam-card .user-spam .trash-actions_btns:not(:last-child),
+      .spam-card .user-spam .spam-actions_btns:not(:last-child),
+      .spam-card .user-spam .sent-actions_btns:not(:last-child),
+      .spam-card .user-spam .inbox-actions_btns:not(:last-child),
+      .spam-card .user-sent .trash-actions_btns:not(:last-child),
+      .spam-card .user-sent .spam-actions_btns:not(:last-child),
+      .spam-card .user-sent .sent-actions_btns:not(:last-child),
+      .spam-card .user-sent .inbox-actions_btns:not(:last-child),
+      .spam-card .user-inbox .trash-actions_btns:not(:last-child),
+      .spam-card .user-inbox .spam-actions_btns:not(:last-child),
+      .spam-card .user-inbox .sent-actions_btns:not(:last-child),
+      .spam-card .user-inbox .inbox-actions_btns:not(:last-child),
+      .sent-card .user-trash .trash-actions_btns:not(:last-child),
+      .sent-card .user-trash .spam-actions_btns:not(:last-child),
+      .sent-card .user-trash .sent-actions_btns:not(:last-child),
+      .sent-card .user-trash .inbox-actions_btns:not(:last-child),
+      .sent-card .user-spam .trash-actions_btns:not(:last-child),
+      .sent-card .user-spam .spam-actions_btns:not(:last-child),
+      .sent-card .user-spam .sent-actions_btns:not(:last-child),
+      .sent-card .user-spam .inbox-actions_btns:not(:last-child),
+      .sent-card .user-sent .trash-actions_btns:not(:last-child),
+      .sent-card .user-sent .spam-actions_btns:not(:last-child),
       .sent-card .user-sent .sent-actions_btns:not(:last-child),
-      .sent-card .user-sent .inbox-actions_btns:not(:last-child), .sent-card .user-inbox .sent-actions_btns:not(:last-child),
+      .sent-card .user-sent .inbox-actions_btns:not(:last-child),
+      .sent-card .user-inbox .trash-actions_btns:not(:last-child),
+      .sent-card .user-inbox .spam-actions_btns:not(:last-child),
+      .sent-card .user-inbox .sent-actions_btns:not(:last-child),
       .sent-card .user-inbox .inbox-actions_btns:not(:last-child),
+      .inbox-card .user-trash .trash-actions_btns:not(:last-child),
+      .inbox-card .user-trash .spam-actions_btns:not(:last-child),
+      .inbox-card .user-trash .sent-actions_btns:not(:last-child),
+      .inbox-card .user-trash .inbox-actions_btns:not(:last-child),
+      .inbox-card .user-spam .trash-actions_btns:not(:last-child),
+      .inbox-card .user-spam .spam-actions_btns:not(:last-child),
+      .inbox-card .user-spam .sent-actions_btns:not(:last-child),
+      .inbox-card .user-spam .inbox-actions_btns:not(:last-child),
+      .inbox-card .user-sent .trash-actions_btns:not(:last-child),
+      .inbox-card .user-sent .spam-actions_btns:not(:last-child),
       .inbox-card .user-sent .sent-actions_btns:not(:last-child),
       .inbox-card .user-sent .inbox-actions_btns:not(:last-child),
+      .inbox-card .user-inbox .trash-actions_btns:not(:last-child),
+      .inbox-card .user-inbox .spam-actions_btns:not(:last-child),
       .inbox-card .user-inbox .sent-actions_btns:not(:last-child),
       .inbox-card .user-inbox .inbox-actions_btns:not(:last-child) {
         margin-bottom: 1.5rem; }
@@ -1875,8 +2229,12 @@ body {
 
 .messageDisplay .sent-card::-webkit-scrollbar,
 .messageDisplay .inbox-card::-webkit-scrollbar,
+.messageDisplay .trash-card::-webkit-scrollbar,
+.messageDisplay .spam-card::-webkit-scrollbar,
 .sentMessages::-webkit-scrollbar,
 .chats::-webkit-scrollbar,
+.trashMessages::-webkit-scrollbar,
+.spamMessages::-webkit-scrollbar,
 textarea::-webkit-scrollbar {
   margin-right: 2rem;
   width: 4px;
@@ -1884,7 +2242,11 @@ textarea::-webkit-scrollbar {
 
 .messageDisplay .sent-card::-webkit-scrollbar-thumb,
 .messageDisplay .inbox-card::-webkit-scrollbar-thumb,
+.messageDisplay .trash-card::-webkit-scrollbar-thumb,
+.messageDisplay .spam-card::-webkit-scrollbar-thumb,
 .sentMessages::-webkit-scrollbar-thumb,
+.trashMessages::-webkit-scrollbar-thumb,
+.spamMessages::-webkit-scrollbar-thumb,
 .chats::-webkit-scrollbar-thumb,
 textarea::-webkit-scrollbar-thumb {
   background-color: #12468a;
@@ -1892,8 +2254,12 @@ textarea::-webkit-scrollbar-thumb {
   margin: 10px; }
 
 .messageDisplay .sent-card::-webkit-scrollbar-track:hover,
+.messageDisplay .trash-card::-webkit-scrollbar-track:hover,
+.messageDisplay .spam-card::-webkit-scrollbar-track:hover,
 .messageDisplay .inbox-card::-webkit-scrollbar-track:hover,
 .sentMessages::-webkit-scrollbar-track:hover,
+.trashMessages::-webkit-scrollbar-track:hover,
+.spamMessages::-webkit-scrollbar-track:hover,
 .chats::-webkit-scrollbar-track:hover,
 textarea::-webkit-scrollbar-track:hover {
   background-color: #c0d0e9; }

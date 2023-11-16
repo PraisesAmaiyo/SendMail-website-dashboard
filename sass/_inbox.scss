@@ -57,7 +57,9 @@
    }
 
    .chats,
-   .sentMessages {
+   .sentMessages,
+   .trashMessages,
+   .spamMessages {
       height: calc(100vh - 212px);
       padding: 1rem;
       overflow-x: hidden;
@@ -80,6 +82,8 @@
    overflow-y: auto;
    display: none;
 
+   .trash-card,
+   .spam-card,
    .sent-card,
    .inbox-card {
       width: 100%;
@@ -88,16 +92,22 @@
       overflow-y: auto;
       overflow-x: hidden;
 
+      .user-trash_tab-name,
+      .user-spam_tab-name,
       .user-sent_tab-name,
       .user-inbox_tab-name {
          font-size: 2rem;
       }
 
+      .user-trash_tab-subject,
+      .user-spam_tab-subject,
       .user-sent_tab-subject,
       .user-inbox_tab-subject {
          font-size: 1.5rem;
       }
 
+      .user-trash_tab-text,
+      .user-spam_tab-text,
       .user-sent_tab-text,
       .user-inbox_tab-text {
          font-size: 1.5rem;
@@ -106,10 +116,14 @@
    }
 }
 
-.sentMessages {
+.sentMessages,
+.trashMessages,
+.spamMessages {
    display: none;
 }
 
+.trash-card,
+.spam-card,
 .sent-card,
 .inbox-card {
    &:last-child {
@@ -118,6 +132,8 @@
 
    .user {
 
+      &-trash,
+      &-spam,
       &-sent,
       &-inbox {
          align-items: center;
@@ -181,10 +197,14 @@
          }
 
          .sent-actions.user,
+         .trash-actions.user,
+         .spam-actions.user,
          .inbox-actions.user {
             background-color: rgba($color-grey-dark-2, .5);
          }
 
+         .trash-actions,
+         .spam-actions,
          .sent-actions,
          .inbox-actions {
             background-color: rgba($color-grey-dark-1, .5);
@@ -370,8 +390,12 @@
 
 .messageDisplay .sent-card::-webkit-scrollbar,
 .messageDisplay .inbox-card::-webkit-scrollbar,
+.messageDisplay .trash-card::-webkit-scrollbar,
+.messageDisplay .spam-card::-webkit-scrollbar,
 .sentMessages::-webkit-scrollbar,
 .chats::-webkit-scrollbar,
+.trashMessages::-webkit-scrollbar,
+.spamMessages::-webkit-scrollbar,
 textarea::-webkit-scrollbar {
    margin-right: 2rem;
    width: 4px;
@@ -380,7 +404,11 @@ textarea::-webkit-scrollbar {
 
 .messageDisplay .sent-card::-webkit-scrollbar-thumb,
 .messageDisplay .inbox-card::-webkit-scrollbar-thumb,
+.messageDisplay .trash-card::-webkit-scrollbar-thumb,
+.messageDisplay .spam-card::-webkit-scrollbar-thumb,
 .sentMessages::-webkit-scrollbar-thumb,
+.trashMessages::-webkit-scrollbar-thumb,
+.spamMessages::-webkit-scrollbar-thumb,
 .chats::-webkit-scrollbar-thumb,
 textarea::-webkit-scrollbar-thumb {
    background-color: $color-grey-dark-1;
@@ -389,8 +417,12 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .messageDisplay .sent-card::-webkit-scrollbar-track:hover,
+.messageDisplay .trash-card::-webkit-scrollbar-track:hover,
+.messageDisplay .spam-card::-webkit-scrollbar-track:hover,
 .messageDisplay .inbox-card::-webkit-scrollbar-track:hover,
 .sentMessages::-webkit-scrollbar-track:hover,
+.trashMessages::-webkit-scrollbar-track:hover,
+.spamMessages::-webkit-scrollbar-track:hover,
 .chats::-webkit-scrollbar-track:hover,
 textarea::-webkit-scrollbar-track:hover {
    background-color: #c0d0e9;
