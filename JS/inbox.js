@@ -146,12 +146,12 @@ function handleFileSelect(event) {
 
 // Function to extract the first 20 words from a text
 const inboxMessage = document.querySelectorAll('.user-inbox_tab-text');
+const sentMessage = document.querySelectorAll('.user-sent_tab-text');
 const trashMessage = document.querySelectorAll('.user-trash_tab-text');
 const spamMessage = document.querySelectorAll('.user-spam_tab-text');
 
-console.log(spamMessage);
-
 const originalInboxText = [];
+const originalSentText = [];
 const originalTrashText = [];
 const originalSpamText = [];
 
@@ -171,6 +171,12 @@ function getFirst40Words(text, originalTextArray) {
 inboxMessage.forEach((message) => {
   const text = message.textContent;
   const snippet = getFirst40Words(text, originalInboxText);
+  message.textContent = snippet;
+});
+
+sentMessage.forEach((message) => {
+  const text = message.textContent;
+  const snippet = getFirst40Words(text, originalSentText);
   message.textContent = snippet;
 });
 
@@ -198,164 +204,176 @@ function openImageModal(src) {
 
 // display messages when clicked
 const inboxCard = document.querySelectorAll('.inbox-card');
+const sentCard = document.querySelectorAll('.sent-card');
+const trashCard = document.querySelectorAll('.trash-card');
+const spamCard = document.querySelectorAll('.spam-card');
 const messageDisplay = document.querySelector('.messageDisplay');
 
-function openModal(i, isSent) {
+function openModal(i, inbox) {
   messageDisplay.style.display = 'block';
   messageDisplay.innerHTML = '';
   const messageCard = document.createElement('div');
 
-  const messageContainer = isSent ? sentMessages : inboxMessage;
-  const message = messageContainer[i];
+  //   const messageContainer = inboxCard ? sentMessage : inboxMessage;
+  //   const message = messageContainer[i];
 
-  if (message) {
-    const attachmentsHTML = message.files
-      ? message.files
-          .map((file) => {
-            if (file.type.startsWith('image')) {
-              return `
-        <div class="file-card_display">
-          <div style="display: flex;">
-            <img src="${
-              URL.createObjectURL(file)
-              //   file.path
-            }" alt="Attachment" class="attachmentFile" />
-          </div>
-        </div>
-      `;
-            } else if (file.type === 'application/pdf') {
-              return `
-          <div class="file-card_display">
-             <div style="display: flex;">
-               <a href="${URL.createObjectURL(file)}" download>
-                <i class="fa-solid fa-file-pdf doc-icon"></i>
-               <a>
-             </div>
-          </div>`;
-            } else if (
-              file.type === 'application/msword' ||
-              file.type ===
-                'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-            ) {
-              return `
-          <div class="file-card_display">
-             <div style="display: flex;">
-               <a href="${URL.createObjectURL(file)}" download>
-                <i class="fa-solid fa-file-word doc-icon"></i>
-               <a>
-            </div>
-          </div>`;
-            } else {
-              // Add more conditions for other file types if needed
-              return `
-          <div class="file-card_display">
-            <div style="display: flex;">
-               <a href="${URL.createObjectURL(file)}" download>
-                  <i class="fa-regular fa-file doc-icon"></i>
-               <a>
-            </div>
-          </div>`;
-            }
-          })
-          .join('')
-      : '';
+  //   if (message) {
+  //     const attachmentsHTML = message.files
+  //       ? message.files
+  //           .map((file) => {
+  //             if (file.type.startsWith('image')) {
+  //               return `
+  //         <div class="file-card_display">
+  //           <div style="display: flex;">
+  //             <img src="${
+  //               URL.createObjectURL(file)
+  //               //   file.path
+  //             }" alt="Attachment" class="attachmentFile" />
+  //           </div>
+  //         </div>
+  //       `;
+  //             } else if (file.type === 'application/pdf') {
+  //               return `
+  //           <div class="file-card_display">
+  //              <div style="display: flex;">
+  //                <a href="${URL.createObjectURL(file)}" download>
+  //                 <i class="fa-solid fa-file-pdf doc-icon"></i>
+  //                <a>
+  //              </div>
+  //           </div>`;
+  //             } else if (
+  //               file.type === 'application/msword' ||
+  //               file.type ===
+  //                 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+  //             ) {
+  //               return `
+  //           <div class="file-card_display">
+  //              <div style="display: flex;">
+  //                <a href="${URL.createObjectURL(file)}" download>
+  //                 <i class="fa-solid fa-file-word doc-icon"></i>
+  //                <a>
+  //             </div>
+  //           </div>`;
+  //             } else {
+  //               // Add more conditions for other file types if needed
+  //               return `
+  //           <div class="file-card_display">
+  //             <div style="display: flex;">
+  //                <a href="${URL.createObjectURL(file)}" download>
+  //                   <i class="fa-regular fa-file doc-icon"></i>
+  //                <a>
+  //             </div>
+  //           </div>`;
+  //             }
+  //           })
+  //           .join('')
+  //       : '';
 
-    const messageContent = `
-      <div class="${isSent ? 'sent-card' : 'inbox-card'}">
-        ${
-          isSent
-            ? generateMessageHTML(message, attachmentsHTML)
-            : inboxCard[i].innerHTML
-        }
+  const messageContent = `
+      <div class="${inbox ? 'inbox-card' : 'sent-card'}">
+        ${inbox ? inbox[i].innerHTML : ''}
         <div class="close closeModal" id="">&times;</div>
       </div>`;
 
-    messageCard.style.height = '80%';
-    messageCard.innerHTML = messageContent;
-    messageDisplay.appendChild(messageCard);
+  messageCard.style.height = '80%';
+  messageCard.innerHTML = messageContent;
+  messageDisplay.appendChild(messageCard);
 
-    const userInboxTabText = messageDisplay.querySelector(
-      '.user-inbox_tab-text'
-    );
+  const userInboxTabText = messageDisplay.querySelector('.user-inbox_tab-text');
+  const userSentTabText = messageDisplay.querySelector('.user-sent_tab-text');
+  const userTrashTabText = messageDisplay.querySelector('.user-trash_tab-text');
+  const userSpamTabText = messageDisplay.querySelector('.user-spam_tab-text');
 
-    if (userInboxTabText && !isSent) {
-      userInboxTabText.textContent = originalInboxText[i];
-    }
-
-    messageDisplay.classList.toggle('openModal');
-
-    if (messageDisplay.classList.contains('openModal')) {
-      main.classList.add('blur');
-      sidebar.classList.add('blur');
-      main.classList.add('no-scroll');
-    } else {
-      main.classList.remove('blur');
-      sidebar.classList.remove('blur');
-      main.classList.remove('no-scroll');
-    }
-
-    messageDisplay.addEventListener('click', function (event) {
-      const target = event.target;
-
-      // Check if the clicked element is inside a sent message
-      let attachmentElement = target.closest('.sent-card');
-      if (attachmentElement) {
-        // Check if the clicked element is an image
-        if (target.classList.contains('attachmentFile')) {
-          openImageModal(target.src);
-          console.log('clicked');
-        }
-      }
-    });
-
-    const closeButton = messageCard.querySelector('.close');
-    closeButton.style.display = 'block';
-
-    closeButton.addEventListener('click', function (event) {
-      event.stopPropagation();
-      closeModal();
-    });
+  if (userInboxTabText && inboxCard) {
+    userInboxTabText.textContent = originalInboxText[i];
   }
+
+  if (userSentTabText && sentCard) {
+    userSentTabText.textContent = originalSentText[i];
+  }
+
+  if (userTrashTabText && trashCard) {
+    userTrashTabText.textContent = originalTrashText[i];
+  }
+
+  if (userSpamTabText && spamCard) {
+    userSpamTabText.textContent = originalSpamText[i];
+  }
+
+  messageDisplay.classList.toggle('openModal');
+
+  if (messageDisplay.classList.contains('openModal')) {
+    main.classList.add('blur');
+    sidebar.classList.add('blur');
+    main.classList.add('no-scroll');
+  } else {
+    main.classList.remove('blur');
+    sidebar.classList.remove('blur');
+    main.classList.remove('no-scroll');
+  }
+
+  messageDisplay.addEventListener('click', function (event) {
+    const target = event.target;
+
+    // Check if the clicked element is inside a sent message
+    let attachmentElement = target.closest('.sent-card');
+    if (attachmentElement) {
+      // Check if the clicked element is an image
+      if (target.classList.contains('attachmentFile')) {
+        openImageModal(target.src);
+        console.log('clicked');
+      }
+    }
+  });
+
+  const closeButton = messageCard.querySelector('.close');
+  closeButton.style.display = 'block';
+
+  closeButton.addEventListener('click', function (event) {
+    event.stopPropagation();
+    closeModal();
+  });
 }
+// }
 
-function generateMessageHTML(message, attachmentsHTML) {
-  // Create the HTML structure for displaying the sent message
-  return `
-       <div class="user-sent">
-           <div class="user-sent_header">
-               <div>
-                   <h3 class="user-sent_tab-name">${message.name}</h3>
-                   <h4 class="user-sent_tab-subject">Subject: ${
-                     message.subject
-                   }</h4>
-               </div>
-           </div>
+// function generateMessageHTML(message, attachmentsHTML) {
+//   // Create the HTML structure for displaying the sent message
+//   return `
+//        <div class="user-sent">
+//            <div class="user-sent_header">
+//                <div>
+//                    <h3 class="user-sent_tab-name">${message.name}</h3>
+//                    <h4 class="user-sent_tab-subject">Subject: ${
+//                      message.subject
+//                    }</h4>
+//                </div>
+//            </div>
 
-           <div class="user-sent_tab">
-           <p class="user-sent_tab-text">${message.message}</p>
-           </div>
+//            <div class="user-sent_tab">
+//            <p class="user-sent_tab-text">${message.message}</p>
+//            </div>
 
-           <div class="files" style="display:flex">
-           ${attachmentsHTML ? attachmentsHTML : ''}
-           </div>
+//            <div class="files" style="display:flex">
+//            ${attachmentsHTML ? attachmentsHTML : ''}
+//            </div>
 
-           <div class="user-sent_info">
-               <p class="user-sent_info-date">${message.time}</p>
-               <p class="user-sent_info-time">${message.date}</p>
-           </div>
+//            <div class="user-sent_info">
+//                <p class="user-sent_info-date">${message.time}</p>
+//                <p class="user-sent_info-time">${message.date}</p>
+//            </div>
 
-           <div class="user-sent_actions">
-               <i class="fa-solid fa-ellipsis-vertical"></i>
-           </div>
+//            <div class="user-sent_actions">
+//                <i class="fa-solid fa-ellipsis-vertical"></i>
+//            </div>
 
-           <div class="sent-actions user">
-               <p class="sent-actions_btns">Archive</p>
-               <p class="sent-actions_btns">Report Spam</p>
-               <p class="sent-actions_btns">Delete</p>
-           </div>
-       </div>
-   `;
-}
+//            <div class="sent-actions user">
+//                <p class="sent-actions_btns">Archive</p>
+//                <p class="sent-actions_btns">Report Spam</p>
+//                <p class="sent-actions_btns">Delete</p>
+//            </div>
+//        </div>
+//    `;
+// }
 
 const messagesContainer = document.querySelector('.main');
 
@@ -366,90 +384,114 @@ messagesContainer.addEventListener('click', function (event) {
   // Check if the clicked element is inside an inbox or sent message
   let inboxMessageElement = target.closest('.inbox-card');
   let sentMessageElement = target.closest('.sent-card');
+  let trashMessageElement = target.closest('.trash-card');
+  let spamMessageElement = target.closest('.spam-card');
 
   if (inboxMessageElement) {
     let index = Array.from(inboxCard).indexOf(inboxMessageElement);
-
-    openModal(index, false);
+    console.log(index);
+    openModal(index, inboxCard);
   } else if (sentMessageElement) {
-    let index = Array.from(sentContainer.children).indexOf(sentMessageElement);
-
-    openModal(index, true);
+    let index = Array.from(sentCard).indexOf(sentMessageElement);
+    openModal(index, sentCard);
+  } else if (trashMessageElement) {
+    let index = Array.from(trashCard).indexOf(trashMessageElement);
+    openModal(index, trashCard);
+  } else if (spamMessageElement) {
+    let index = Array.from(spamCard).indexOf(spamMessageElement);
+    openModal(index, spamCard);
   }
 
   // Check if the clicked element is an image
   if (target.classList.contains('attachmentFile')) {
     openImageModal(target.src);
   }
-});
-// Enlarge image function
-
-// Event delegation for sent messages
-messagesContainer.addEventListener('click', function (event) {
-  const target = event.target;
-
-  // Check if the clicked element is inside a sent message
-  let messageElement = target.closest('.sent-card');
-  if (messageElement) {
-    let index = Array.from(sentContainer.children).indexOf(messageElement);
-    openModal(index, true);
+  // Check if the clicked element is an image
+  if (target.classList.contains('inbox-actions')) {
+    event.stopPropagation();
+    !openModal();
   }
 });
 
 // Event delegation for sent messages
-sentContainer.addEventListener('click', function (event) {
-  const target = event.target;
+// messagesContainer.addEventListener('click', function (event) {
+//   const target = event.target;
 
-  // Check if the clicked element is inside a sent message
-  let messageElement = target.closest('.sent-card');
-  if (messageElement) {
-    // Extract the message ID from the clicked element's dataset attribute
-    const messageId = messageElement.dataset.messageId;
-
-    openModal(null, true, messageId);
-  }
-});
+//   // Check if the clicked element is inside a sent message
+//   let messageElement = target.closest('.sent-card');
+//   if (messageElement) {
+//     let index = Array.from(sentContainer.children).indexOf(messageElement);
+//     openModal(index, true);
+//   }
+// });
 
 const submit = document.getElementById('sendMessage');
 
-let sentMessages = [
-  {
-    name: 'Michael Brown',
-    subject: ' The Power of Gratitude: Transforming Lives',
-    slicedMessage: `Hey there,
-    I hope this email finds you well. I wanted to share some groundbreaking news in the world of
-    technology. The ...`,
-    message: `     Hey there,
-      I hope this email finds you well. I wanted to share some groundbreaking news in the world of
-      technology. The advancements we're witnessing are truly remarkable, and it's shaping the way we
-      live and work. From artificial intelligence to quantum computing, the possibilities seem endless.
-      Sit back, relax, and let's delve into the fascinating realm of technological wonders!
-      Pretium viverra suspendisse potenti nullam ac tortor vitae. Vitae proin
-      sagittis nisl rhoncus mattis rhoncus urna neque viverra. Egestas dui id ornare arcu odio ut sem.
-      Pharetra sit amet aliquam id diam maecenas ultricies mi eget. In ante metus dictum at tempor
-      commodo ullamcorper a. Et sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque.
-      Nascetur ridiculus mus mauris vitae. Augue mauris augue neque gravida. Consequat id porta nibh
-      venenatis cras sed. Cursus mattis molestie a iaculis. Luctus venenatis lectus magna fringilla urna.
-      Faucibus vitae aliquet nec ullamcorper sit amet risus. Vehicula ipsum a arcu cursus vitae congue
-      mauris. Sagittis nisl rhoncus mattis rhoncus urna neque viverra justo nec. Eget velit aliquet
-      sagittis id consectetur purus ut faucibus pulvinar. Neque volutpat ac tincidunt vitae semper quis
-      lectus nulla. Vel facilisis volutpat est velit. Diam volutpat commodo sed egestas egestas fringilla
-      phasellus. Pharetra vel turpis nunc eget lorem. At tellus at urna condimentum mattis pellentesque.`,
-    date: 'November 23rd',
-    time: '03:22 pm',
-    files: [
-      // {
-      //   type: 'image/png',
-      //   name: 'dcImage.png',
-      //   path: 'https://scontent.fabb1-2.fna.fbcdn.net/v/t39.30808-6/400765364_736353168521805_7853714947437572353_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGpHcMLuv8m6iKqNTYYqmupmbN8sbG5LwCZs3yxsbkvAEaRA34CdbY1deRBvSeJMHZU1JM28oCk_R_TkXhoYdux&_nc_ohc=E_t2SJk22CIAX9zDRHU&_nc_zt=23&_nc_ht=scontent.fabb1-2.fna&oh=00_AfDFJ-ls0TLlu8fSlEp--nmWcoHMvstgn_74KMzAJtguJA&oe=65596725',
-      // },
-    ],
-    id: Math.random(),
-    isDummy: true,
-    id: 'unique-dummy-id-1',
-  },
-];
-// let sentMessages = [];
+// let sentMessages = [
+//   {
+//     name: 'Kiere Judy',
+//     subject: 'I need new Alias for my Brand Mail',
+//     slicedMessage: `Hello SendMail, The advancements we're witnessing are truly remarkable, and it's shaping the way we
+//     live and work. From artificial intelligence to quantum computing, the possibilities seem...`,
+
+//     message: `Hello SendMail, The advancements we're witnessing are truly remarkable, and it's shaping the way we
+//     live and work. From artificial intelligence to quantum computing, the possibilities seem endless.
+//     Sit back, relax, and let's delve into the fascinating realm of technological wonders!
+//     Pretium viverra suspendisse potenti nullam ac tortor vitae. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. Egestas dui id ornare arcu odio ut sem.
+//     Pharetra sit amet aliquam id diam maecenas ultricies mi eget. In ante metus dictum at tempor
+//     commodo ullamcorper a. Et sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque.
+//     Nascetur ridiculus mus mauris vitae. Augue mauris augue neque gravida. Consequat id porta nibh
+//     venenatis cras sed. Cursus mattis molestie a iaculis. Luctus venenatis lectus magna fringilla urna.
+//     Faucibus vitae aliquet nec ullamcorper sit amet risus. Vehicula ipsum a arcu cursus vitae congue
+//     mauris. Sagittis nisl rhoncus mattis rhoncus urna neque viverra justo nec.`,
+//     date: 'November 23rd',
+//     time: '03:22 pm',
+//     files: [
+//       // {
+//       //   type: 'image/png',
+//       //   name: 'dcImage.png',
+//       //   path: 'https://scontent.fabb1-2.fna.fbcdn.net/v/t39.30808-6/400765364_736353168521805_7853714947437572353_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGpHcMLuv8m6iKqNTYYqmupmbN8sbG5LwCZs3yxsbkvAEaRA34CdbY1deRBvSeJMHZU1JM28oCk_R_TkXhoYdux&_nc_ohc=E_t2SJk22CIAX9zDRHU&_nc_zt=23&_nc_ht=scontent.fabb1-2.fna&oh=00_AfDFJ-ls0TLlu8fSlEp--nmWcoHMvstgn_74KMzAJtguJA&oe=65596725',
+//       // },
+//     ],
+//     id: Math.random(),
+//     isDummy: true,
+//   },
+//   {
+//     name: 'Michael Brown',
+//     subject: ' The Power of Gratitude: Transforming Lives',
+//     slicedMessage: `Hey there,
+//     I hope this email finds you well. I wanted to share some groundbreaking news in the world of
+//     technology. The ...`,
+//     message: `     Hey there,
+//       I hope this email finds you well. I wanted to share some groundbreaking news in the world of
+//       technology. The advancements we're witnessing are truly remarkable, and it's shaping the way we
+//       live and work. From artificial intelligence to quantum computing, the possibilities seem endless.
+//       Sit back, relax, and let's delve into the fascinating realm of technological wonders!
+//       Pretium viverra suspendisse potenti nullam ac tortor vitae. Vitae proin
+//       sagittis nisl rhoncus mattis rhoncus urna neque viverra. Egestas dui id ornare arcu odio ut sem.
+//       Pharetra sit amet aliquam id diam maecenas ultricies mi eget. In ante metus dictum at tempor
+//       commodo ullamcorper a. Et sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque.
+//       Nascetur ridiculus mus mauris vitae. Augue mauris augue neque gravida. Consequat id porta nibh
+//       venenatis cras sed. Cursus mattis molestie a iaculis. Luctus venenatis lectus magna fringilla urna.
+//       Faucibus vitae aliquet nec ullamcorper sit amet risus. Vehicula ipsum a arcu cursus vitae congue
+//       mauris. Sagittis nisl rhoncus mattis rhoncus urna neque viverra justo nec. Eget velit aliquet
+//       sagittis id consectetur purus ut faucibus pulvinar. Neque volutpat ac tincidunt vitae semper quis
+//       lectus nulla. Vel facilisis volutpat est velit. Diam volutpat commodo sed egestas egestas fringilla
+//       phasellus. Pharetra vel turpis nunc eget lorem. At tellus at urna condimentum mattis pellentesque.`,
+//     date: 'November 23rd',
+//     time: '03:22 pm',
+//     files: [
+//       // {
+//       //   type: 'image/png',
+//       //   name: 'dcImage.png',
+//       //   path: 'https://scontent.fabb1-2.fna.fbcdn.net/v/t39.30808-6/400765364_736353168521805_7853714947437572353_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGpHcMLuv8m6iKqNTYYqmupmbN8sbG5LwCZs3yxsbkvAEaRA34CdbY1deRBvSeJMHZU1JM28oCk_R_TkXhoYdux&_nc_ohc=E_t2SJk22CIAX9zDRHU&_nc_zt=23&_nc_ht=scontent.fabb1-2.fna&oh=00_AfDFJ-ls0TLlu8fSlEp--nmWcoHMvstgn_74KMzAJtguJA&oe=65596725',
+//       // },
+//     ],
+//     id: Math.random(),
+//     isDummy: true,
+//   },
+// ];
+let sentMessages = [];
 
 submit.addEventListener('click', function submitMessage() {
   const name = document.getElementById('userName').innerText;
@@ -463,7 +505,6 @@ submit.addEventListener('click', function submitMessage() {
   let slicedMessage = '';
 
   if (messageValue.split(' ').length < 40) {
-    console.log('/eeeeeeeeee');
     splitMessage = messageValue.split(' ');
     slicedMessage = splitMessage.join(' ');
   } else {
@@ -485,7 +526,6 @@ submit.addEventListener('click', function submitMessage() {
 
   //   sentMessages = [];
   sentMessages.unshift(inboxValues);
-  addChatMessage(sentMessages);
 
   subject.value = '';
   message.value = '';
@@ -501,167 +541,251 @@ submit.addEventListener('click', function submitMessage() {
   sidebar.classList.remove('blur');
   main.classList.remove('no-scroll');
 
-  rendersentMessages();
+  //   rendersentMessages();
   updateDateTime();
   composeModal.classList.remove('openModal');
 });
 
-rendersentMessages();
-
 // JavaScript to add or render new messages to the DOM
-function rendersentMessages() {
-  sentContainer.innerHTML = '';
+// function rendersentMessages() {
+//   sentContainer.innerHTML = '';
 
-  sentMessages.forEach((message, index) => {
-    const chatMessage = document.createElement('div');
-    chatMessage.className = `sent-card user `;
+//   sentMessages.forEach((message, index) => {
+//     const chatMessage = document.createElement('div');
+//     chatMessage.className = `sent-card user `;
 
-    const attachmentsHTML = message.files
-      .map((file) => {
-        if (file.type.startsWith('image')) {
-          return `
-          <div class="file-card_display">
-            <div style="display: flex;">
-              <img src="${
-                URL.createObjectURL(file)
-                //  file.path
-              }" alt="Attachment" class="attachmentFile" />        
-            </div>
-          </div>
-        `;
-        } else if (file.type === 'application/pdf') {
-          return `          
-            <div class="file-card_display">
-               <div style="display: flex;">
-                  <a href="${URL.createObjectURL(file)}" download>
-                     <i class="fa-solid fa-file-pdf doc-icon"></i>
-                  <a>
-               </div>
-            </div>`;
-        } else if (
-          file.type === 'application/msword' ||
-          file.type ===
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-        ) {
-          return `
-            <div class="file-card_display">
-               <div style="display: flex;">
-                  <a href="${URL.createObjectURL(file)}" download>
-                     <i class="fa-solid fa-file-word doc-icon"></i>
-                  <a>
-               </div>
-            </div>`;
-        } else {
-          // Add more conditions for other file types if needed
-          return `          
-            <div class="file-card_display">
-               <div style="display: flex;">
-                  <a href="${URL.createObjectURL(file)}" download>
-                     <i class="fa-regular fa-file doc-icon"></i>  
-                  <a>  
-               </div>
-            </div>`;
-        }
-      })
-      .join('');
+//     const attachmentsHTML = message.files
+//       .map((file) => {
+//         if (file.type.startsWith('image')) {
+//           return `
+//           <div class="file-card_display">
+//             <div style="display: flex;">
+//               <img src="${
+//                 URL.createObjectURL(file)
+//                 //  file.path
+//               }" alt="Attachment" class="attachmentFile" />
+//             </div>
+//           </div>
+//         `;
+//         } else if (file.type === 'application/pdf') {
+//           return `
+//             <div class="file-card_display">
+//                <div style="display: flex;">
+//                   <a href="${URL.createObjectURL(file)}" download>
+//                      <i class="fa-solid fa-file-pdf doc-icon"></i>
+//                   <a>
+//                </div>
+//             </div>`;
+//         } else if (
+//           file.type === 'application/msword' ||
+//           file.type ===
+//             'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+//         ) {
+//           return `
+//             <div class="file-card_display">
+//                <div style="display: flex;">
+//                   <a href="${URL.createObjectURL(file)}" download>
+//                      <i class="fa-solid fa-file-word doc-icon"></i>
+//                   <a>
+//                </div>
+//             </div>`;
+//         } else {
+//           // Add more conditions for other file types if needed
+//           return `
+//             <div class="file-card_display">
+//                <div style="display: flex;">
+//                   <a href="${URL.createObjectURL(file)}" download>
+//                      <i class="fa-regular fa-file doc-icon"></i>
+//                   <a>
+//                </div>
+//             </div>`;
+//         }
+//       })
+//       .join('');
 
-    chatMessage.innerHTML = `
-         <div class="user-sent">
-         <div class="user-sent_header">
-            <div>
-               <h3 class="user-sent_tab-name">${message.name}</h3>
-               <h4 class="user-sent_tab-subject">Subject: ${
-                 message.subject
-               }</h4>
-                  </div>
-         </div>
+//     chatMessage.innerHTML = `
+//          <div class="user-sent">
+//          <div class="user-sent_header">
+//             <div>
+//                <h3 class="user-sent_tab-name">${message.name}</h3>
+//                <h4 class="user-sent_tab-subject">Subject: ${
+//                  message.subject
+//                }</h4>
+//                   </div>
+//          </div>
 
-         <div class="user-sent_tab">
+//          <div class="user-sent_tab">
 
-            <p class="user-sent_tab-text">${message.slicedMessage}</p>
-         </div>
+//             <p class="user-sent_tab-text">${message.slicedMessage}</p>
+//          </div>
 
-         <div class="files" style="display:flex">
-             ${
-               attachmentsHTML
-                 ? `<div style="margin-top: 1rem; display: flex; align-items: center;">
-                 <i style="font-size: 1.5rem;" class="fa-solid fa-file-circle-check"></i>
-                 <p style="font-size: 1rem; margin-left: 1rem;">CONTAINS FILES</p>
-              </div>`
-                 : ''
-             }
-         </div>
+//          <div class="files" style="display:flex">
+//              ${
+//                attachmentsHTML
+//                  ? `<div style="margin-top: 1rem; display: flex; align-items: center;">
+//                  <i style="font-size: 1.5rem;" class="fa-solid fa-file-circle-check"></i>
+//                  <p style="font-size: 1rem; margin-left: 1rem;">CONTAINS FILES</p>
+//               </div>`
+//                  : ''
+//              }
+//          </div>
 
-         <div class="user-sent_info">
-         <p class="user-sent_info-date ">${message.time}</p>
-            <p class="user-sent_info-time">${message.date}</p>
-         </div>
+//          <div class="user-sent_info">
+//          <p class="user-sent_info-date ">${message.time}</p>
+//             <p class="user-sent_info-time">${message.date}</p>
+//          </div>
 
-         <div class="user-sent_actions">
-            <i class="fa-solid fa-ellipsis-vertical"></i>
-         </div>
+//          <div class="user-sent_actions">
+//             <i class="fa-solid fa-ellipsis-vertical"></i>
+//          </div>
 
-         <div class="sent-actions user">
-            <p class="sent-actions_btns">Archive</p>
-            <p class="sent-actions_btns">Report Spam</p>
-            <p class="sent-actions_btns">Delete</p>
-            </div>
-         </div>
-   `;
+//          <div class="sent-actions user">
+//             <p class="sent-actions_btns">Archive</p>
+//             <p class="sent-actions_btns">Report Spam</p>
+//             <p class="sent-actions_btns">Delete</p>
+//             </div>
+//          </div>
+//    `;
 
-    sentContainer.appendChild(chatMessage);
+//     sentContainer.appendChild(chatMessage);
 
-    chatMessage.addEventListener('click', function () {
-      openModal(index, true);
-    });
+//     chatMessage.addEventListener('click', function () {
+//       openModal(index, true);
+//     });
+//   });
+// }
+// rendersentMessages();
 
-    scrollToBottom();
+// Javascript for Archive, Spam and Delete
+
+const inboxAction = document.querySelectorAll('.user-inbox_actions');
+const inboxActionTab = document.querySelectorAll('.inbox-actions');
+const sentAction = document.querySelectorAll('.user-sent_actions');
+const sentActionTab = document.querySelectorAll('.sent-actions');
+const trashAction = document.querySelectorAll('.user-trash_actions');
+const trashActionTab = document.querySelectorAll('.trash-actions');
+const spamAction = document.querySelectorAll('.user-spam_actions');
+const spamActionTab = document.querySelectorAll('.spam-actions');
+
+function hideAllTabs() {
+  inboxActionTab.forEach((tab) => {
+    tab.style.display = 'none';
   });
 
-  //////////////////////
-
-  const inboxAction = document.querySelectorAll('.user-inbox_actions');
-  const inboxActionTab = document.querySelectorAll('.inbox-actions');
-
-  function hideAllTabs() {
-    inboxActionTab.forEach((tab) => {
-      tab.style.display = 'none';
-    });
-  }
-
-  document.body.addEventListener('click', function (event) {
-    const target = event.target;
-
-    let isInsideInbox = false;
-
-    for (let i = 0; i < inboxAction.length; i++) {
-      if (
-        inboxAction[i].contains(target) ||
-        inboxActionTab[i].contains(target)
-      ) {
-        isInsideInbox = true;
-        break;
-      }
-    }
-
-    if (!isInsideInbox) {
-      hideAllTabs();
-    }
+  trashActionTab.forEach((tab) => {
+    tab.style.display = 'none';
   });
 
-  inboxAction.forEach((openActionBtn, index) => {
-    openActionBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
+  sentActionTab.forEach((tab) => {
+    tab.style.display = 'none';
+  });
 
-      if (inboxActionTab[index].style.display === 'block') {
-        inboxActionTab[index].style.display = 'none';
-      } else {
-        hideAllTabs();
-        inboxActionTab[index].style.display = 'block';
-      }
-    });
+  spamActionTab.forEach((tab) => {
+    tab.style.display = 'none';
   });
 }
+
+document.body.addEventListener('click', function (event) {
+  const target = event.target;
+
+  let isInsideInbox = false;
+  let isInsideTrash = false;
+  let isInsideSent = false;
+  let isInsideSpam = false;
+
+  for (let i = 0; i < inboxAction.length; i++) {
+    if (inboxAction[i].contains(target) || inboxActionTab[i].contains(target)) {
+      isInsideInbox = true;
+      break;
+    }
+  }
+
+  for (let i = 0; i < sentAction.length; i++) {
+    if (sentAction[i].contains(target) || sentActionTab[i].contains(target)) {
+      isInsideSent = true;
+      break;
+    }
+  }
+
+  for (let i = 0; i < trashAction.length; i++) {
+    if (trashAction[i].contains(target) || trashActionTab[i].contains(target)) {
+      isInsideTrash = true;
+      break;
+    }
+  }
+
+  for (let i = 0; i < spamAction.length; i++) {
+    if (spamAction[i].contains(target) || spamActionTab[i].contains(target)) {
+      isInsideSpam = true;
+      break;
+    }
+  }
+
+  if (!isInsideInbox) {
+    hideAllTabs();
+  }
+  if (!isInsideTrash) {
+    hideAllTabs();
+  }
+  if (!isInsideSent) {
+    hideAllTabs();
+  }
+  if (!isInsideSpam) {
+    hideAllTabs();
+  }
+});
+
+inboxAction.forEach((openActionBtn, index) => {
+  openActionBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+
+    if (inboxActionTab[index].style.display === 'block') {
+      inboxActionTab[index].style.display = 'none';
+    } else {
+      hideAllTabs();
+      inboxActionTab[index].style.display = 'block';
+    }
+  });
+});
+
+trashAction.forEach((openActionBtn, index) => {
+  openActionBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+
+    if (trashActionTab[index].style.display === 'block') {
+      trashActionTab[index].style.display = 'none';
+    } else {
+      hideAllTabs();
+      trashActionTab[index].style.display = 'block';
+    }
+  });
+});
+
+sentAction.forEach((openActionBtn, index) => {
+  openActionBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+
+    if (sentActionTab[index].style.display === 'block') {
+      sentActionTab[index].style.display = 'none';
+    } else {
+      hideAllTabs();
+      sentActionTab[index].style.display = 'block';
+    }
+  });
+});
+
+spamAction.forEach((openActionBtn, index) => {
+  openActionBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+
+    if (spamActionTab[index].style.display === 'block') {
+      spamActionTab[index].style.display = 'none';
+    } else {
+      hideAllTabs();
+      spamActionTab[index].style.display = 'block';
+    }
+  });
+});
 
 // Close opened Modal for compose and enlarged image
 const closeModalButton = document.querySelectorAll('.closeModal');
@@ -695,14 +819,4 @@ function closeModal() {
 
 function closeImageModal() {
   imageModal.classList.remove('openModal');
-}
-
-// Function to scroll the chat container to the bottom i.e to alwasy display a new chat
-function scrollToBottom() {
-  chatContainer.scrollTop =
-    chatContainer.scrollHeight - chatContainer.clientHeight + 1;
-}
-
-function addChatMessage() {
-  scrollToBottom();
 }
