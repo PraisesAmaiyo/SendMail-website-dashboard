@@ -76,9 +76,13 @@
 
 }
 
+.messageDisplay.modal {
+   padding: 2rem 4rem;
+}
+
 .messageDisplay {
-   width: 50%;
-   height: 70%;
+   width: 85%;
+   height: 60%;
    overflow-y: auto;
    display: none;
 
@@ -162,7 +166,7 @@
             &-name {
                font-size: 1.3rem;
                font-weight: 600;
-               margin-top: 1rem;
+               margin-top: 3rem;
             }
 
             &-subject {

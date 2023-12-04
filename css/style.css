@@ -100,7 +100,7 @@ body {
   width: max-content;
   max-width: 100rem;
   height: max-content;
-  z-index: 10000;
+  z-index: 1000000;
   transition: opacity .3s ease-in-out, visibility .3s ease-in-out; }
   @media only screen and (max-width: 45.7em) {
     .modal {
@@ -1628,9 +1628,12 @@ body {
       font-size: 1.8rem;
       margin-top: 3rem; }
 
+.messageDisplay.modal {
+  padding: 2rem 4rem; }
+
 .messageDisplay {
-  width: 50%;
-  height: 70%;
+  width: 85%;
+  height: 60%;
   overflow-y: auto;
   display: none; }
   .messageDisplay .trash-card,
@@ -1787,7 +1790,7 @@ body {
     .inbox-card .user-inbox_tab-name {
       font-size: 1.3rem;
       font-weight: 600;
-      margin-top: 1rem; }
+      margin-top: 3rem; }
     .trash-card .user-trash_tab-subject, .trash-card .user-spam_tab-subject, .trash-card .user-sent_tab-subject, .trash-card .user-inbox_tab-subject,
     .spam-card .user-trash_tab-subject,
     .spam-card .user-spam_tab-subject,

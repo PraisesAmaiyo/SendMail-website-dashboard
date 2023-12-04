@@ -155,7 +155,7 @@ body {
    width: max-content;
    max-width: 100rem;
    height: max-content;
-   z-index: 10000;
+   z-index: 1000000;
    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
 
    @media only screen and (max-width:$bp-large) {
