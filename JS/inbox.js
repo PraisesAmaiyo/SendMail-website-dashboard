@@ -59,6 +59,15 @@ function openComposeModal(event) {
   }
 }
 
+//Toggle Cc and Bcc
+const carbonCopyButton = document.querySelector('.fa-chevron-down');
+const carbonCopy = document.querySelector('.carbonCopy');
+
+carbonCopyButton.addEventListener('click', function () {
+  carbonCopy.style.display =
+    carbonCopy.style.display === 'none' ? 'block' : 'none';
+});
+
 // JavaScript for addition of files and documents from device memory
 const filesContainer = document.querySelector('.files');
 const fileContainer = document.querySelector('.file-container');
@@ -323,9 +332,22 @@ function generateMessageHTML(message, attachmentsHTML) {
            <div class="user-sent_header">
                <div>
                    <h3 class="user-sent_tab-name">${message.name}</h3>
+                   ${
+                     message.Cc === ''
+                       ? ''
+                       : `<h2 class="">Cc: ${message.Cc}</h2>`
+                   }
+                   ${
+                     message.Bcc === ''
+                       ? ''
+                       : `<h2 class="">Bcc: ${message.Bcc}</h2>`
+                   }
                    <h4 class="user-sent_tab-subject">Subject: ${
                      message.subject
                    }</h4>
+                
+                   
+                  
                </div>
            </div>
 
@@ -466,10 +488,15 @@ let sentMessages = [
 // let sentMessages = [];
 
 submit.addEventListener('click', function submitMessage() {
-  const name = document.getElementById('userName').innerText;
+  const name = document.getElementById('toRecepient');
+  const Cc = document.getElementById('Cc');
+  const Bcc = document.getElementById('Bcc');
   const subject = document.getElementById('subject');
   const message = document.getElementById('inputField');
 
+  const nameValue = name.value;
+  const CcValue = Cc.value;
+  const BccValue = Bcc.value;
   const subjectValue = subject.value;
   const messageValue = message.value;
 
@@ -485,7 +512,9 @@ submit.addEventListener('click', function submitMessage() {
   }
 
   let inboxValues = {
-    name,
+    name: nameValue,
+    Cc: CcValue,
+    Bcc: BccValue,
     subject: subjectValue,
     slicedMessage,
     message: messageValue,
@@ -495,10 +524,14 @@ submit.addEventListener('click', function submitMessage() {
     date: updateDateTime().slice(5, 19),
     isDummy: true,
   };
+  console.log(inboxValues);
 
   //   sentMessages = [];
   sentMessages.unshift(inboxValues);
 
+  name.value = '';
+  Cc.value = '';
+  Bcc.value = '';
   subject.value = '';
   message.value = '';
   selectedFiles = [];
